@@ -1,0 +1,50 @@
+body {
+    background-color: #fff;
+  }
+  #main {
+    position: relative;
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+  }
+  p {
+    font-size: 17px;
+  }
+  .card-group {
+    border: 1px solid rgba(160, 160, 160, 0.315);
+    padding: 20px 0;
+    border-radius: 5px;
+  }
+  #cardmain {
+    width: 30rem;
+    border-radius: 15px;
+    /* height: 27em; */
+    border: none !important;
+  }
+  .form-control {
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 5px;
+  }
+  .form-control:hover {
+    background-color: rgba(253, 246, 246, 0.493);
+  }
+  #submitbtn {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 50px;
+  }
+  #blue {
+    color: #326bff;
+    cursor: pointer;
+    font-size: 17px;
+  }
+  input[type=text]{
+      /* width: 26em; */
+      outline: none;
+  }
+  .form-control:focus {
+    border-color: inheri;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  

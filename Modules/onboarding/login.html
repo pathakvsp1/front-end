@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}" sizes="16x16" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+<title>login</title>
+<link rel="stylesheet" href="{{ asset('vendor/css/style-login.css') }}">  
+<link rel="stylesheet" href="{{ asset('vendor/css/master-login.css') }}">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+</head>
+
+<body background-color: #f7f7f7;>
+    <div id="main" class="container">
+        <div class="row ">
+            <div class="col-4 mx-auto mt-5 d-flex justify-content-center">
+                <img src="{{ asset('images/logo.png') }}" class="img-fluid" width="182" height="42">
+            </div>
+            <h3 class="mt-3 d-flex justify-content-center"><strong>Welcome Back! </strong></h6>
+            <p class="d-flex justify-content-center">Don't miss your next opportunity. Sign in to stay updated on your professional world.</p>
+        </div>
+        @if(Session::has('message'))
+                <p ><div class="alert alert-success" role="alert">{{ Session::get('message') }}</div></p>
+            @endif
+            <form method="post" action="{{route('loginuser')}}">
+                @csrf
+        <div id="cardmain" class="card col-auto mx-auto mt-1 ">
+            <div class="card-group ">
+                <div class="card-body"> 
+
+                            <div class="form-group">
+                            <label for="email"></label>
+                            <input type="email" class="form-control select-input" id="email" placeholder="Enter email" name="email"></div>
+                            @if($errors->has('email'))
+                        <div class="alert alert-danger">{{ $errors->first('email') }}</div>
+@endif
+
+                         <div class="form-group ">
+                        <label for="password"></label>
+                        <input type="password" class="form-control select-input" id="password" name="password" placeholder="Password"></div>
+                        @if($errors->has('password'))
+                        <div class="alert alert-danger">{{ $errors->first('password') }}</div>
+@endif
+            <div id="submitbtn"class="col w-100">
+                <input class="bg-btn btn mt-4" type="submit" value="Login"></input>
+                <a href="{{route('signup')}}" class="border-btn btn my-3" value="Sign up">Sign up</a>
+            </div> 
+</form>
+        </div>
+        
+    </div>
+    </div>
+    </div>
+    <div class="text-center my-2">
+        <h6><span id="blue">Forgot password?</span></h6>
+        <h6><small>New to Digipartner's <span id="blue"> <a href="{{route('signup')}}" value="Sign up">Sign up</a></span></small></h6>
+    </div>
+</body>
+
+</html>

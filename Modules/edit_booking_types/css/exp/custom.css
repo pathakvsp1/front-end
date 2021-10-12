@@ -1,0 +1,165 @@
+:root {
+    --brand-color:#ff4545;
+    --brand-hover: #d13b3b;
+    --business-gray: #9A9A9A;
+}
+.card-heading{
+    color: var(--business-gray);
+    font-size:1rem;
+    font-weight:400;
+}
+.h5{
+    font-size:2.5rem;
+}
+#bookingForm .tab input,
+#bookingForm .tab select,
+#bookingForm .tab textarea,
+#bookingForm .tab .form-group{
+     margin: 0 !important;
+     margin-top: 0.5rem !important;
+     margin-bottom: 0.5rem !important;
+     border-radius: 0.25rem;
+}
+#cancelresc{
+    display: inline !important;
+}
+.form-control::-webkit-file-upload-button{
+    background: var(--brand-color) !important;
+    border: none !important;
+    border-radius: 0.25rem !important;
+    color: #fff;
+    cursor:pointer;
+}
+.form-control:focus{
+    box-shadow: 0 0 5px var(--brand-color) !important;
+    outline: none;
+}
+.btn-purp{
+    border: 2px solid var(--brand-color) !important;
+}
+.container-fluid,#content{
+    background-color:white !important;
+}
+.sidebar .nav-item .nav-link{
+    color:#6C7383 !important;
+}
+li:hover .nav-link,
+.sidebar .nav-item:hover .nav-link,
+.sidebar .nav-item:hover i:before{
+    color: white !important;
+}
+.sidebar .nav-item:hover,
+.sidebar .card-title:hover,
+.sidebar .card-title li:hover{
+    background: var(--brand-color);
+}
+
+/*old styles*/
+body{
+    font-family: 'Work Sans', sans-serif;
+}
+h1,h2,h3,h4{
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav-link span{
+    font-family: 'Roboto', sans-serif;
+}
+
+.sidebar-light .nav-item .nav-link:active, .sidebar-light .nav-item .nav-link:focus, .sidebar-light .nav-item:hover {
+    background-color: var(--brand-hover);
+    transition: ease-in 0.15s;
+}
+/* .sidebar-brand{
+    background-color:#fff;
+} */
+
+.topbar{
+    background-color:white;
+}
+.sidebar{
+    background: #fff;
+}
+.sidebar-brand img{
+    width:120px !important;
+    height:40px;
+}
+.sidebar-brand{
+    background-color: var(--brand-color);
+    padding:0px 0px !important;
+}
+button,.btn-purp{
+    background:transparent;
+    color:var(--brand-color);
+    transition: ease-in 0.15s;
+    border:2px solid var(--brand-color);
+    border-radius:4px;
+}
+button:hover,.btn-purp:hover{
+    background-color: var(--brand-hover);
+    color:white !important;
+}
+.nav-link i,.nav-link i:before, .card-title{
+    color: #6C7383 !important; 
+}
+.fa-arrow-circle-left,.fa-arrow-circle-left:before{
+    color:white;
+}
+.fa-caret-down,.fa-caret-down:before{
+    color:var(--business-gray) !important;
+}
+.badge-purp{
+    background-color:var(--brand-color);
+    color:white;
+}
+#datatable_next,#datatable_previous,#datatable_next a,#datatable_previous a,.previous,.previous a,.next, .next a{
+    background-color:white !important;
+}
+.page-link{
+    background-color:var(--brand-color) !important;
+    color:white;
+}
+.fc-prev-button,.fc-next-button{
+    background-color:var(--brand-color);
+    border:1px solid white;
+}
+.fc-today-button{
+    background-color:var(--brand-color) !important;
+}
+.fc-today-button:hover,.fc-prev-button:hover,.fc-next-button:hover,.page-link:hover{
+    background-color:var(--brand-hover);
+    border-color: var(--brand-hover);
+}
+h1 i,h1 i:before{
+    color:var(--brand-color);
+}
+.text-purp{
+    color:var(--brand-color);
+}
+.fc-toolbar-chunk{
+    
+}
+.fc-toolbar-title{
+    text-align:center;
+}
+
+.btn-warning{
+    background-color:transparent;
+    border:2px solid black;
+    border-radius:4px;
+    color:black;
+    font-weight: 500;
+}
+.btn-warning i,.btn-warning i:before{
+    color:black;
+}
+.btn-warning:hover,.btn-warning:active,.btn-warning:visited,.btn-warning:focus{
+    border-color:black !important;
+    color:black !important;
+    background-color:white !important;
+    box-shadow: none !important;
+}
+.settings-list{
+    list-style: none;
+    padding-left:0px;
+}

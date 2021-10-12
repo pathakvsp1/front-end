@@ -1,0 +1,113 @@
+.tab3Icon{
+    display: flex;
+}
+.step3{
+    margin-left: 14%;;
+}
+#btnSaveStep3{
+    /* height: 1px; */
+    /* 
+    margin-left: 12px;
+    font-size: 12px;
+    /* font-weight: 800%; 
+    background-color: rgb(17, 97, 245);
+    color: white;
+    border-radius: 3px; */
+    
+    /* padding: 9px 7px; */
+    width: 180px;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgb(33, 37, 41);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    
+}
+#options{
+    /* width: 10px; */
+    padding: 10px;
+    /* display: block; */
+}
+#opt1{
+    padding: 10px;
+    /* margin-top: 10px; */
+    margin-right:23px;
+}
+
+#opt3{
+    margin-top: 10px;
+}
+
+#addOption{
+    margin-top: 10px;
+    width: 180px;
+    padding-top: 10px;
+    border-radius: 6px;
+}
+#dynamic_form{
+    margin-left: 29%;
+}
+#text54{
+    border-radius: 6px;
+}
+.tab3Radio{
+    display: inline !important;
+}
+.tab3chkbox{
+    display: inline !important;
+}
+.chkBox{
+    margin-left: 11px;
+}
+.tab3txtArea{
+    border-radius:6px;
+}
+.tab3DropDown{
+    border-radius: 6px;
+    width:170px;
+}
+.field_container{
+    text-align:center;
+}
+#btnCloseModalField{
+    width: 125px; 
+    padding-bottom: 35px;
+    border-radius: 5px;
+    height: 40px;
+}
+#btnSaveModalField{
+    width: 125px; 
+    padding-bottom: 35px;
+    border-radius: 5px;
+    height: 40px;
+}
+#description{
+    width: 305px;
+    height: 85px;
+    border-radius: 6px;
+}
+.modelH2{
+    margin-left: 585px;    
+    
+}
+.modelChk{
+    margin-left: 14.2%;
+}
+.modelH3{
+    margin-right: 210px;
+}
+#question_type{
+    width: 310px;
+               height: 55px;
+                border-radius: 6px;
+}

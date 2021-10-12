@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+.main-container {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 251, 251) !important;
+}
+.inner-container {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+}
+.nav-container {
+    padding: 10px 30px;
+    min-height: 100vh;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+ul.tab-nav {
+    display: inline-block;
+    width: 95%;
+}
+li {
+    width: 100%;
+    font-size: 18px;
+    list-style: none;
+    margin: 2px 10px;
+    background-color: #ffffff;
+    color: #000;
+    padding: 7px 14px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: rgba(70, 50, 50, 0.062) 1.95px 1.95px 2.6px;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+li:hover {
+    background-color: #DC3545;
+    color: #fff;
+}
+/* li:active {
+    background-color: #DC3545;
+    color: #fff;
+} */
+
+.Confirmation {
+    background-color: #fff;
+    border: 1px solid rgba(128, 128, 128, 0.253);
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    min-height: 100vh;
+    height: 100%;
+    letter-spacing: 1px;
+}
+.active {
+    display: block;
+}
+.heading-div, .text-content {
+    padding: 7px 14px;
+}
+.heading1 {
+    font-size: 26px;
+    font-weight: 500;
+    padding: 15px 0;
+}
+.form-control {
+    margin: 10px 0;
+    display: inline !important;
+}
+.inner-tags {
+    border: 1px solid rgba(128, 128, 128, 0.253);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 7px 14px;
+    background-color: #fff;
+    min-height: 100vh;
+    height: 100%;
+}
+.para {
+    line-height: 30px;
+    letter-spacing: .8px;
+}
+.heading5 {
+    font-size: 18px;
+    font-weight: 500;
+}
+.heading5 span {
+    font-size: 16px;
+    font-weight: 400;
+}
+.slider.round {
+    border-radius: 18px;
+}
+.slider {
+    width: 40px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}

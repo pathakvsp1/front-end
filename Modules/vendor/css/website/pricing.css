@@ -1,0 +1,225 @@
+body {
+  background-color: #fff
+}
+
+.height-100 {
+  height: 100vh
+}
+
+.views {
+  font-size: 13px;
+  margin-top: 7px
+}
+
+/* .card {
+  width: 400px;
+  border: none;
+  border-radius: 4px
+} */
+
+.price span:nth-child(1) {
+  font-weight: 700;
+  font-size: 24px
+}
+
+.price span:nth-child(2) {
+  font-weight: 300;
+  font-size: 14px
+}
+
+.badge-orange {
+  height: 20px;
+  width: 89px;
+  margin-left: 10px;
+  padding-bottom: 3px;
+  background-color: red;
+  font-size: 13px;
+  color: #fff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.pricing .card {
+  border: none;
+  border-radius: 1rem;
+  transition: all 0.2s;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.pricing hr {
+  margin: 1.5rem 0;
+}
+
+.pricing .card-title {
+  margin: 0.5rem 0;
+  font-size: 24px;
+  letter-spacing: .1rem;
+  
+}
+
+.pricing .card-price {
+  font-size: 24px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.pricing .card-price .period {
+  font-size: 0.8rem;
+}
+
+.pricing ul li {
+  margin-bottom: 1rem;
+}
+
+.pricing .text-muted {
+  opacity: 0.7;
+}
+
+.pricing .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  opacity: 0.7;
+  transition: all 0.2s;
+}
+
+/* Hover Effects on Card */
+
+@media (min-width: 992px) {
+  .pricing .card:hover {
+    margin-top: -.25rem;
+    margin-bottom: .25rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .pricing .card:hover .btn {
+    opacity: 1;
+  }
+}
+.heading_faq {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 16px;
+}
+
+
+.btn-success-gradiant {
+  background: #2c47dd;
+background: -webkit-linear-gradient(legacy-direction(to right), #af68e4 0%, #326bff 100%);
+background: -webkit-gradient(linear, left top, right top, from(#af68e4), to(#326bff));
+}
+
+.btn-success-gradiant:hover {
+  background: #3951db;
+background: -webkit-linear-gradient(legacy-direction(to right), #af68e4 0%, #af68e4 100%);
+background: -webkit-gradient(linear, left top, right top, from(#af68e4), to(#af68e4));
+background: -webkit-linear-gradient(left, #1dc8cc 0%, #af68e4 100%);
+background: -o-linear-gradient(left, #1dc8cc 0%, #af68e4 100%);
+background: linear-gradient(to right, #1dc8cc 0%, #af68e4 100%);	
+}
+
+.btn-md {
+padding: 15px 45px;
+font-size: 16px;
+}
+
+.text-gradient{
+  background: -webkit-linear-gradient(
+    0deg, #ffa745 0%, #fe869f 30%, #ef7ac8 45%, #a083ed 70%, #43aeff 85%);
+    background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3.5em;
+  font-weight: 500;
+}
+ 
+table {
+  table-layout: fixed;
+  word-wrap: break-word;
+  margin-top:auto;
+  margin-bottom:auto;
+}
+.text-sm {
+  font-size: 102px;
+}
+.price {
+  font-size: 1em;
+}
+tbody .active{
+  background-color: rgb(43, 126, 243);
+  color: white;
+  font-size: 1.5em;
+  font-weight: 400;
+}
+td{
+  padding: 20px 40px !important;
+  color: rgb(0, 0, 0);
+  line-height: 2;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+svg{
+  width: 23px;
+  height: 23px;
+}
+.btn-bottom:hover{
+  opacity: 0.7;
+}
+.btn-bottom{
+  /* position: relative; */
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s linear 0s;
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(0, 0, 0);
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+.btn{
+  color: white;
+}
+
+@media (max-width: 768px) {
+  td {
+      line-height: 1;
+      padding: 25px 0px !important;
+      font-size: 1.1em;
+  }
+}
+@media(max-width: 993px) {
+  .btn-bottom {
+      padding: 0px 0px;
+  font-size: 14px;
+  line-height: 2;
+  height: 36px;
+  width: 81px;
+  border-radius: 9px;
+  font-weight: 700;
+  justify-content: center;
+  }
+} 
+@media screen and (max-width: 993px) {
+  td {
+    font-size: 15px !important;
+    padding: 16px 10px !important;
+  }
+}
+@media screen and (max-width: 993px) {
+  svg {
+    width: 17px;
+    height: 20px;
+  }
+}
+
+
+

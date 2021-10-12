@@ -1,0 +1,191 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<style type="text/css">
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+div.displayOverrides::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  /*background: #c8cbcf; */
+  background: #blue;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #a7acb0; 
+}
+</style>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Laravel">
+    <meta name="author" content="Digipartners">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="KqfyvJLcwN5BHxziB089tGMWtdvvKvhH4oX85Egg">
+
+    <title>Laravel- Account Setting</title>
+
+        <link rel="icon" type="image/png" href="/images/favicon.png" sizes="16x16" />
+    
+    <!-- Bootstrap core JavaScript-->
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>   
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- SB admin Theme -->
+    <link href="vendor/css/dashboard/main_theme.css" rel="stylesheet">
+
+    <!-- Custom theme -->
+    <link href="vendor/css/dashboard/custom_theme.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!------------------------>
+    
+    
+    <!-- icons -->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+
+</head>
+
+<body id="page-top">
+    <div>
+     <div id="content">
+                            <style>
+#header_link
+{
+    background-color: white;
+    text-decoration: none;
+    color:var(--brand-color);
+}
+
+</style>
+
+ 
+                <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+                 <!-- Begin Page Content -->
+                 <div class="container-fluid">
+                    
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script> 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
+<form action="/staff/info/saveCouponCode" method="post" id="coupon_code_form">
+
+<input type="hidden" name="_token" value="KqfyvJLcwN5BHxziB089tGMWtdvvKvhH4oX85Egg">    <!-- All booking types select  -->
+<!-- Loop here -->
+
+<label for="booking_type" >Booking types</label><br>
+<select id="booking_type" name="booking_type[]" multiple data-live-search="true" class="select-input selectpicker" ><br>
+<!-- Loop start -->
+<option value="7">One to one meet</option>
+<option value="8">30 minutes consultation adsdas</option>
+<option value="9">Group booking</option>
+</select><br>
+
+<!-- Unique Code -->
+<label for="coupon_code">Enter unique coupon code</label><br>
+<input type="text" id="coupon_code" value="" name="code" class="select-input"><br>
+
+
+<!-- Expiry -->
+
+<label for="valid_start">Valid from</label><br>
+<input type="date" value="" min="2021-09-23" id="valid_start" name="valid_start"><br>
+
+<label for="valid_till">Valid till</label><br>
+<input type="date" value="" min="2021-09-23" id="valid_till" name="valid_till"><br>
+
+<!-- Discount select -->
+<label for="discount" >Discount</label><br>
+<select id="discount" name="discount" class="select-input" ><br>
+<option value="percentage">Percentage ( like 10% off )</option>
+<option value="absolute">Absolute ( like 10$ off )</option>
+</select><br>
+<!-- Coupon Value-->
+<label for="max_codes">Coupon Value</label><br>
+<input type="numeric" id="coupon_value" value="" name="coupon_value" class="select-input"><br>
+
+<!-- Limit on coupons field-->
+<label for="max_codes">Limit on coupons</label><br>
+<input type="numeric" id="max_codes" value="" name="max_codes" class="select-input"><br>
+
+
+ <button type="submit" class="Settings btn mr-2 bg-btn">Save Changes</button>
+                                <button type="button" class="btn border-btn ml-2">Cancel</button>
+
+</form>
+
+                </div>
+                <!-- /.container-fluid -->
+            <!-- End of Main Content -->   
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Footer -->
+     <!-- End of Footer -->
+    </div>
+    <!-- Common scripts for all pages-->
+
+    <!-- Main theme JS -->
+    <script src="vendor/js/sb-admin-2.min.js"></script>
+
+
+    <!-- Jquery Easing scroll-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    
+
+    <!-- SweetAlert --> <!-- If issue in modal then check -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+
+    <!------------------------------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" />
+        
+    <!-- Copy text JS -->
+
+</body>
+    
+</html>

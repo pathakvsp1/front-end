@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ asset('vendor/css/style-index.css') }}">  
+<link rel="stylesheet" href="{{ asset('vendor/css/master-index.css') }}">
+    <!-- Latest compiled and minified CSS -->
+        <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}" sizes="16x16" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ asset('vendor/js/onboarding-index.js') }}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+</head>
+
+<body>
+    <form method="get" action="{{route('user.availability')}}">
+        @csrf
+    <div class="contaier-fluid">
+        <div class="inner-container my-5">
+            <div class="section">
+                <div class="img-div">
+                    <img src="{{ asset('images/logo.png') }}" alt="">
+                </div>
+                <h4 class="heading3">Welcome to ProBooking!</h4>
+                <p class="small">let's complete a basic walkthrough</p>
+
+                <div class="create-page m-5 py-2 px-3">
+                    <h4 class="heading4 py-2">Create your ProBooking URL</h4>
+                    <p class="para pb-3">Choose a URL that describes you and your business. Keep it short and crisp to have
+                        more impact.</p>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">probooking.io./meet/</span>
+                        </div>
+                        
+                        <input type="text" placeholder="your username, minimum 6 characters" class="form-control" id="username" name="username" value="{{$staff->username}}" required/><span id="tick"></span>
+                    </div>
+                </div>
+                <div class="footer mx-5 w-100 d-flex justify-content-space-between align-items-center">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    <div class="btn-dv">
+                        <button id="usernamebutton" style="float: right;" type="submit" class="bg-btn btn">Continue</button>
+                    </div>
+                </div>
+</form>
+            </div>
+            <div class="nav"></div>
+        </div>
+    </div>
+</body>
+
+</html>

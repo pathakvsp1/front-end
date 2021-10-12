@@ -1,0 +1,31 @@
+@media screen and (max-width: 999px) {
+    .main{
+        width: 100%;
+        display: grid;
+        border: 2px solid transparent;
+        text-align: center;
+    }
+    .searchbox{
+        width: 70%;
+        margin: 30px auto 0px auto;
+        border: 2px solid transparent;
+        padding-left: 10px;
+    }
+    .add_user_btn{
+        width: 40%;
+        margin: 0 auto 10px auto;
+    }
+    .table{
+        width: 100%;
+        border: 3px solid transparent;
+    }
+    .model_select{
+        width: 100%;
+        margin: 0 auto;
+    }
+    .search_logo{
+        text-align: center;
+        margin: 10px 0px;
+        font-size: 22px;
+    }
+  }

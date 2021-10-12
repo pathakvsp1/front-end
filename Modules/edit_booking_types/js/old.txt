@@ -1,0 +1,111 @@
+  $("#checkout-button").attr('disabled', true);
+  
+  var stripe = Stripe("{{$publishable_key}}");
+var elements = stripe.elements();
+var card = elements.create('card', { style:
+  {
+    base: {
+     
+	   color: "#111",
+    }
+  }
+});
+card.mount('#card-element');
+var displayError = document.getElementById('card-errors');
+  card.on('change', ({error}) => {
+    if (error) {
+      displayError.textContent = error.message;
+      $("#booknow").attr('disabled', true);
+    } else {
+      displayError.textContent = '';
+      $("#booknow").attr('disabled', false);
+    }
+  });
+  
+$(function() {
+	
+	$(".pay").click(function(e){
+		alert('in');
+    var name = $("#name").val();
+    var email = $("#email").val();
+    
+    
+    if (name == "" || email == "" ) {
+      alert("Please fill all required fields");
+      //$('#fullPageLoad').hide();
+    }else{
+        
+        fetch("/staff/stripe/stripePayment", {
+			 credentials: "same-origin",
+			 headers: {
+            'Content-Type': 'application/json',
+            "X-CSRF-Token":  $('meta[name="csrf-token"]').attr('content')
+        },
+          method: "POST",
+          body: JSON.stringify({
+                    serviceid: $("#serviceid").val(),
+                })
+        })
+        .then(function (response) {
+			alert(response.text);
+          return response.json();
+        })
+        .then(function (session) {
+          if (session.response == "Success") {
+              var clientSecret = session.client_secret;
+              var intent_id = session.intent_id;
+              $("#intent_id").val(intent_id);
+
+              // With stripe.confirmCardPayment method we fullfill payment
+              // stripe.confirmCardPayment may take several seconds to complete. During that time, disable your form from being resubmitted and show a waiting indicator such as a spinner. If you receive an error, show it to the customer, re-enable the form, and hide the waiting indicator.
+
+              return stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                  card: card,
+                  billing_details: {
+                    name: name,
+                    email: email,
+                    address:{                    
+                      line1: billing_address,
+                      city: billing_city,
+                      state: billing_state,
+                      postal_code: billing_pin,
+                      country: billing_country
+                    }
+                  }
+                }
+              });                
+
+
+          }else{
+              alert(" Some error occured, refresh the page and try again or contact support with error code. " + session.error);
+			  e.preventDefault();
+          }
+        })
+        .then(function (result) {
+          if (result.error) {
+              $("#pay_status").val("Error");
+              displayError.textContent = result.error.message;
+              $('#fullPageLoad').hide();
+              // form.submit();
+          } else {
+            if (result.paymentIntent.status === 'succeeded') {
+              $("#pay_status").val("Success");
+              $("#error_msg").val("");
+              form.submit();
+              // Submitt the booking form on stripe payment
+              if (redirect_url != "") {
+                window.open(redirect_url,'_blank')
+              }
+            }
+          }
+        })
+        .catch(function (error) {
+          $('#fullPageLoad').hide();
+          alert("Some error occured, refresh the page and try again or contact support");
+		  
+          console.log(error);
+        });       
+    }
+  });
+  });

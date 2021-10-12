@@ -1,0 +1,2369 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<style type="text/css">
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+div.displayOverrides::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  /*background: #c8cbcf; */
+  background: #blue;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #a7acb0; 
+}
+</style>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Laravel">
+    <meta name="author" content="Digipartners">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="eIg3WtD7h9yBb54CyXbCFwrVqix7lzDzJIRw4sMx">
+
+    <title>Laravel - Add Booking Types</title>
+
+        <link rel="icon" type="image/png" href="http://127.0.0.1:4433/images/favicon.png" sizes="16x16" />
+    
+    <!-- Bootstrap core JavaScript-->
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>   
+
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+
+
+    
+    <!-- Custom icons for this template-->   
+    
+    <link href="fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- SB admin Theme -->
+    <link href="css/dashboard/main_theme.css" rel="stylesheet">
+
+    <!-- Custom theme -->
+    <link href="css/dashboard/custom_theme.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!------------------------>
+    
+    
+    
+    <!-- icons -->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+
+</head>
+
+<body id="page-top">
+    <div>
+     <div id="content">
+                            <style>
+#header_link
+{
+    background-color: white;
+    text-decoration: none;
+    color:var(--brand-color);
+}
+
+</style>
+
+<!-- Topbar -->
+<nav class="navbar navbar-expand navbar-light topbar mb-4 static-top" style="height:60px; box-shadow:0 0 5px 1px;">
+<script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+<script type="text/javascript">
+ Paddle.Environment.set('sandbox');
+	Paddle.Setup({ vendor: 3084,
+     });
+    
+    function checkoutClosed(data) {
+            console.log(data);
+        alert('Your purchase has been cancelled, we hope to see you again soon!');
+       
+}
+$.ajaxSetup({
+  beforeSend: function(xhr, type) {
+      if (!type.crossDomain) {
+          xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+      }
+  },
+});
+function checkoutComplete(data) {
+                console.log(data);
+                alert('Thanks for your purchase.');
+                var checkoutId = data.checkout.id;
+        
+                Paddle.Order.details(checkoutId, function(data) {
+                    var orderid=data.order.order_id;
+                    var checkoutid=data.checkout.checkout_id;
+                    var quantity=data.order.quantity;
+                    console.log(data);
+                    var user = {"id":1,"name":"Udit Arora","email":"uarora1997@gmail.com","status":"active","zoom_active":null,"zoom_refresh":null,"paypal_token":"uarora1997@gmail.com","stripe_token":null,"expires_in":null,"zoomuser_id":null,"zoomuser_email":null,"zoomuser_accountid":null,"code":"1nfw4XyoJt","timezone":"Africa\/Abidjan","language":"English","brand_color":"#326bff","date_format":"DD\/MM\/YYYY","time_format":"12h (am\/pm)","username":"uarora1997","onboarding_complete":1,"business_id":0,"smtp_email":null,"smtp_username":null,"smtp_password":null,"smtp_server":null,"subdomain":null,"smtp_authentication":0,"protocol":"TLS","plan":"Trial","plan_expires_in":null,"google_analytics":null,"facebook_analytics":null,"microsoft_analytics":null,"google_tag":null,"booking_webhooklink":null,"reschedule_webhooklink":null,"cancel_webhooklink":null,"role":"owner","team_uuid":"Qsdt9BxKMj","port":0,"created_at":"2021-09-18T12:21:52.000000Z","updated_at":"2021-09-20T03:37:21.000000Z","deleted_at":null,"email_verified_at":null,"profile":null,"logo":null,"description":null,"g_selected_email":null,"g_calendar_id":null,"profile_url":"","logo_url":""};
+                    $.ajax({
+                        type: 'POST',
+                        url: '/staff/info/insertOrderDetails',
+                        data: {user_id:user.code,orderid:orderid,checkoutid:checkoutid,quantity:quantity},
+                        success: function (data) {
+                            window.location.href='/staff';
+                            window.location.reload();
+                        },
+                        error: function (jqXhr, json, errorThrown) {
+                        alert(json);
+                        var errors = jqXhr.responseJSON;
+                        var errorsHtml = '';
+                        $.each(errors['errors'], function (index, value) {
+                        errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+                    });
+
+                    alert(errorsHtml);
+                    return false;
+                }
+
+                });
+                
+    });
+        }
+        function teamcheckoutComplete(data) {
+                console.log(data);
+                alert('Thanks for your purchase.');
+                var checkoutId = data.checkout.id;
+        
+                Paddle.Order.details(checkoutId, function(data) {
+                    var orderid=data.order.order_id;
+                    var checkoutid=data.checkout.checkout_id;
+                    var quantity=data.order.quantity;
+                    console.log(data);
+                    var user = {"id":1,"name":"Udit Arora","email":"uarora1997@gmail.com","status":"active","zoom_active":null,"zoom_refresh":null,"paypal_token":"uarora1997@gmail.com","stripe_token":null,"expires_in":null,"zoomuser_id":null,"zoomuser_email":null,"zoomuser_accountid":null,"code":"1nfw4XyoJt","timezone":"Africa\/Abidjan","language":"English","brand_color":"#326bff","date_format":"DD\/MM\/YYYY","time_format":"12h (am\/pm)","username":"uarora1997","onboarding_complete":1,"business_id":0,"smtp_email":null,"smtp_username":null,"smtp_password":null,"smtp_server":null,"subdomain":null,"smtp_authentication":0,"protocol":"TLS","plan":"Trial","plan_expires_in":null,"google_analytics":null,"facebook_analytics":null,"microsoft_analytics":null,"google_tag":null,"booking_webhooklink":null,"reschedule_webhooklink":null,"cancel_webhooklink":null,"role":"owner","team_uuid":"Qsdt9BxKMj","port":0,"created_at":"2021-09-18T12:21:52.000000Z","updated_at":"2021-09-20T03:37:21.000000Z","deleted_at":null,"email_verified_at":null,"profile":null,"logo":null,"description":null,"g_selected_email":null,"g_calendar_id":null,"profile_url":"","logo_url":""};
+                    $.ajax({
+                        type: 'POST',
+                        url: '/staff/info/insertOrderDetailsForTeam',
+                        data: {user_id:user.code,orderid:orderid,checkoutid:checkoutid,quantity:quantity},
+                        success: function (data) {
+                            window.location.href='/staff';
+                            window.location.reload();
+                        },
+                        error: function (jqXhr, json, errorThrown) {
+                        alert(json);
+                        var errors = jqXhr.responseJSON;
+                        var errorsHtml = '';
+                        $.each(errors['errors'], function (index, value) {
+                        errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+                    });
+
+                    alert(errorsHtml);
+                    return false;
+                }
+
+                });
+                
+    });
+        }
+    
+    jQuery(function($){
+    if(document.getElementById('solobuy')!=null)
+	document.getElementById('solobuy').addEventListener('click', openSoloCheckout, false);
+    if(document.getElementById('teambuy')!=null)
+    document.getElementById('teambuy').addEventListener('click', openTeamCheckout, false);
+    function openSoloCheckout() {
+		var user = {"id":1,"name":"Udit Arora","email":"uarora1997@gmail.com","status":"active","zoom_active":null,"zoom_refresh":null,"paypal_token":"uarora1997@gmail.com","stripe_token":null,"expires_in":null,"zoomuser_id":null,"zoomuser_email":null,"zoomuser_accountid":null,"code":"1nfw4XyoJt","timezone":"Africa\/Abidjan","language":"English","brand_color":"#326bff","date_format":"DD\/MM\/YYYY","time_format":"12h (am\/pm)","username":"uarora1997","onboarding_complete":1,"business_id":0,"smtp_email":null,"smtp_username":null,"smtp_password":null,"smtp_server":null,"subdomain":null,"smtp_authentication":0,"protocol":"TLS","plan":"Trial","plan_expires_in":null,"google_analytics":null,"facebook_analytics":null,"microsoft_analytics":null,"google_tag":null,"booking_webhooklink":null,"reschedule_webhooklink":null,"cancel_webhooklink":null,"role":"owner","team_uuid":"Qsdt9BxKMj","port":0,"created_at":"2021-09-18T12:21:52.000000Z","updated_at":"2021-09-20T03:37:21.000000Z","deleted_at":null,"email_verified_at":null,"profile":null,"logo":null,"description":null,"g_selected_email":null,"g_calendar_id":null,"profile_url":"","logo_url":""};
+        
+        //alert(user.code);
+        var email = '';
+        Paddle.Checkout.open({
+			product: 15711,
+            method: 'inline',
+            email: email,
+            allowQuantity:false,
+            quantity:1,
+            successCallback: "checkoutComplete",
+            closeCallback: "checkoutClosed",
+            passthrough: "{\"user_id\":"+user.code+"}",
+            frameTarget: 'renderpaddle', 
+				frameInitialHeight: 416,
+				frameStyle: 'width:100%; min-width:312px; background-color: transparent; border: none;'
+           
+		});
+       
+
+	}
+    function openTeamCheckout() {
+		var user = {"id":1,"name":"Udit Arora","email":"uarora1997@gmail.com","status":"active","zoom_active":null,"zoom_refresh":null,"paypal_token":"uarora1997@gmail.com","stripe_token":null,"expires_in":null,"zoomuser_id":null,"zoomuser_email":null,"zoomuser_accountid":null,"code":"1nfw4XyoJt","timezone":"Africa\/Abidjan","language":"English","brand_color":"#326bff","date_format":"DD\/MM\/YYYY","time_format":"12h (am\/pm)","username":"uarora1997","onboarding_complete":1,"business_id":0,"smtp_email":null,"smtp_username":null,"smtp_password":null,"smtp_server":null,"subdomain":null,"smtp_authentication":0,"protocol":"TLS","plan":"Trial","plan_expires_in":null,"google_analytics":null,"facebook_analytics":null,"microsoft_analytics":null,"google_tag":null,"booking_webhooklink":null,"reschedule_webhooklink":null,"cancel_webhooklink":null,"role":"owner","team_uuid":"Qsdt9BxKMj","port":0,"created_at":"2021-09-18T12:21:52.000000Z","updated_at":"2021-09-20T03:37:21.000000Z","deleted_at":null,"email_verified_at":null,"profile":null,"logo":null,"description":null,"g_selected_email":null,"g_calendar_id":null,"profile_url":"","logo_url":""};
+        var quantity = $('#quantity :selected').text();
+        //alert(user.code);
+        var email = '';
+        Paddle.Checkout.open({
+			product: 15711,
+            method: 'inline',
+            email: email,
+            quantity:quantity,
+            successCallback: "teamcheckoutComplete",
+            closeCallback: "teamcheckoutClosed",
+            passthrough: "{\"user_id\":"+user.code+"}",
+            frameTarget: 'renderpaddle', 
+				frameInitialHeight: 416,
+				frameStyle: 'width:100%; min-width:312px; background-color: transparent; border: none;'
+           
+		});
+       
+
+	}
+   
+    });
+</script>
+<br><br>
+
+
+
+<!-- Logo -->
+<a href="http://127.0.0.1:4433/staff"><img src="http://127.0.0.1:4433/images/logo.png" style="max-height: 50px; padding-right: 25%;"></a>
+
+
+<!-- ADMIN PANEL - WILL GO IN CONTENT SECTION OF ADMIN -->
+<form method="GET">
+    <input type="hidden" name="_token" value="eIg3WtD7h9yBb54CyXbCFwrVqix7lzDzJIRw4sMx">    </form>
+
+  
+
+<!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+        
+        <a href="#!" class="paddle_button" id="solobuy">
+                   
+                    Upgrade Solo
+                    
+                </a>
+               
+                    
+                
+                        <a href="http://127.0.0.1:4433/staff/addUsers" style="text-decoration:none;">
+                    <div class="p-2 mt-3 mr-3">
+                    <i class="fas fa-star"></i> 
+                    Add Users
+                    </div>
+                </a>
+                                                <a>
+                    <div class="p-2 mt-3 mr-3">
+                     <button onclick="copy(this)"  id="header_link" 
+                    value="https://www.getprobooking.com/uarora1997" style="border:none;">
+                    <i class="far fa-copy" style="color:#4c4949;"></i><span class="pl-2">
+                        getprobooking.com/uarora1997
+                    </span></button>
+                    </div>
+                </a>
+        <div class="topbar-divider d-none d-sm-block"></div>
+        <input type="hidden" name="staffemail" id="staffemail" value="uarora1997@gmail.com">
+                        <input type="hidden" name="code" id="code" value="1nfw4XyoJt">
+                    
+        <!-- Nav Item - User Information -->
+
+        <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="mr-2 d-none d-lg-inline small">
+
+        <img src="http://127.0.0.1:4433/images/user.png" class="img-fluid" alt="Profile" style="max-height:30px; max-width:30px"/>
+
+        </span>
+        <i class="fa fa-caret-down"></i>
+        </a>
+        <!-- Dropdown - User Information -->
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="http://127.0.0.1:4433/language/es">
+        <i class="fas fa-globe fa-sm fa-fw mr-2 text-gray-400"></i> Spanish
+        </a>
+
+        <a class="dropdown-item" href="http://127.0.0.1:4433/language/de">
+        <i class="fas fa-globe fa-sm fa-fw mr-2 text-gray-400"></i> German
+        </a>
+
+        <a class="dropdown-item" href="http://127.0.0.1:4433/language/cs">
+        <i class="fas fa-globe fa-sm fa-fw mr-2 text-gray-400"></i> Czech
+        </a>
+
+        <a class="dropdown-item" href="http://127.0.0.1:4433/language/fr">
+        <i class="fas fa-globe fa-sm fa-fw mr-2 text-gray-400"></i> French
+        </a>
+        <a class="dropdown-item" href="http://127.0.0.1:4433/language/pt">
+        <i class="fas fa-globe fa-sm fa-fw mr-2 text-gray-400"></i> Portuguese
+        </a>
+        <a class="dropdown-item" href="http://127.0.0.1:4433/language/it">
+        <i class="fas fa-globe fa-sm fa-fw mr-2 text-gray-400"></i> Italian
+        </a>
+        
+        <div class="dropdown-divider"></div>
+        <form action="http://127.0.0.1:4433/logout" method="post">
+        <input type="hidden" name="_token" value="eIg3WtD7h9yBb54CyXbCFwrVqix7lzDzJIRw4sMx">        <button type="submit" class="dropdown-item">
+        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout        </button>
+        </form>
+
+        </div>
+        </li>
+    </ul>
+        
+</nav>
+<div class="renderpaddle"></div>
+
+<!-- End of Topbar -->
+
+                </div>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+                    <!-- Sidebar -->
+
+
+<ul class="navbar-nav colorside sidebar sidebar-dark accordion nav" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+            <!-- <img src="http://127.0.0.1:4433/img/logo.png" style="width: 50%;" class="mx-auto my-3" alt="" /> -->
+    
+     <!-- Sidebar Toggle (Topbar) -->
+    
+
+    <!-- Nav Item - Dashboard -->
+        <li class="nav-item" style="border-radius: 5px;">
+            <a class="nav-link" href="http://127.0.0.1:4433/staff">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+        </li>
+<!-- 
+    <li class="nav-item" style="border-radius: 5px;">
+        <a class="nav-link" href="http://127.0.0.1:4433/staff/info">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span >Staff Information<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+    </li>-->
+
+    <!-- Nav Item - Dashboard
+    <li class="nav-item" style="border-radius: 5px;">
+        <a class="nav-link" href="http://127.0.0.1:4433/staff/calendar">
+            <i class="fas fa-fw fa-calendar"></i>
+            <span >Calendar<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+
+        
+    </li> -->
+
+    <!-- Nav Item - Staff Schedule -->
+    <li class="nav-item" style="border-radius: 5px;">
+                <a class="nav-link" href="http://127.0.0.1:4433/staff/staffSchedule">
+                <i class="fas fa-fw fa-calendar"></i>
+                <span >Availability<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+            </a>
+                </li>
+    <!-- Nav Item - Integration -->
+    <li class="nav-item" style="border-radius: 5px;">
+            <a class="nav-link" href="http://127.0.0.1:4433/staff/integrations">
+            <i class="fas fa-fw fa-calendar"></i>
+            <span >Integrations<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+    </li>
+
+
+    <!-- Nav Item - Staff Schedule -->
+    <li class="nav-item" style="border-radius: 5px;">
+            <a class="nav-link" href="http://127.0.0.1:4433/listBookingType">
+            <i class="fas fa-fw fa-receipt"></i>
+            <span >Booking Types<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+        </li>
+<li class="nav-item" style="border-radius: 5px;">
+<a class="nav-link" href="http://127.0.0.1:4433/listBookings">
+            <i class="fas fa-fw fa-receipt"></i>
+            <span >Bookings List<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+        </li>
+<li class="nav-item" style="border-radius: 5px;">
+        <a class="nav-link" href="http://127.0.0.1:4433/staff/info/bookingpage">
+            <i class="fas fa-fw fa-receipt"></i>
+            <span>Booking Page<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+        </li>
+<li class="nav-item" style="border-radius: 5px;">
+        <a class="nav-link" href="http://127.0.0.1:4433/staff/info/staffSetting">
+            <i class="fas fa-fw fa-receipt"></i>
+            <span >Setting<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+        </li>
+<li class="nav-item" style="border-radius: 5px;">
+        <a class="nav-link" href="http://127.0.0.1:4433/staff/info/coupons">
+            <i class="fas fa-fw fa-receipt"></i>
+            <span >Coupons<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+        </li>
+
+        <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>
+
+ 
+
+
+
+
+
+                <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+                 <!-- Begin Page Content -->
+                 <div class="container-fluid">
+                    
+<style>
+    .image_area {
+            position: relative;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .preview {
+            overflow: hidden;
+            width: 160px;
+            height: 160px;
+            margin: 10px;
+            border: 1px solid red;
+        }
+
+        .modal-lg {
+            max-width: 1000px;
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+            height: 0;
+            transition: .5s ease;
+            width: 100%;
+        }
+
+        .image_area:hover .overlay {
+            height: 50%;
+            cursor: pointer;
+        }
+    
+</style>
+
+    <script type="text/javascript">
+        // tab 1 location field
+        function locationfun() {
+          var location = document.getElementById("location").value;
+          console.log("edit_booking happy called")
+          if (location == "custom") {
+            document.getElementById("locationname").style.display = "block"
+          }
+          else {
+            document.getElementById("locationname").style.display = "none"
+
+          }
+        }
+
+          function paidcheckbox()    
+          {
+              console.log("Paid checkbox clicked");
+           var paid_checkbox=document.querySelector("#paid_checkbox");
+
+           if(paid_checkbox.checked==true)
+           {
+            document.querySelector("#price").disabled= false;
+            document.querySelector("#currency").disabled= false;
+            document.querySelector("#paymode").disabled= false;
+            }
+          else 
+          {
+            document.querySelector("#price").disabled= true;
+            document.querySelector("#currency").disabled= true;
+            document.querySelector("#paymode").disabled= true;
+            // document.querySelector("#price").value = 0;
+           }
+          }
+
+    </script>
+    <link href="css/dashboard/staff_edit_booking_types.css" rel="stylesheet">
+ <link href="css/dashboard/custom_form_modal.css" rel="stylesheet">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
+
+<link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet" />
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/dropzone"></script>
+<script src="https://unpkg.com/cropperjs"></script>
+
+ <link href="css/dashboard/inline_add_bookingtype.css" rel="stylesheet">
+<!--  <link href="css/dashboard/booking_form_style.css" rel="stylesheet"> -->
+
+<form id="bookingForm" method="POST" class="m-4" enctype="multipart/form-data">
+<input type="hidden" name="_token" value="eIg3WtD7h9yBb54CyXbCFwrVqix7lzDzJIRw4sMx"><!-- One "tab" for each step in the form: -->
+<div class="row">
+        <div class="col-md-4">&nbsp;</div>
+        <div class="col-md-4">
+            <div class="image_area">
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="img-container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <img src="" id="modal_image" />
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="preview"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="save" class="btn btn-primary">Save</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="card shadow"> -->
+<div class="tabs tabs-style-topline nav-shadow">
+         <nav class= "step-navbar">
+            <ul class= "step-navbar-ul">
+              <li class="top-nav tab-current"><a  onclick="showTab(0)" class="icon icon-home"><img src="http://127.0.0.1:4433/images/basic home.svg"
+                    style="height: 30px; width: 30px; padding-right: 12px;"><span>Basic</span></a></li>
+              <li class="top-nav"><a onclick="showTab(1)" class="icon icon-gift" ><img src= "http://127.0.0.1:4433/images/appointment.svg" style="height: 30px; width: 30px; padding-right: 12px;"><span>Appointment Settings</span></a></li>
+              <li class="top-nav"><a onclick="showTab(2)"><img src="http://127.0.0.1:4433/images/form.svg"
+                    style="height: 30px; width: 30px; padding-right: 8px;"><span>Custom Form</span></a></li>
+              <li class="top-nav"><a onclick="showTab(3)" class="icon icon-coffee"><img
+                    src="http://127.0.0.1:4433/images/email.svg" style="height: 30px; width: 30px; padding-right: 12px;"><span>Custom Email</span></a></li>
+
+            </ul>
+          </nav>
+</div>  
+<!-- </div> -->
+<div>
+<div class="card shadow">
+<div class="tab">
+  <div class="form-main-container">
+    <div>
+    <h1 class="text-muted" style="margin: 30px 0px;display:inline-block;">Step 1:</h1>  <br>
+    <!-- <div class="input-lable inpheading">Name:</div> -->
+  </div>
+  <div>
+    <label for="name" class="inpheading">Name</label><br>
+    
+    <!-- <p style="text-align: center !important;"> -->
+      <input placeholder="Name"  class="form-control select-input" name="name" class="a" oninput="this.className = ''">
+    <br><br>
+      <!-- </p> -->
+    <!-- <div class="input-lable inpheading mr-2">Private Event:</div> -->
+    <!-- <p style="text-align: center !important;"> -->
+      <label style="display:inline;" for="privateevent" class=" inpheading mr-2" style="width: 15%;">Private
+        Event</label>
+
+      <input type="checkbox" name="privateevent" id="privateevent" >
+    <!-- </p> -->
+    <br>
+    <!-- <div class="input-lable">Location:</div> -->
+    <label class="inpheading" style="width: 55%;">Location</label>
+  </div>
+
+    <div class="d-flex location-bx">
+        <div>
+        <!-- <div class="col-5"> -->
+        <select name="location" id="location" class="formcontrol select-input custom-inpt" style="width: 60% important!; min-width: 200px;" oninput="this.className = ''" onchange="locationfun()">
+          <option value="zoom">Zoom</option>
+          <option value="custom">Custom</option>
+        <option value="meet">Meet</option>
+        </select>    
+        <!-- </div> -->
+        </div>
+          <input type="hidden" id="selectedstaffid" name="selectedstaffid" value="1"/>
+        <!-- <div class="col-5"> -->
+               <input type="text" class="display select-input location-input"
+                    id="locationname" name="locationname" style="width: auto;" placeholder="Enter your location">
+               <!-- </div> -->
+
+        </div>
+    <!-- <div class="input-lable">Description:</div> -->
+    
+    <label class="inpheading" style="width: 50%;">Description</label>
+    <!-- <p style="text-align: center !important;"> -->
+      <textarea class="form-control select-input" name="bookingDescription"  cols="50" rows="7" placeholder="Description" oninput="this.className = ''"  class="a" ></textarea>
+    <!-- </p> -->
+    
+     <div>
+    <div class="img-btn">
+    <div id="upload_button">
+      <img src="http://127.0.0.1:4433/images/user.png" id="profile_uploaded_image" class="img-responsive img-circle" style="width: 100px;border-radius: 5px;" >
+      <label>
+        <input type="file" name="image" id="profile_image" accept="image/*" onchange="loadFile(event)">
+        &nbsp; &nbsp; &nbsp;  <span class="btn bg-btn mt-4 ml-4 mb-2">Upload Picture</span>
+      </label>
+      <input type="hidden" name="setimage" id="setimage"/>
+      <input type="hidden" name="profile_url" id="profile_url"/>
+       <span class="btn light-btn mt-4 mb-2" onclick="removeFile(event)">Remove</span>
+    </div>
+    </div>
+  <div class="form-group input-lable">
+            <label > JPG,GIF or PNG.Max Size of 5MB</label>
+            </div>
+          </div>
+            <!-- <label for="schedule" class="input-lable inpheading">Schedule:</label>
+    <div class="form-group selected-para">
+            <span>
+            <select class="form-control select-input  custom-inpt" style="margin: 0px !important;width: 30% !important;" id="schedule" name="schedule" required>
+                                <option value="1">Udit AroraUTY2srhg3d3AqkO</option>
+                              </select><br><br>
+            </span>
+           
+              <label for="create_schedule" class="input-lable"><b>No Schedule?</b></label>
+              <a id="create_schedule" id="create_schedule" target="_blank" href="http://127.0.0.1:4433/staff/staffSchedule/create/1" class="btn bg-btn"></b>Add New </a>
+           
+    </div> -->
+    <div class="pt-4 pb-3">
+      <label for="image_upload" style="font-size:20px" class="inpheading">Schedule</label>
+      <select class="select-input" style="width: 30% !important" id="interval"
+          name="schedule" required>
+          <option value="1" selected>
+              Udit AroraUTY2srhg3d3AqkO</option>
+      </select><br><br> <label class="inpheading" for="create_schedule"><b>No
+              Schedule?</b></label>
+              <a id="create_schedule" id="create_schedule" target="_blank" href="http://127.0.0.1:4433/staff/staffSchedule/create/1" class="btn bg-btn"></b>Add New </a>
+  </div>
+               <p style="padding: 0px !important; margin: 0px !important;"> 
+                <!-- <div class="input-lable">Paid Appointment:</div>  -->
+                <label for="paidAppointment">Paid Appointment</label>&nbsp
+                 <!-- <div> -->
+                 <input type="checkbox" name="paid_checkbox" id="paid_checkbox" onchange="paidcheckbox()">
+                 <!-- </div>    -->
+              </p>
+               
+                <!-- <div class="row w-100" style="margin:auto;">  -->
+                <!-- <div class="col-4"> -->
+                  <div id="zz">Pay Mode:</div>
+                    <!-- Pay Mode: -->
+                    <select name="paymode" id="paymode"
+                    style="text-align: center; width: 20%!important;"
+                        oninput="this.className = ''" disabled>
+                        <option value="Offline" selected>Offline</option>
+                        <option value="Stripe">Stripe</option>
+                        <option value="Paypal">Paypal</option>
+                        <option value="Stripe/Paypal">Stripe/Paypal</option>
+                    </select>
+                <!-- </div> -->
+                <!-- <div class="col-8"> -->
+                    <input placeholder="Price" name="price" type="number" id="price" 
+                    style="width: 20%!important;"
+                    disabled>
+                    
+                    <select name="currency" id="currency" class="currency"  oninput="this.className = ''" style="width:120px !important;" disabled>
+                    <option value="AUD">AUD</option>
+                        <option value="USD">USD</option>
+                        <option value="CAD">CAD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="SGD">SGD</option>
+                        <option value="CHF">CHF</option>
+                        <option value="PHP">PHP</option>
+                        <option value="JPY">JPY</option>
+                        <option value="CZK">CZK</option>
+                        <option value="HUF">HUF</option>
+                        <option value="ILS">ILS</option>
+                        <option value="BRL">BRL</option>
+                  </select>
+                <!-- </div> -->
+            <!-- </div> -->
+
+            <div id="zz">
+    <h1 class="heading1 input-lable">Appoitment Settings</h1>  
+    </div>
+    <!-- <div class="input-lable">Time zone display</div> -->
+    <label class="inpheading" style="font-size: 20px;">Time zone display</label>
+    <!-- <div>
+    <input class="form-check-input" type="radio" name="timezone" id="timezone" value="Automatic" checked>
+    Automatically detect visitor's time zone
+  
+        </div> -->
+        <div>
+          <label for="timezone" style="cursor: pointer;width:35% !important;">Automatically
+              detect visitor's time zone</label>
+
+          <input class="form-check-input" type="radio" style="width: 15px;" name="timezone" value="Automatic"
+              id="timezone" checked>
+      </div>
+        <!-- <div>
+  <input class="form-check-input" type="radio" name="timezone" value="Default" id="timezone" >
+    Show your default time zone
+  
+        </div> --><div>
+        <label for="timezone1" style="cursor: pointer;width:25% !important;">Show your
+          default time zone</label>
+      <input class="form-check-input" style="width: 15px;" type="radio" name="timezone" value="Default"
+          id="timezone">
+          </div><br>
+    <!-- <div class="input-lable">Redirect URL:</div>
+     -->
+     <label class="inpheading">Redirect URL:</label><br>
+    <p>
+      <input placeholder="RedirectURL"  class="form-control select-input" name="redirectURL" class="a" oninput="this.className = ''">
+    </p>
+    
+    <div>
+          <label for="cancelresc">Include cancel and reschedule links in notifications</label>
+          &nbsp
+
+          <input type="checkbox" id="cancelresc" name="cancelresc" value="on">
+   </div>
+  </div>
+  </div> 
+  
+  <div class="form-main-container"> 
+  <div class="tab">
+    <div>
+    <h1 class="text-muted" style="display: inline-block; font-size: 28px;">Step 2</h1>  
+    <h4 style="display: inline-block;font-size: 25px;">&#160;&#160;Advance Appointment
+      Settings</h4> 
+      </div>
+    <!-- <div class="input-lable">Meeting Type:</div> -->
+    <label for="meeting_type" class="inpheading">Meeting Type:</label><br>
+    <p>
+        <select name="meeting_type" class="form-control" id="y" oninput="this.className = ''" onchange="harsh1()" >
+            <option value="onetoonemeet">One to One Meet</option>
+            <option value="groupBooking" >Group Booking</option>
+            
+          </select>
+        </p>
+
+    <!-- <div class="input-lable">No of Participants:</div> -->
+    <label for="participants" class="inpheading"style="display: inline;">No of Participants:</label><br>
+    <p><input class="form-control"  name="participants" type="number" id="p"   min="1" value="1" disabled ></p>
+    <div class="input-lable">Duration:</div>
+    <!-- <p style="text-align: center;"> -->
+        <select name="hours"  class="formcontrol" style="width: 30% !important;" oninput="this.className = ''" >
+
+
+        <option value="0">0 Hours</option>
+        <option value="1">1 Hours</option>
+        <option value="2">2 Hours</option>
+        <option value="3">3 Hours</option>
+        <option value="4">4 Hours</option>
+        <option value="5">5 Hours</option>
+        <option value="6">6 Hours</option>
+        <option value="7">7 Hours</option>
+        <option value="8">8 Hours</option>
+        <option value="9">9 Hours</option>
+        <option value="10">10 Hours</option>
+        <option value="11">11 Hours</option>
+        <option value="12">12 Hours</option>
+      </select>
+      <select name="minutes"  class="formcontrol" style="width: 30% !important;" oninput="this.className = ''" >
+        <option value="0">0 Minutes</option>
+        <option value="5">5 Minutes</option>
+        <option value="10">10 Minutes</option>
+        <option value="15">15 Minutes</option>
+        <option value="20">20 Minutes</option>
+        <option value="25">25 Minutes</option>
+        <option value="30" selected>30 Minutes</option>
+        <option value="35">35 Minutes</option>
+        <option value="40">40 Minutes</option>
+        <option value="45">45 Minutes</option>
+        <option value="50">50 Minutes</option>
+        <option value="55">55 Minutes</option>
+      </select>
+    <!-- </p> -->
+    <div class="input-lable">Available Till:</div>
+    <p>
+    <div class="input-group mb-3" style="width:57%;" >
+        <input type="number" name="availabletill" class="form-control a" id="z" style="width: 30% !important;" min="1" value="10" >
+        <div class="input-group-append">
+          <span class="input-group-text"style="    height: 78%;
+          margin-top: 10%;border-radius: 13%;display: inline-block;">days</span>
+        </div>
+      </div>
+    </p>
+
+    <div class="input-lable">No of Meetings per Day:</div>
+  <p> <input type="number" class="form-control" name="meetingperday" oninput="this.className = ''" class="a" min="1" value="10"> </p>
+  <div class="input-lable">Interval:</div>
+    <p>
+    <select name="interval"  class="form-control"  oninput="this.className = ''" >
+        <option value="5" >5 Minutes</option>
+        <option value="10">10 Minutes</option>
+        <option value="15">15 Minutes</option>
+        <option value="20" >20 Minutes</option>
+        <option value="30" selected>30 Minutes</option>
+        <option value="45">45 Minutes</option>
+        <option value="60">60 Minutes</option>
+      </select>
+    </p>
+    <div class="input-lable">Buffer Time:</div>
+    <!-- <p style="text-align: center;"> -->
+        <select name="bufferhours"  class="formcontrol" style="width: 30% !important;" oninput="this.className = ''" >
+        <option value="0">0 Hours</option>
+        <option value="1">1 Hours</option>
+        <option value="2">2 Hours</option>
+       </select>
+      <select name="bufferminutes"  class="formcontrol" style="width: 30% !important;" oninput="this.className = ''" >
+        <option value="0">0 Minutes</option>
+        <option value="5">5 Minutes</option>
+        <option value="10">10 Minutes</option>
+        <option value="15">15 Minutes</option>
+        <option value="20">20 Minutes</option>
+        <option value="25">25 Minutes</option>
+        <option value="30">30 Minutes</option>
+        <option value="35">35 Minutes</option>
+        <option value="40">40 Minutes</option>
+        <option value="45">45 Minutes</option>
+        <option value="50">50 Minutes</option>
+        <option value="55">55 Minutes</option>
+      </select>
+    <!-- </p> -->
+   
+   <div class="input-lable">Notice Period:</div>
+   <!-- <p style="text-align: center;"> -->
+     <input type="number" class="form-control" min="1" name="noticeperiod" oninput="this.className = ''" class="a" style="width: 35% !important;"  min="1" value="10">
+
+    <select name="timeformat"  class="form-control" oninput="this.className = ''" style="width: 30% !important;" >
+        <option value="mins">mins</option>
+        <option value="hours" >hours</option>
+        <option value="days" >days</option>
+      </select> &nbsp;
+      <!-- <label for="">of an event start time</label> -->
+    <!-- </p> -->
+  </div>
+  </div>
+  
+  <div class="tab">
+    <div class="form-main-container"> 
+    <h1 class="text-muted" style="display: inline-block; font-size: 28px;">Step 3</h1>  
+    <h4 style="display: inline-block;font-size: 25px;">Custom Form
+    </h4> 
+    <br>
+         Some Text...................................<br>
+         ........................
+         <div class="col-11">
+          <div class="float-right" id="btnModalField" onclick="buttonclick()"
+          style="cursor:pointer;margin-top:-45px;">Add New Question</div>
+         </div>
+  <!-- <div class="form-main-container"> -->
+            <!-- STEP # UDITS CODE -->
+        <div class="main_section">
+          <div class="container">
+            <div class="questions">
+              <br><br><br><br><br><br><br><br>
+            <!-- <section> -->
+             <!-- <div class="row">
+                 <h2>Custom form elements</h2><br>
+              <div class="float-right" id="btnModalField" onclick="buttonclick()"
+              style="cursor:pointer;border: 1px solid blueviolet; margin-top:0px;">Add New Question</div>
+
+             </div> -->
+             
+            <!-- </section> -->
+            <!-- <div id="dynamic_form">
+              <div class="input_container" id="edit1">
+                <!-- <label for="initial">Message</label><br>
+                <br><br><br><br>
+                <textarea name="textarea" id="initial" cols="50" rows="3" style="resize: none;padding:51px;width:70%;" disabled>
+                </textarea>
+                <br>
+                <i onclick="delInput(1);" class="material-icons" title="delete"
+                  >delete</i
+                >
+                <i onclick="editInput(1);" class="material-icons" title="edit"
+                  >edit</i
+                >
+                <i class="material-icons handle" title="edit">drag_indicator</i>
+              </div>
+            </div> -->
+           <!-- <button
+              class="btn"
+              id="submitBtn"
+              type="button"
+              style="width: 100px; display: block; margin: auto"
+            >Submit</button>-->
+          </div>
+          </div>
+        </div>
+
+          <div class="addItemContainer">
+            <div class="field_container">
+                <div class="error"></div>
+                <h3>New Element</h3>
+              <form method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_token" value="eIg3WtD7h9yBb54CyXbCFwrVqix7lzDzJIRw4sMx">              <div id="elementForm">
+                <div class = "input_container">
+                  <label for="description">Label*</label>
+                  <input type="text" name="description" id="description">
+                </div>
+
+                <div>
+                  <input type="checkbox" name="is_required" id="is_required" value="require"> <span>required</span>
+                </div>
+
+               <select id="question_type" name="question_type" onchange = "getLabelType();">
+                  <option value="Text Field" id="textField" selected>Text Field</option>
+                   <option value="radio" id="radio">
+                    radio
+                  </option>
+                   <option value="checkbox" id="checkbox">
+                    checkbox
+                  </option>
+                  <option value="textarea" id="textarea">
+                    textarea
+                  </option>
+                   <option value="dropdown" id="dropdown">
+                    dropdown
+                  </option>
+                </select>
+              </div>
+
+              <section class="buttons">
+                <button id="btnCloseModalField" type="button">Cancel</button>
+                <button id="btnSaveModalField" type="button">Add</button>
+              </section>
+              </form>
+          </div>
+          </div>
+        </div>
+    <!-- </div> -->
+   </div>
+  </div>
+
+
+ <div class="tab">
+    <h1 class="step4-email">Step 4(Custom Emails):</h1>  
+  
+    <div class="main-container comtainer-fluid w-100">
+    <div class="inner-container row d-flex justify-content-space-between">
+      <div class="tab-container nav-container col-3" style="    margin-left: 25px;
+      margin-top: 12px;">
+        <ul class="tab-nav py-2 mx-auto nav-pills nav-stacked nav-style">
+          <li class="email-control active" style="background-color: ##F8F9FC !important; margin: 10px 0;">Email Confirmation</li>
+          <li class="email-control" style="background-color: ##F8F9FC !important; margin: 10px 0;">Email Reminder</li>
+          <li class="email-control" style="background-color: ##F8F9FC !important; margin: 10px 0;">Email Cancellation</li>
+          <li class="email-control" style="background-color: ##F8F9FC !important; margin: 10px 0;">Email Reschedule</li>
+          <li class="email-control" style="background-color: ##F8F9FC !important; margin: 10px 0;">Email followup</li>
+        </ul>
+      </div>
+
+      <div class="text-part col-5">
+
+        <!-- Confirmation email div -->
+        <div class="email_div" id="confirm_email">
+          <div class="heading-div">
+            <h1 class="heading1 heading-no-1">Confirmation Email Subject</h1>
+            <input type="text" style="margin: 0px 0px 20px 0 !important;" id="confirmsubject" value="Hi {{name}}" name="confirmsubject" class="form-control select-input" aria-describedby="emailHelp">
+          </div>
+          <div class="text-content input-on-off">
+            <h1 class="heading1 heading-no-1">Confirmation Email Body</h1>
+            <div id="confirm-edit">
+            <textarea id="confirmbody" name="confirmbody" rows="3" class="confirm editor">
+                
+                Your {{duration}} meeting for {{name}} slot {{slot}} is confirmed.
+                Location : {{meeting_link}}
+                
+            </textarea>
+          </div>
+          </div>
+          <div class="btn-div">
+            <button type="button" style="margin-left: 0rem;
+            width: 33% !important;" id="btnUpdateConfirmation" class="btn bg-btn updetd-btn mb-3">Update</button>
+          </div>
+        </div>
+
+        <!-- Cancel email div -->
+        <div class="email_div" id="cancel_email">
+          <div class="heading-div">
+            <h1 class="heading1 heading-no-1">Cancellation Email Subject</h1>
+            <input type="text" style="margin: 0px 0px 20px 0 !important;" id="cancelsubject" name="cancelsubject"
+                class="form-control"
+                value="Booking Cancellation"
+                 aria-describedby="emailHelp">
+          </div>
+          <div class="text-content input-on-off">
+            <h1 class="heading1 heading-no-1"> Cancellation Email Body</h1>
+              <div id="confirm-edit">
+                <textarea id="cancelbody" name="cancelbody" rows="3" class="editor">
+                   Your booking for {{name}} - slot {{slot}} is cancelled.
+                </textarea>
+             </div>
+          </div>
+          <div class="btn-div">
+            <button type="button"style="margin-left: 0rem;
+            width: 33% !important;" id="btnUpdateCancellation" class="btn bg-btn updetd-btn mb-3">Update</button>
+          </div>
+        </div>
+
+        <!-- Reschedule email div -->
+        <div class="email_div" id="reschedule_email">
+          <div class="heading-div">
+            <h1 class="heading1 heading-no-1">Reschedule Email Subject</h1>
+            <input  type="text" style="margin: 0px 0px 20px 0 !important;" id="reschedulesubject" name="reschedulesubject"
+            class="form-control" value="Booking Rescheduled" aria-describedby="emailHelp">
+          </div>
+          <div class="text-content">
+            <h1 class="heading1 heading-no-1">Reschedule Email Body</h1>
+              <div id="confirm-edit" class="input-on-off">
+                <textarea id="reschedulebody" name="reschedulebody" rows="3" class="editor">
+                 Your {{duration}} meeting for {{name}} slot {{slot}} is rescheduled.
+                </textarea>
+              </div>
+          <div class="btn-div">
+            <button type="button" style="margin-left: 0rem;
+            width: 33% !important;" id="btnUpdateReschedule" class="btn bg-btn updetd-btn mb-3">Update</button>
+          </div>
+          </div>
+        </div>
+
+        <!-- Reminder Email -->
+        <div class="email_div" id="reminder_email">
+          
+            <div class="input-on-off d-flex justify-content-space-between align-items-center">
+              <h1 class="heading1 heading-no-1">
+                Email Reminder  &nbsp; <i class="fas fa-plus-circle temp"></i>
+              </h1>
+              <label class="toggle toggl">
+                <input type="checkbox" id="remindertoggle" name="remindertoggle"/>
+                <span class="slider round"></span>
+              </label>
+            </div>
+        
+            <!-- Timer Div -->
+        <div class="email_reminder_div" id="email_reminder_div">
+            <div class="timer">
+              <div class="a1">
+                <div class="time-cut input-on-off">
+                  <input type="email" class="form-control col-2 mr-2" value="1" id="remindertiming[]" name="remindertiming[]"
+                    aria-describedby="emailHelp">
+                  <select class="form-control col-7"  id="remindertiming_select[]" name="remindertiming_select[]">
+                    <option>Hour(s) Before</option>
+                    <option>Day(s) Before</option>
+                    
+                  </select> 
+                </div>
+              </div>
+            </div>  
+          <!-- Extra div added -->
+          <div class="text-content">
+            <div class="heading-div">
+              <h1 class="heading1 heading-no-1">Reminder Email Subject</h1>
+              <input type="text" style="margin: 0px 0px 20px 0 !important;" value="Reminder:{{Event_Name}} with {{My_Name}} at {{Event_Time}} on {{Event_Date}}" class="form-control" id="remindersubject" name="remindersubject" aria-describedby="emailHelp">
+            </div>
+            <h1 class="heading1 heading-no-1">Reminder Email Body</h1>
+            <div id="confirm-edit" class="input-on-off">
+            <textarea class="editor" name="reminderbody" id="reminderbody">
+                
+                English
+                      Hi @{{name}},
+                      This is a friendly reminder that your @{{Event_Name}} with @{{My_Name}} is at @{{Event_Time}} on @{{Event_Date}}
+                      @{{location}}
+                      @{{event_description}}
+                      @{{booking_form}}
+                                      
+              </textarea>
+             
+            </div>
+          </div> 
+
+          <div class="btn-div" >
+            <button type="button" id="btnUpdateReminder"  class="btn bg-btn updetd-btn mb-3" >Update</button>
+          </div>
+          <!-- div removed -->
+      </div>
+
+        </div>
+        <!-- Followup -->
+        <div class="email_div" id="followup_email">
+      
+            <div class="input-on-off d-flex justify-content-space-between align-items-center">
+              <h1 class="heading1 heading-no-1">
+                Email Followup 
+              </h1>
+              <label class="toggle toggl">
+         
+                <input class="input" style="margin: 0px 0px 20px 0 !important;" type="checkbox" id="toggleFollowup" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+
+            <div class="email_followup_div">
+
+            <div class="timer input-on-off">
+              <div class="time w-100 d-flex justify-content-space-between align-items-center">
+                <div class="timeCut">
+                  <input type="text" class="form-control col-2 mr-2" value="1" id="followuptiming[]" name="followuptiming[]"
+                    aria-describedby="emailHelp">
+                  <select class="form-control col-7" id="followuptiming_select[]" name="followuptiming_select[]">
+                    <option>Hour(s) After</option>
+                    <option>Day(s) After</option>
+                    
+                  </select> 
+                </div>
+			       </div>
+            </div>
+
+          <div class="text-content">
+            <div class="heading-div input-on-off">
+              <h1 class="heading1 heading-no-1">Followup Email Subject</h1>
+              <input type="text" style="margin: 0px 0px 20px 0 !important;" value="Thank you for your time!" id="followupsubject" name="followupsubject" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <h1 class="heading1 heading-no-1">Followup Email Body</h1>
+            <div id="confirm-edit" class="input-on-off">
+              <textarea id="followupbody" name="followupbody" class="editor">  
+              Hi {{name}},
+              Thank you for attending {{Event_Name}} at {{Event_Time}} on {{Event_Date}}.
+              Please respond to this email with any feedback or additional requests.
+              </textarea>
+            </div>
+          </div>
+
+          <div class="btn-div">
+            <button type="button" id="btnUpdateFollowup" class="btn bg-btn updetd-btn mb-3">Update</button>
+          </div> 
+        </div>
+      </div>
+	</div>
+</div>
+      <div class="tags col-3">
+        <div class="inner-tags">
+          <h1 class="heading1">Tags</h1>
+          <p class="para">For Example: Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, adipisci vitae.
+            Doloribus maiores dolorem, numquam alias odit cupiditate voluptatem accusamus molestias reiciendis obcaecati
+            eligendi unde, atque praesentium quibusdam repellat magni.
+          </p>
+
+          <h5 class="heading5">Buyer Name <span>{{name}}</span></h5>
+          <h5 class="heading5">Buyer Email <span>{{email}}</span></h5>
+          <h5 class="heading5">Product <span>{{product_name}}</span></h5>
+          <h5 class="heading5">Price <span>{{price}}</span></h5>
+          <h5 class="heading5">Meeting Duration <span>{{duration}}</span></h5>
+          <h5 class="heading5">Meeting Date <span>{{date}}</span></h5>
+          <h5 class="heading5">Meeting Slot <span>{{slot}}</span></h5>
+          <h5 class="heading5">User Timezone <span>{{user_timezone}}</span></h5>
+          <h5 class="heading5">Seller Name <span>{{seller_name}}</span></h5>
+
+        </div>
+      </div>
+
+   
+  </div>
+
+
+   
+  
+     
+</form>
+</div>
+</div>
+<div>
+<div style="overflow:auto; margin: 0 auto; width: 12%;">
+    <div style="float:right;">
+      <div style="display:inline-flex;">
+      <div>
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button> &nbsp&nbsp&nbsp
+    </div>
+      <div>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+  </div>
+    </div>
+    <div style="float:left;">
+    <a class="btn" href="http://127.0.0.1:4433/listBookingType" id="cancel">Cancel</a>
+    </div>
+  </div>
+
+   <!-- Circles which indicates the steps of the form: -->
+   <div style="text-align:center;margin-top:30px;">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+  </div>
+
+  </div>
+  </div>
+ 
+                </div>
+                <!-- /.container-fluid -->
+            <!-- End of Main Content -->   
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+  </div>
+
+  
+    <!-- End of Page Wrapper -->
+    <!-- Footer -->
+    <footer class="sticky-footer">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Laravel 2021</span>
+            </div>
+        </div>
+    </footer>
+     <!-- End of Footer -->
+    </div>
+    <!-- Common scripts for all pages-->
+
+    <!-- Main theme JS -->
+    <script src="js/sb-admin-2.min.js"></script>
+
+
+    <!-- Jquery Easing scroll-->
+    <script src="jquery-easing/jquery.easing.min.js"></script>
+    
+
+    <!-- SweetAlert --> <!-- If issue in modal then check -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+    
+
+    <!-- 
+     DataTables 
+
+    <script src="datatables/datatables.min.js"></script>
+
+    <link href="datatables/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
+    -->
+
+    <!-- Select2 -->
+<!-- 
+    <script src="select2/select2.min.js"></script>
+
+    <link rel="stylesheet" href="select2/select2.min.css"> -->
+
+    
+  
+    <!-- <link rel="stylesheet" href="select2/select2-bootstrap4.min.css">
+ -->
+    <!------------------------------->
+
+    <!-- Bootstrap core JavaScript-->
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+
+    <!------------------------------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" />
+        
+    <!-- Copy text JS -->
+
+    <script src="js/copy_text.js"></script>
+
+    
+    <script>
+    
+$("#getActions").click(function () {
+  
+  let staffid = $('#staff').val();;
+  let action = $('#action').val();
+  
+  let formData = new FormData($('#adminform')[0]);
+  formData.append('staffid', staffid);
+  formData.append('action', action);
+if(action=='Availability'){
+let url='/staff/staffSchedule/getindex/'+staffid;
+window.location=url;
+}
+if(action=='Booking Types'){
+let url='/listBookingTypeForStaff/'+staffid+'/admin';
+window.location=url;
+}
+if(action=='My Bookings'){
+let url='/listBookingsByStaff/'+staffid;
+window.location=url;
+}
+if(action=='Booking Page'){
+let url='/staff/info/bookingpageForStaff/'+staffid;
+window.location=url;
+}
+if(action=='Setting'){
+let url='/staff/info/staffSettingForStaff/'+staffid;
+window.location=url;
+}
+}
+
+);
+</script>
+
+
+
+    
+    
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Tiny MCE Text Area -->
+    <script src="https://cdn.tiny.cloud/1/t449hxa03kidnwe4k8iik8b8gmcy7gkgel12silwpyvfskgn/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+     <!-- Email Tiny MCE -->
+    <script src="js/booking_types/tiny.js"></script>
+    
+    <script src="js/booking_types/email_tab_script.js"></script>
+
+    <!-- BOOKING FORM -->
+    
+        <script src="js/booking_types/booking_form_script.js"></script>
+   
+  
+<!-- JSON CREATE -->
+
+<script type="text/javascript">
+      //Initialization  of json string.
+      let json_string = "";
+
+      //function that runs once the app render which makes us to sort.
+      $(document).ready(function () {
+        var sort = $("#dynamic_form").sortable({
+          animation: 500,
+          handle: ".handle",
+        });
+
+        //function runs only when we click on submit button
+        $("#submitBtn").click(function () {
+          json_string = "";
+
+          var order1 = $("#dynamic_form").sortable("toArray");
+          // console.log(order1);
+          //looping through each and every element in the array of ids.
+          order1.forEach((element) => {
+
+            let arr,string;
+            if (form.querySelector(`#${element} .optionsColumn`) != null) {
+              arr = Array.from(
+                form.querySelectorAll(`#${element} section label`)
+              );
+              //initializing the options string inorder to append new options to the string.
+              string = "";
+              arr.map((e) => {
+                string += `${e.innerHTML},`;
+              });
+
+              //json string for radio or check box
+
+              json_string += `${
+                form.querySelectorAll(`#${element} section input`)[0].type
+              },${form.querySelector(`#${element} > label`).innerHTML},${
+                form.querySelector(`#${element} section > div input`).required
+              }::${string.substring(0, string.length - 1)}:`;
+
+              
+            }else if(form.querySelector(`#${element} select`)){
+              arr = Array.from(form.querySelectorAll(`#${element} option`));
+              string = "";
+              arr.map((e) => {
+                string += `${e.value},`;
+              });
+
+              //json string for drop down
+              
+              json_string += `select,${form.querySelector(`#${element} > label`).innerHTML},${form.querySelector(`#${element} select`).required}::${string.substring(0, string.length -1)}:`;
+            } else {
+              //json string for textarea
+              if(form.querySelector(`#${element} textarea`)){
+                json_string += `textarea,${form.querySelector(`#${element} > label`).innerHTML},${form.querySelector(`#${element} textarea`).required}:`
+              }else{
+
+
+                //json string for text field
+              json_string += `text,${
+                form.querySelector(`#${element} > label`).innerHTML
+              },${form.querySelector(`#${element} input`).required}:`;
+
+            }
+
+              option_string += ":";
+
+            }
+          });
+
+          //reducing json string upto last-1 element because the json_string ends with extra ":".
+          json_string = json_string.substring(0, json_string.length - 1);
+          json_string = json_string.replaceAll("*", "");
+          console.log(json_string);
+
+
+        });
+      });
+    </script>
+
+    
+<!-- Sortable.js -->
+  <script>
+  $( function() {
+    $( "#dynamic_form" ).sortable();
+    $( "#dynamic_form" ).disableSelection();
+  } );
+  </script>
+
+<script type="text/javascript">
+    // images upload and remove delete
+ var loadFile = function(event) {
+    var imageFile = document.getElementById('profile_uploaded_image');
+    imageFile.src = URL.createObjectURL(event.target.files[0]);
+    imageFile.onload = function() {
+      URL.revokeObjectURL(imageFile.src)
+    }
+  };
+  var removeFile = function(event) {
+    console.log("Inline called")
+    var imageFile = document.getElementById('profile_uploaded_image');
+    imageFile.src = 'http://127.0.0.1:4433/images/user.png';
+    var setimage = document.getElementById('setimage');
+    setimage.value="imageremove";
+	 imageFile.src = defaultimage;
+    $('#profile_uploaded_image').val('');imageFile.onload = function() {
+      URL.revokeObjectURL(imageFile.src)
+    }
+  };
+
+var currentTab = 0; // Current tab is set to be the first tab (0)
+let existingStaffId=0; //This is used in checking for unique staff service
+let currentStaffId=0; //This is used when saving appointments related to the current staff service created
+var dynamicId = 1;//This is for creating form fields after clicking on save in modal in booking form
+showTab(currentTab); // Display the current tab
+
+function showTab(n) {
+  // This function will display the specified tab of the form...
+  // document.getElementById("btnModalField").style.display="none";
+  document.getElementById("cancel").style.display = "block";
+  var x = document.getElementsByClassName("tab");
+  var top_nav = document.getElementsByClassName("top-nav");
+  // set all tabs style none
+  for (i = 0; i < 4; i++) {
+    x[i].style.display =  "none";
+    top_nav[i].className = top_nav[i].className.replace("top-nav tab-current", "top-nav");
+    }
+       
+    top_nav[n].className = top_nav[n].className.replace("top-nav", "top-nav tab-current");
+       
+    x[n].style.display = "block";
+
+  // ... and run a function that will display the correct step indicator:
+  fixStepIndicator(n)
+  
+  //... and fix the Previous/Next buttons:
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none";
+    
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+    document.getElementById("cancel").style.display = "none";
+  }
+  if (n == 3) {
+    document.getElementById("nextBtn").innerHTML = "Submit";
+    
+    
+  } else {
+    document.getElementById("nextBtn").innerHTML = "Next";
+    
+    
+  }
+  
+  // if(n==2){
+  //   document.getElementById("btnModalField").style.display="block";
+  // }
+  //... and run a function that will display the correct step indicator:
+  fixStepIndicator(n)
+}
+$.ajaxSetup({
+headers: {
+
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+}
+});
+function getExistingStaffId(formData){
+   
+  $.ajax({
+      type:'POST',
+      url:'/getExistingStaffService',
+      data:formData,
+      processData: false,
+      contentType: false,
+      success:function(data){
+        existingStaffId=data.id;
+        
+      },
+      error: function(jqXhr, json, errorThrown){
+            var errors = jqXhr.responseJSON;
+            var errorsHtml = '';
+            $.each(errors['errors'], function (index, value) {
+                errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+            });
+        
+            Swal.fire({
+            title: "Error ",
+            html: errorsHtml,
+            width: 'auto',
+            confirmButtonText: 'Ok',
+            closeOnConfirm: true,
+            closeOnCancel: true,
+            type: 'error'
+        });
+        return false;
+      }
+
+});
+}
+$("#btnUpdateConfirmation").click( function()
+           {
+              tinyMCE.triggerSave();
+             let confirmsubject =$('#confirmsubject').val();
+             let confirmbody =$('#confirmbody').val();
+             
+             let formData = new FormData($('#bookingForm')[0]);
+             formData.append('confirmsubject',confirmsubject);
+             formData.append('confirmbody',confirmbody);
+             
+            $.ajax({
+      type:'POST',
+      url:'/updateEmailConfirmationTemplate',
+      data:formData,
+      processData: false,
+      contentType: false,
+      success:function(data){
+        
+        
+      },
+      error: function(jqXhr, json, errorThrown){
+            var errors = jqXhr.responseJSON;
+            var errorsHtml = '';
+            $.each(errors['errors'], function (index, value) {
+                errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+            });
+        
+            Swal.fire({
+            title: "Error ",
+            html: errorsHtml,
+            width: 'auto',
+            confirmButtonText: 'Ok',
+            closeOnConfirm: true,
+            closeOnCancel: true,
+            type: 'error'
+        });
+        return false;
+      }
+
+});          
+           }
+        );
+  $("#btnUpdateReminder").click( function()
+  {
+    
+    if(!$('#remindertoggle').is(":checked")){
+      return false;
+    }
+              tinyMCE.triggerSave();
+              var remindertiming_select= new Array();
+ $('select[name="remindertiming_select[]"] option:selected').each(function() {
+    remindertiming_select.push($(this).val());
+}); 
+var remindertiming= new Array();
+$("input[name='remindertiming[]']").each(function(){
+	
+    remindertiming.push($(this).val());
+});  
+  
+  
+             let remindersubject =$('#remindersubject').val();
+             let reminderbody =$('#reminderbody').val();
+             let remindertoggle=$('#remindertoggle').is(":checked");
+             
+             let formData = new FormData($('#bookingForm')[0]);
+             formData.append('remindersubject',remindersubject);
+             formData.append('reminderbody',reminderbody);
+             formData.append('remindertoggle',remindertoggle);
+             formData.append('remindertiming', remindertiming);
+  formData.append('remindertiming_select', remindertiming_select);
+
+            $.ajax({
+      type:'POST',
+      url:'/updateEmailReminderTemplate',
+      data:formData,
+      processData: false,
+      contentType: false,
+      success:function(data){
+        
+        
+      },
+      error: function(jqXhr, json, errorThrown){
+            var errors = jqXhr.responseJSON;
+            var errorsHtml = '';
+            $.each(errors['errors'], function (index, value) {
+                errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+            });
+        
+            Swal.fire({
+            title: "Error ",
+            html: errorsHtml,
+            width: 'auto',
+            confirmButtonText: 'Ok',
+            closeOnConfirm: true,
+            closeOnCancel: true,
+            type: 'error'
+        });
+        return false;
+      }
+
+});          
+           }
+        );
+        $("#btnUpdateFollowup").click( function()
+  {
+   
+    if(!$('#toggleFollowup').is(":checked")){
+      return false;
+    }
+              tinyMCE.triggerSave();
+             let followupsubject =$('#followupsubject').val();
+             let followupbody =$('#followupbody').val();
+             let toggleFollowup=$('#toggleFollowup').is(":checked");
+             var followuptiming_select= new Array();
+ $('select[name="followuptiming_select[]"] option:selected').each(function() {
+    followuptiming_select.push($(this).val());
+}); 
+
+var followuptiming= new Array();
+$("input[name='followuptiming[]']").each(function(){
+    followuptiming.push($(this).val());
+}); 
+ 
+             let formData = new FormData($('#bookingForm')[0]);
+             formData.append('followupsubject',followupsubject);
+             formData.append('followupbody',followupbody);
+             formData.append('toggleFollowup',toggleFollowup);
+             formData.append('followuptiming', followuptiming);
+  formData.append('followupselect', followuptiming_select);
+
+            $.ajax({
+      type:'POST',
+      url:'/updateEmailFollowupTemplate',
+      data:formData,
+      processData: false,
+      contentType: false,
+      success:function(data){
+        
+        
+      },
+      error: function(jqXhr, json, errorThrown){
+            var errors = jqXhr.responseJSON;
+            var errorsHtml = '';
+            $.each(errors['errors'], function (index, value) {
+                errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+            });
+        
+            Swal.fire({
+            title: "Error ",
+            html: errorsHtml,
+            width: 'auto',
+            confirmButtonText: 'Ok',
+            closeOnConfirm: true,
+            closeOnCancel: true,
+            type: 'error'
+        });
+        return false;
+      }
+
+});          
+           }
+        );
+
+        $("#btnUpdateReschedule").click( function()
+           {
+            tinyMCE.triggerSave();
+             let reschedulesubject =$('#reschedulesubject').val();
+             let reschedulebody =$('#reschedulebody').val();
+             
+             let formData = new FormData($('#bookingForm')[0]);
+             formData.append('reschedulesubject',reschedulesubject);
+             formData.append('reschedulebody',reschedulebody);
+             
+            $.ajax({
+      type:'POST',
+      url:'/updateEmailRescheduleTemplate',
+      data:formData,
+      processData: false,
+      contentType: false,
+      success:function(data){
+        
+        
+      },
+      error: function(jqXhr, json, errorThrown){
+        
+            var errors = jqXhr.responseJSON;
+            var errorsHtml = '';
+            $.each(errors['errors'], function (index, value) {
+                errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+            });
+        
+            Swal.fire({
+            title: "Error ",
+            html: errorsHtml,
+            width: 'auto',
+            confirmButtonText: 'Ok',
+            closeOnConfirm: true,
+            closeOnCancel: true,
+            type: 'error'
+        });
+        return false;
+      }
+
+});          
+           }
+        );
+
+        $("#btnUpdateCancellation").click( function()
+           {
+            tinyMCE.triggerSave();
+             let cancelsubject =$('#cancelsubject').val();
+             let cancelbody =$('#cancelbody').val();
+             
+             let formData = new FormData($('#bookingForm')[0]);
+             formData.append('cancelsubject',cancelsubject);
+             formData.append('cancelbody',cancelbody);
+             
+            $.ajax({
+      type:'POST',
+      url:'/updateEmailCancellationTemplate',
+      data:formData,
+      processData: false,
+      contentType: false,
+      success:function(data){
+        
+        
+      },
+      error: function(jqXhr, json, errorThrown){
+            var errors = jqXhr.responseJSON;
+            var errorsHtml = '';
+            $.each(errors['errors'], function (index, value) {
+                errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+            });
+        
+            Swal.fire({
+            title: "Error ",
+            html: errorsHtml,
+            width: 'auto',
+            confirmButtonText: 'Ok',
+            closeOnConfirm: true,
+            closeOnCancel: true,
+            type: 'error'
+        });
+        return false;
+      }
+
+});          
+           }
+        );
+
+function nextPrev(n) {
+  // This function will figure out which tab to display
+  var x = document.getElementsByClassName("tab");
+  // Exit the function if any field in the current tab is invalid:
+  if (n == 1 && !validateForm()) return false;
+  
+  let formData = new FormData($('#bookingForm')[0]);
+  if(n==-1){
+    existingStaffId= getExistingStaffId(formData);
+    
+  }
+  
+  if(n == 1 && currentTab ==0){
+    let selectedstaffid=$('#selectedstaffid').val();
+    formData.append('existingStaffId',existingStaffId);
+    formData.append('selectedstaffid',selectedstaffid);
+    
+    $.ajax({
+      type:'POST',
+      url:'/insert_staff_services',
+      data:formData,
+      processData: false,
+      contentType: false,
+      success:function(data){
+        currentStaffId=data.id;
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        showTab(currentTab);
+  
+      },
+      error: function(jqXhr, json, errorThrown){
+            var errors = jqXhr.responseJSON;
+            var errorsHtml = '';
+            $.each(errors['errors'], function (index, value) {
+                errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+            });
+        
+            Swal.fire({
+            title: "Error ",
+            html: errorsHtml,
+            width: 'auto',
+            confirmButtonText: 'Ok',
+            closeOnConfirm: true,
+            closeOnCancel: true,
+            type: 'error'
+        });
+        return false;
+      }
+
+});
+    return false;
+  }
+  if(n == 1 && currentTab ==1){
+    
+    formData.append('currentStaffId',currentStaffId);
+    let confirmsubject =$('#confirmsubject').val();
+             let confirmbody =$('#confirmbody').val();
+             
+             formData.append('confirmsubject',confirmsubject);
+             formData.append('confirmbody',confirmbody);
+
+	     let reschedulesubject =$('#reschedulesubject').val();
+             let reschedulebody =$('#reschedulebody').val();
+
+	     formData.append('reschedulesubject',reschedulesubject);
+             formData.append('reschedulebody',reschedulebody);
+      
+	     let cancelsubject =$('#cancelsubject').val();
+             let cancelbody =$('#cancelbody').val();
+
+	     formData.append('cancelsubject',cancelsubject);
+             formData.append('cancelbody',cancelbody);
+
+             let remindersubject =$('#remindersubject').val();
+             let reminderbody =$('#reminderbody').val();
+
+	     formData.append('remindersubject',remindersubject);
+             formData.append('reminderbody',reminderbody);
+
+             let followupsubject =$('#followupsubject').val();
+             let followupbody =$('#followupbody').val();
+
+	     formData.append('followupsubject',followupsubject);
+             formData.append('followupbody',followupbody);
+
+
+             let remindertoggle=$('#remindertoggle').is(":checked");
+             formData.append('remindertoggle',remindertoggle);
+
+             let toggleFollowup=$('#toggleFollowup').is(":checked");
+             formData.append('toggleFollowup',toggleFollowup);
+    
+    $.ajax({
+      type:'POST',
+      url:'/insertStaffAppoinments',
+      data:formData,
+      processData: false,
+      contentType: false,
+      success:function(data){
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        showTab(currentTab);
+  
+      },
+      error: function(jqXhr, json, errorThrown){
+            var errors = jqXhr.responseJSON;
+            var errorsHtml = '';
+            $.each(errors['errors'], function (index, value) {
+                errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+            });
+        
+            Swal.fire({
+            title: "Error ",
+            html: errorsHtml,
+            width: 'auto',
+            confirmButtonText: 'Ok',
+            closeOnConfirm: true,
+            closeOnCancel: true,
+            type: 'error'
+        });
+        return false;
+      }
+
+});
+return false;
+  }
+  if(n == 1 && currentTab ==2){
+    
+    json_string = "";
+          option_string = "";
+          var order = $("#dynamic_form").sortable("toArray");
+          //looping through each and every element in the array of ids.
+          order.forEach((element) => {
+            let arr,string;
+            if (form.querySelector(`#${element} .optionsColumn`) != null) {
+              arr = Array.from(
+                form.querySelectorAll(`#${element} section label`)
+              );
+              //initializing the options string inorder to append new options to the string.
+              string = "";
+              arr.map((e) => {
+                string += `${e.innerHTML},`;
+              });
+
+              //json string for radio or check box
+              json_string += 
+              `${
+                form.querySelectorAll(`#${element} section input`)[0].type
+              },${form.querySelector(`#${element} > label`).innerHTML},${
+                form.querySelector(`#${element} section > div input`).required
+              }:`;
+              option_string += string.substring(0, string.length -1) + ":";
+              
+            }else if(form.querySelector(`#${element} select`)){
+              arr = Array.from(form.querySelectorAll(`#${element} option`));
+              string = "";
+              arr.map((e) => {
+                string += `${e.value},`;
+              });
+
+              //json string for drop down
+              json_string += `select,${form.querySelector(`#${element} > label`).innerHTML},${form.querySelector(`#${element} select`).required}:`;
+              option_string += string.substring(0, string.length -1) + ":";
+            } 
+
+            else {
+
+              //json string for textarea
+              if(form.querySelector(`#${element} textarea`))
+              {
+                json_string += `textarea,${form.querySelector(`#${element} > label`).innerHTML},${form.querySelector(`#${element} textarea`).required}:`;
+                option_string += ":";
+              }
+
+              else
+              {
+                //json string for text field
+              json_string += `text,${
+                form.querySelector(`#${element} > label`).innerHTML
+              },${form.querySelector(`#${element} input`).required}:`;
+              option_string += ":";
+            }
+
+            }
+          });
+
+          //reducing json string upto last-1 element because the json_string ends with extra ":".
+          json_string = json_string.substring(0, json_string.length - 1);
+          console.log("-------- Questions String -------------")
+          console.log(json_string);
+          console.log("-------- Options String -------------")
+          option_string = option_string.substring(0, option_string.length - 1);
+          console.log(option_string);
+        
+   formData.append('currentStaffId',currentStaffId);
+   formData.append('formFields',json_string);
+   formData.append('formFieldOptions',option_string);
+    $.ajax({
+      type:'POST',
+      url:'/insertFormFields',
+      data:formData,
+      processData: false,
+      contentType: false,
+      success:function(data){
+      
+         // Hide the current tab:
+         x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        showTab(currentTab);
+        
+      },
+      error: function(jqXhr, json, errorThrown){
+            var errors = jqXhr.responseJSON;
+            var errorsHtml = '';
+            $.each(errors['errors'], function (index, value) {
+                errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+            });
+        
+            Swal.fire({
+            title: "Error ",
+            html: errorsHtml,
+            width: 'auto',
+            confirmButtonText: 'Ok',
+            closeOnConfirm: true,
+            closeOnCancel: true,
+            type: 'error'
+        });
+        return false;
+      }
+
+});
+    return false;
+  }
+      // Hide the current tab:
+      x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        
+  // if you have reached the end of the form...
+  if (currentTab >= x.length) {
+    tinyMCE.triggerSave();
+    let confirmsubject =$('#confirmsubject').val();
+             let confirmbody =$('#confirmbody').val();
+             
+             formData.append('confirmsubject',confirmsubject);
+             formData.append('confirmbody',confirmbody);
+
+	     let reschedulesubject =$('#reschedulesubject').val();
+             let reschedulebody =$('#reschedulebody').val();
+
+	     formData.append('reschedulesubject',reschedulesubject);
+             formData.append('reschedulebody',reschedulebody);
+      
+	     let cancelsubject =$('#cancelsubject').val();
+             let cancelbody =$('#cancelbody').val();
+
+	     formData.append('cancelsubject',cancelsubject);
+             formData.append('cancelbody',cancelbody);
+
+             let remindersubject =$('#remindersubject').val();
+             let reminderbody =$('#reminderbody').val();
+
+	     formData.append('remindersubject',remindersubject);
+             formData.append('reminderbody',reminderbody);
+
+             let followupsubject =$('#followupsubject').val();
+             let followupbody =$('#followupbody').val();
+
+	     formData.append('followupsubject',followupsubject);
+             formData.append('followupbody',followupbody);
+
+
+             let remindertoggle=$('#remindertoggle').is(":checked");
+             formData.append('remindertoggle',remindertoggle);
+
+             let toggleFollowup=$('#toggleFollowup').is(":checked");
+             formData.append('toggleFollowup',toggleFollowup);
+
+             var followuptiming_select= new Array();
+ $('select[name="followuptiming_select[]"] option:selected').each(function() {
+    followuptiming_select.push($(this).val());
+}); 
+
+var followuptiming= new Array();
+$("input[name='followuptiming[]']").each(function(){
+    followuptiming.push($(this).val());
+}); 
+var remindertiming_select= new Array();
+ $('select[name="remindertiming_select[]"] option:selected').each(function() {
+    remindertiming_select.push($(this).val());
+}); 
+var remindertiming= new Array();
+$("input[name='remindertiming[]']").each(function(){
+	
+    remindertiming.push($(this).val());
+});  
+formData.append('remindertiming', remindertiming);
+  formData.append('remindertiming_select', remindertiming_select);
+
+formData.append('followuptiming', followuptiming);
+  formData.append('followupselect', followuptiming_select);
+    $.ajax({
+      type:'POST',
+      url:'/insertDefaultTemplates',
+      data:formData,
+      processData: false,
+      contentType: false,
+      success:function(data){
+        swal.fire({
+          title: "Success",
+          text: "Booking Type Added!",
+          type: "success"
+        }).then(function() {
+            window.location=data.url;
+        });
+      },
+      error: function(jqXhr, json, errorThrown){
+            var errors = jqXhr.responseJSON;
+            var errorsHtml = '';
+            $.each(errors['errors'], function (index, value) {
+                errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+            });
+        
+            Swal.fire({
+            title: "Error ",
+            html: errorsHtml,
+            width: 'auto',
+            confirmButtonText: 'Ok',
+            closeOnConfirm: true,
+            closeOnCancel: true,
+            type: 'error'
+        });
+        return false;
+      }
+
+});
+  }
+  // Otherwise, display the correct tab:
+  showTab(currentTab);
+}
+
+function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByClassName("a");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    // If a field is empty...
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+
+  // This function removes the "active" class of all steps...
+  var x = document.getElementsByClassName("step");
+  for (i = 0; i < 4; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class on the current step:
+  x[n].className += " active";
+}
+
+
+
+function harsh1(){
+  if (document.getElementById("y").value == "groupBooking"){
+  document.getElementById("p").disabled=false;
+  document.getElementById("p").setAttribute("class","a");
+} else {
+  document.getElementById("p").disabled=true; 
+  document.getElementById("p").removeAttribute("class","a");
+}
+
+if (document.getElementById("y").value == "onetoonemeet"){
+  document.getElementById("p").value=" ";
+}
+}
+let profile_input = false;
+        let cover_input = false;
+        let profile_url = "";
+        let cover_url = "";
+
+        let imgWidth = 0;
+        let imgHeight = 0;
+
+        let imgType = ""
+
+        let profile_set_view = false
+        let cover_set_view = false
+
+        let $modal = $('#modal');
+        let image = document.getElementById('modal_image');
+        let cropper;
+
+        $('#cover_image').change(function(event) {
+            cover_input = true
+            cover_set_view = true
+            imgType = "cover"
+            let files = event.target.files;
+
+            let done = function(url) {
+                image.src = url
+                $modal.modal('show');
+                
+            };
+
+            if (files && files.length > 0) {
+                reader = new FileReader();
+                reader.onload = function(event) {
+
+                    const file = document.querySelector("#cover_image").files[0];
+                    reader.readAsDataURL(file);
+                    reader.onload = function(event) {
+                        const imgElement = document.createElement("img");
+                        imgElement.src = event.target.result;
+                        imgElement.onload = function(e) {
+                            const canvas = document.createElement("canvas");
+                            const MAX_WIDTH = 600;
+
+                            const scaleSize = MAX_WIDTH / e.target.width;
+                            canvas.width = MAX_WIDTH;
+                            canvas.height = e.target.height * scaleSize;
+
+                            const ctx = canvas.getContext("2d");
+
+                            ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+
+                            const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg");
+                            // console.log(srcEncoded);
+                            
+                            done(srcEncoded);
+                        }
+                    }
+
+                }
+                reader.readAsDataURL(files[0]);
+            }
+        });
+
+        $('#profile_image').change(function(event) {
+            imgType = "profile"
+            profile_input = true
+            profile_set_view = true
+            let files = event.target.files;
+
+            let done = function(url) {
+                image.src = url
+                $modal.modal('show');
+            };
+
+            if (files && files.length > 0) {
+                reader = new FileReader();
+                reader.onload = function(event) {
+
+                    const file = document.querySelector("#profile_image").files[0];
+                    reader.readAsDataURL(file);
+                    reader.onload = function(event) {
+                        const imgElement = document.createElement("img");
+                        imgElement.src = event.target.result;
+                        imgElement.onload = function(e) {
+                            const canvas = document.createElement("canvas");
+                            const MAX_WIDTH = 600;
+
+                            const scaleSize = MAX_WIDTH / e.target.width;
+                            canvas.width = MAX_WIDTH;
+                            canvas.height = e.target.height * scaleSize;
+
+                            const ctx = canvas.getContext("2d");
+
+                            ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+
+                            const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg");
+                            // console.log(srcEncoded);
+                            done(srcEncoded);
+                        }
+                    }
+
+                }
+                reader.readAsDataURL(files[0]);
+            }
+        });
+
+        $modal.on('shown.bs.modal', function() {
+            if (profile_set_view) {
+                cropper_view = 1
+                imgHeight = 452
+                imgWidth = 452
+                profile_set_view = false
+            }
+
+            if (cover_set_view) {
+                imgHeight = 600
+                imgWidth = 800
+                cropper_view = NaN
+                cover_set_view = false
+            }
+
+            cropper = new Cropper(image, {
+                aspectRatio: cropper_view,
+                viewMode: 3,
+                preview: '.preview'
+            });
+            
+        }).on('hidden.bs.modal', function() {
+            cropper.destroy();
+            cropper = null;
+        });
+
+        $('#save').click(function() {
+            canvas = cropper.getCroppedCanvas({
+                width: imgWidth,
+                height: imgHeight
+            });
+
+            canvas.toBlob(function(blob) {
+                url = URL.createObjectURL(blob);
+                let reader = new FileReader();
+                reader.readAsDataURL(blob);
+                reader.onloadend = function() {
+                    let base64data = reader.result;
+                    if (cover_input) {
+                        $('#cover_uploaded_image').attr('src', reader.result);
+                        cover_input = false
+                        cover_url = reader.result
+                        $('#cover_url').val(cover_url);
+                    }
+                    if (profile_input) {
+                        // console.log(typeof reader.result);
+                        // console.log(reader.result);
+                        $('#profile_uploaded_image').attr('src', reader.result);
+                        profile_input = false
+                        profile_url = reader.result;
+                        $('#profile_url').val(profile_url);
+                    }
+                    $(function() {
+                        $('#modal').modal('toggle');
+                    });
+
+                };
+            });
+        });
+
+
+</script>
+
+</body>
+    
+</html>

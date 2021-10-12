@@ -1,0 +1,204 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 28px;
+}
+
+.select-input:focus {
+  box-shadow: 0 0 0 0.2rem #ae68e488 !important;
+  border: #af68e4 !important;
+}
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.2s;
+}
+
+input:checked + .slider {
+  background-color: var(--brand-color);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 18px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+#cardmain {
+  /*width: 28em;
+  height: 15em;*/
+}
+#card1 {
+  font-size: 20px;
+  font-family: Roboto, sans-serif;
+  padding-left: 15px;
+  margin-top: 8px;
+}
+#card2 {
+  position: absolute;
+  right: 78px;
+}
+#svg1 {
+  position: relative;
+  left: 1px;
+}
+#hd1 {
+  font-size: 15px;
+  font-family: Roboto, sans-serif;
+  position: relative;
+  bottom: 25px;
+  left: 20px;
+}
+#hd2 {
+  font-size: 15px;
+  font-family: Roboto, sans-serif;
+  position: relative !important;
+  bottom: 20px !important;
+  left: -6.6rem !important;
+  display: flex;
+  padding-left: 4.6rem;
+}
+#VBP {/*
+  position: relative;
+  left: 220px;
+  top: 12px;
+  padding-bottom: 50px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #2196f3;*/
+  padding-right: 16px;
+  font-size: 15px;
+  text-decoration: none;
+  color: var(--brand-color);
+}
+#img1 {
+  width: 150px;
+  
+}
+#CL {
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  color: var(--brand-color);
+  position: relative;
+  padding-left: 20px;
+  
+}
+#swtch {/*
+  position: absolute;
+  right: 55px;
+  top: 160px;*/ 
+}
+#on {
+  font-size: 18px;
+  padding-left: 5px;
+  font-family: Roboto, sans-serif;
+  position: absolute;
+  left: 55px;
+}
+#DD {
+  position: absolute;
+  right: 18px;
+}
+#createmeet {
+  color: white;
+  position: relative;
+  top: 20px;
+  right: 30px;
+  font-family: Roboto, sans-serif;
+  text-decoration: none;
+}
+#bgcolor1{
+  background-color:#fAfAfA
+}
+#mt
+{
+  font-family: Roboto, sans-serif;
+}
+#edit{
+  position: relative;
+  bottom:2px
+}
+#swtch1{
+  padding-right: 40px;
+  
+}
+
+.button_class{
+  position: relative;
+  top: 20px;
+  right: 30px;
+  font-size: 18px;
+  border-radius: 6px;
+  padding:15px 25px 15px 25px;
+  border: 1px solid rgb(220, 220, 220);
+  background-color: Transparent;
+  text-decoration: none;
+  color: black;
+  font-family: Roboto, sans-serif;
+  background-color: #af68e4;
+  color: cornsilk;
+  }
+  
+  .button_class:hover span{
+   display: none;
+   text-decoration: none;
+  }
+  .button_class:hover{
+     color: cornsilk;
+     background-color: #9a5bc9;
+     border-radius: 2px;
+     padding:15px 25px 15px 25px;
+     transition-duration:.5s;
+     transition-delay: 5ms;
+     border-radius: 6px;
+  
+  }
+#stats{
+  position: absolute; left: 60px;
+  top: 5px;
+  color: var(--brand-color);
+}
+ul.tab-nav {
+    display: inline-block;
+    width: 95%;
+}

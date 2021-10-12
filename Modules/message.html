@@ -1,0 +1,743 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<style type="text/css">
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+div.displayOverrides::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  /*background: #c8cbcf; */
+  background: white;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #a7acb0; 
+}
+</style>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Laravel">
+    <meta name="author" content="Digipartners">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="B5pTsdK685zmrhoNNQFSnPzVbeAbJK0Im9VUJQhA">
+
+    <title>Laravel</title>
+
+    <!-- Bootstrap core JavaScript-->
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>   
+
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+
+
+    
+    <!-- Custom icons for this template-->   
+    
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- SB admin Theme -->
+    <link href="vendor/css/dashboard/main_theme.css" rel="stylesheet">
+
+    <!-- Custom theme -->
+    <link href="vendor/css/dashboard/custom_theme.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!------------------------>
+    
+    
+    
+    <!-- icons -->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+          <link rel="stylesheet" href="./message-page/message.css">
+
+
+</head>
+
+<body id="page-top">
+    <div>
+     <div id="content">
+                            <style>
+#header_link
+{
+    background-color: white;
+    text-decoration: none;
+    color:var(--brand-color);
+}
+
+</style>
+
+<!-- Topbar -->
+<nav class="navbar navbar-expand navbar-light topbar mb-4 static-top" style="height:60px; box-shadow:0 0 5px 1px;">
+<script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+<script type="text/javascript">
+ Paddle.Environment.set('sandbox');
+	Paddle.Setup({ vendor: 3084,
+     });
+    
+    function checkoutClosed(data) {
+            console.log(data);
+        alert('Your purchase has been cancelled, we hope to see you again soon!');
+       
+}
+$.ajaxSetup({
+  beforeSend: function(xhr, type) {
+      if (!type.crossDomain) {
+          xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+      }
+  },
+});
+function checkoutComplete(data) {
+                console.log(data);
+                alert('Thanks for your purchase.');
+                var checkoutId = data.checkout.id;
+        
+                Paddle.Order.details(checkoutId, function(data) {
+                    var orderid=data.order.order_id;
+                    var checkoutid=data.checkout.checkout_id;
+                    var quantity=data.order.quantity;
+                    console.log(data);
+                    var user = {"id":1,"name":"Udit Arora","email":"uarora1997@gmail.com","status":"active","zoom_active":null,"zoom_refresh":null,"paypal_token":"uarora1997@gmail.com","stripe_token":null,"expires_in":null,"zoomuser_id":null,"zoomuser_email":null,"zoomuser_accountid":null,"code":"1nfw4XyoJt","timezone":"Asia\/Karachi","language":"English","brand_color":"#326bff","date_format":"DD\/MM\/YYYY","time_format":"12h (am\/pm)","username":"uarora1997","onboarding_complete":1,"business_id":0,"smtp_email":null,"smtp_username":null,"smtp_password":null,"smtp_server":null,"subdomain":null,"smtp_authentication":0,"protocol":"TLS","plan":"Trial","plan_expires_in":null,"google_analytics":null,"facebook_analytics":null,"microsoft_analytics":null,"google_tag":null,"booking_webhooklink":null,"reschedule_webhooklink":null,"cancel_webhooklink":null,"role":"owner","team_uuid":"Qsdt9BxKMj","port":0,"created_at":"2021-09-18T12:21:52.000000Z","updated_at":"2021-09-27T04:36:56.000000Z","deleted_at":null,"email_verified_at":null,"profile":null,"logo":null,"description":null,"g_selected_email":null,"g_calendar_id":null,"profile_url":"","logo_url":""};
+                    $.ajax({
+                        type: 'POST',
+                        url: '/staff/info/insertOrderDetails',
+                        data: {user_id:user.code,orderid:orderid,checkoutid:checkoutid,quantity:quantity},
+                        success: function (data) {
+                            window.location.href='/staff';
+                            window.location.reload();
+                        },
+                        error: function (jqXhr, json, errorThrown) {
+                        alert(json);
+                        var errors = jqXhr.responseJSON;
+                        var errorsHtml = '';
+                        $.each(errors['errors'], function (index, value) {
+                        errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+                    });
+
+                    alert(errorsHtml);
+                    return false;
+                }
+
+                });
+                
+    });
+        }
+        function teamcheckoutComplete(data) {
+                console.log(data);
+                alert('Thanks for your purchase.');
+                var checkoutId = data.checkout.id;
+        
+                Paddle.Order.details(checkoutId, function(data) {
+                    var orderid=data.order.order_id;
+                    var checkoutid=data.checkout.checkout_id;
+                    var quantity=data.order.quantity;
+                    console.log(data);
+                    var user = {"id":1,"name":"Udit Arora","email":"uarora1997@gmail.com","status":"active","zoom_active":null,"zoom_refresh":null,"paypal_token":"uarora1997@gmail.com","stripe_token":null,"expires_in":null,"zoomuser_id":null,"zoomuser_email":null,"zoomuser_accountid":null,"code":"1nfw4XyoJt","timezone":"Asia\/Karachi","language":"English","brand_color":"#326bff","date_format":"DD\/MM\/YYYY","time_format":"12h (am\/pm)","username":"uarora1997","onboarding_complete":1,"business_id":0,"smtp_email":null,"smtp_username":null,"smtp_password":null,"smtp_server":null,"subdomain":null,"smtp_authentication":0,"protocol":"TLS","plan":"Trial","plan_expires_in":null,"google_analytics":null,"facebook_analytics":null,"microsoft_analytics":null,"google_tag":null,"booking_webhooklink":null,"reschedule_webhooklink":null,"cancel_webhooklink":null,"role":"owner","team_uuid":"Qsdt9BxKMj","port":0,"created_at":"2021-09-18T12:21:52.000000Z","updated_at":"2021-09-27T04:36:56.000000Z","deleted_at":null,"email_verified_at":null,"profile":null,"logo":null,"description":null,"g_selected_email":null,"g_calendar_id":null,"profile_url":"","logo_url":""};
+                    $.ajax({
+                        type: 'POST',
+                        url: '/staff/info/insertOrderDetailsForTeam',
+                        data: {user_id:user.code,orderid:orderid,checkoutid:checkoutid,quantity:quantity},
+                        success: function (data) {
+                            window.location.href='/staff';
+                            window.location.reload();
+                        },
+                        error: function (jqXhr, json, errorThrown) {
+                        alert(json);
+                        var errors = jqXhr.responseJSON;
+                        var errorsHtml = '';
+                        $.each(errors['errors'], function (index, value) {
+                        errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+                    });
+
+                    alert(errorsHtml);
+                    return false;
+                }
+
+                });
+                
+    });
+        }
+    
+    jQuery(function($){
+    if(document.getElementById('solobuy')!=null)
+	document.getElementById('solobuy').addEventListener('click', openSoloCheckout, false);
+    if(document.getElementById('teambuy')!=null)
+    document.getElementById('teambuy').addEventListener('click', openTeamCheckout, false);
+    function openSoloCheckout() {
+		var user = {"id":1,"name":"Udit Arora","email":"uarora1997@gmail.com","status":"active","zoom_active":null,"zoom_refresh":null,"paypal_token":"uarora1997@gmail.com","stripe_token":null,"expires_in":null,"zoomuser_id":null,"zoomuser_email":null,"zoomuser_accountid":null,"code":"1nfw4XyoJt","timezone":"Asia\/Karachi","language":"English","brand_color":"#326bff","date_format":"DD\/MM\/YYYY","time_format":"12h (am\/pm)","username":"uarora1997","onboarding_complete":1,"business_id":0,"smtp_email":null,"smtp_username":null,"smtp_password":null,"smtp_server":null,"subdomain":null,"smtp_authentication":0,"protocol":"TLS","plan":"Trial","plan_expires_in":null,"google_analytics":null,"facebook_analytics":null,"microsoft_analytics":null,"google_tag":null,"booking_webhooklink":null,"reschedule_webhooklink":null,"cancel_webhooklink":null,"role":"owner","team_uuid":"Qsdt9BxKMj","port":0,"created_at":"2021-09-18T12:21:52.000000Z","updated_at":"2021-09-27T04:36:56.000000Z","deleted_at":null,"email_verified_at":null,"profile":null,"logo":null,"description":null,"g_selected_email":null,"g_calendar_id":null,"profile_url":"","logo_url":""};
+        
+        //alert(user.code);
+        var email = '';
+        Paddle.Checkout.open({
+			product: 15711,
+            method: 'inline',
+            email: email,
+            allowQuantity:false,
+            quantity:1,
+            successCallback: "checkoutComplete",
+            closeCallback: "checkoutClosed",
+            passthrough: "{\"user_id\":"+user.code+"}",
+            frameTarget: 'renderpaddle', 
+				frameInitialHeight: 416,
+				frameStyle: 'width:100%; min-width:312px; background-color: transparent; border: none;'
+           
+		});
+       
+
+	}
+    function openTeamCheckout() {
+		var user = {"id":1,"name":"Udit Arora","email":"uarora1997@gmail.com","status":"active","zoom_active":null,"zoom_refresh":null,"paypal_token":"uarora1997@gmail.com","stripe_token":null,"expires_in":null,"zoomuser_id":null,"zoomuser_email":null,"zoomuser_accountid":null,"code":"1nfw4XyoJt","timezone":"Asia\/Karachi","language":"English","brand_color":"#326bff","date_format":"DD\/MM\/YYYY","time_format":"12h (am\/pm)","username":"uarora1997","onboarding_complete":1,"business_id":0,"smtp_email":null,"smtp_username":null,"smtp_password":null,"smtp_server":null,"subdomain":null,"smtp_authentication":0,"protocol":"TLS","plan":"Trial","plan_expires_in":null,"google_analytics":null,"facebook_analytics":null,"microsoft_analytics":null,"google_tag":null,"booking_webhooklink":null,"reschedule_webhooklink":null,"cancel_webhooklink":null,"role":"owner","team_uuid":"Qsdt9BxKMj","port":0,"created_at":"2021-09-18T12:21:52.000000Z","updated_at":"2021-09-27T04:36:56.000000Z","deleted_at":null,"email_verified_at":null,"profile":null,"logo":null,"description":null,"g_selected_email":null,"g_calendar_id":null,"profile_url":"","logo_url":""};
+        var quantity = $('#quantity :selected').text();
+        //alert(user.code);
+        var email = '';
+        Paddle.Checkout.open({
+			product: 15711,
+            method: 'inline',
+            email: email,
+            quantity:quantity,
+            successCallback: "teamcheckoutComplete",
+            closeCallback: "teamcheckoutClosed",
+            passthrough: "{\"user_id\":"+user.code+"}",
+            frameTarget: 'renderpaddle', 
+				frameInitialHeight: 416,
+				frameStyle: 'width:100%; min-width:312px; background-color: transparent; border: none;'
+           
+		});
+       
+
+	}
+   
+    });
+</script>
+<br><br>
+
+
+
+<!-- Logo -->
+<a href="staff"><img src="images/logo.png" style="max-height: 50px; padding-right: 25%;"></a>
+
+
+<!-- ADMIN PANEL - WILL GO IN CONTENT SECTION OF ADMIN -->
+<form method="GET">
+    <input type="hidden" name="_token" value="B5pTsdK685zmrhoNNQFSnPzVbeAbJK0Im9VUJQhA">    </form>
+
+  
+
+<!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+        
+        <a href="#!" class="paddle_button" id="solobuy">
+                   
+                    Upgrade Solo
+                    
+                </a>
+               
+                    
+                
+                        <a href="staff/addUsers" style="text-decoration:none;">
+                    <div class="p-2 mt-3 mr-3">
+                    <i class="fas fa-star"></i> 
+                    Add Users
+                    </div>
+                </a>
+                                                <a>
+                    <div class="p-2 mt-3 mr-3">
+                     <button onclick="copy(this)"  id="header_link" 
+                    value="https://www.getprobooking.com/uarora1997" style="border:none;">
+                    <i class="far fa-copy" style="color:#4c4949;"></i><span class="pl-2">
+                        getprobooking.com/uarora1997
+                    </span></button>
+                    </div>
+                </a>
+        <div class="topbar-divider d-none d-sm-block"></div>
+        <input type="hidden" name="staffemail" id="staffemail" value="uarora1997@gmail.com">
+                        <input type="hidden" name="code" id="code" value="1nfw4XyoJt">
+                    
+        <!-- Nav Item - User Information -->
+
+        <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="mr-2 d-none d-lg-inline small">
+
+        <img src="images/user.png" class="img-fluid" alt="Profile" style="max-height:30px; max-width:30px"/>
+
+        </span>
+        <i class="fa fa-caret-down"></i>
+        </a>
+        <!-- Dropdown - User Information -->
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="language/es">
+        <i class="fas fa-globe fa-sm fa-fw mr-2 text-gray-400"></i> Spanish
+        </a>
+
+        <a class="dropdown-item" href="language/de">
+        <i class="fas fa-globe fa-sm fa-fw mr-2 text-gray-400"></i> German
+        </a>
+
+        <a class="dropdown-item" href="language/cs">
+        <i class="fas fa-globe fa-sm fa-fw mr-2 text-gray-400"></i> Czech
+        </a>
+
+        <a class="dropdown-item" href="language/fr">
+        <i class="fas fa-globe fa-sm fa-fw mr-2 text-gray-400"></i> French
+        </a>
+        <a class="dropdown-item" href="language/pt">
+        <i class="fas fa-globe fa-sm fa-fw mr-2 text-gray-400"></i> Portuguese
+        </a>
+        <a class="dropdown-item" href="language/it">
+        <i class="fas fa-globe fa-sm fa-fw mr-2 text-gray-400"></i> Italian
+        </a>
+        
+        <div class="dropdown-divider"></div>
+        <form action="logout" method="post">
+        <input type="hidden" name="_token" value="B5pTsdK685zmrhoNNQFSnPzVbeAbJK0Im9VUJQhA">        <button type="submit" class="dropdown-item">
+        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout        </button>
+        </form>
+
+        </div>
+        </li>
+    </ul>
+        
+</nav>
+<div class="renderpaddle"></div>
+
+<!-- End of Topbar -->
+
+                </div>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+                    <!-- Sidebar -->
+
+
+<ul class="navbar-nav colorside sidebar sidebar-dark accordion nav" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+            <!-- <img src="img/logo.png" style="width: 50%;" class="mx-auto my-3" alt="" /> -->
+    
+     <!-- Sidebar Toggle (Topbar) -->
+    
+
+    <!-- Nav Item - Dashboard -->
+        <li class="nav-item" style="border-radius: 5px;">
+            <a class="nav-link" href="staff"data-placement="right" data-toggle="tooltip" title="Dashboard">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span id="hide">Dashboard<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+   
+        </li>
+<!-- 
+    <li class="nav-item" style="border-radius: 5px;">
+        <a class="nav-link" href="staff/info">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span >Staff Information<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+    </li>-->
+
+    <!-- Nav Item - Dashboard
+    <li class="nav-item" style="border-radius: 5px;">
+        <a class="nav-link" href="staff/calendar">
+            <i class="fas fa-fw fa-calendar"></i>
+            <span >Calendar<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+
+        
+    </li> -->
+
+    <!-- Nav Item - Staff Schedule -->
+    <li class="nav-item" style="border-radius: 5px;">
+                <a class="nav-link" href="staff/staffSchedule"data-placement="right" data-toggle="tooltip" title="Availability">
+                <i class="fas fa-fw fa-calendar" ></i>
+                <span id="hide1">Availability<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+            </a>
+                </li>
+    <!-- Nav Item - Integration -->
+    <li class="nav-item" style="border-radius: 5px;">
+            <a class="nav-link" href="staff/integrations"data-placement="right" data-toggle="tooltip" title="Integrations">
+            <i class="fas fa-fw fa-calendar"></i>
+            <span id="hide2">Integrations<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+    </li>
+
+
+    <!-- Nav Item - Staff Schedule -->
+    <li class="nav-item" style="border-radius: 5px;">
+            <a class="nav-link" href="listBookingType"data-placement="right" data-toggle="tooltip" title="Booking Types">
+            <i class="fas fa-fw fa-receipt"></i>
+            <span id="hide3">Booking Types<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+        </li>
+<li class="nav-item" style="border-radius: 5px;">
+<a class="nav-link" href="listBookings"data-placement="right" data-toggle="tooltip" title="Bookings List">
+            <i class="fas fa-fw fa-receipt"></i>
+            <span id="hide4">Bookings List<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+        </li>
+<li class="nav-item" style="border-radius: 5px;">
+        <a class="nav-link" href="staff/info/bookingpage"data-placement="right" data-toggle="tooltip" title="Booking Page">
+            <i class="fas fa-fw fa-receipt"></i>
+            <span id="hide5">Booking Page<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+        </li>
+<li class="nav-item" style="border-radius: 5px;">
+        <a class="nav-link" href="staff/info/staffSetting"data-placement="right" data-toggle="tooltip" title="Settings">
+            <i class="fas fa-fw fa-receipt"></i>
+            <span id="hide6">Setting<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+        </li>
+<li class="nav-item" style="border-radius: 5px;">
+        <a class="nav-link" href="staff/info/coupons"data-placement="right" data-toggle="tooltip" title="Coupons">
+            <i class="fas fa-fw fa-receipt"></i>
+            <span id="hide7">Coupons<span style="float: right; font-size: 1.3rem; vertical-align: middle; line-height: normal;">&gt</span></span>
+        </a>
+        </li>
+       
+
+        <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-lg-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"  style="background-color:#95979cf0; width: 35px; height: 35px;"></button>
+    </div>
+</ul>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#sidebarToggle").click(function(){
+      $('[data-toggle="tooltip"]').tooltip();   
+    });
+});
+    </script>
+    
+
+<script>
+$(document).ready(function(){
+  $("#sidebarToggle").click(function(){
+    $("#hide").toggle();
+  });
+});
+</script>
+<script>
+    $(document).ready(function(){
+      $("#sidebarToggle").click(function(){
+        $("#hide1").toggle();
+      });
+    });
+    </script>
+    <script>
+        $(document).ready(function(){
+          $("#sidebarToggle").click(function(){
+            $("#hide2").toggle();
+          });
+        });
+        </script>
+        <script>
+            $(document).ready(function(){
+              $("#sidebarToggle").click(function(){
+                $("#hide3").toggle();
+              });
+            });
+            </script>
+            <script>
+                $(document).ready(function(){
+                  $("#sidebarToggle").click(function(){
+                    $("#hide4").toggle();
+                  });
+                });
+                </script>
+                <script>
+                    $(document).ready(function(){
+                      $("#sidebarToggle").click(function(){
+                        $("#hide5").toggle();
+                      });
+                    });
+                    </script>
+                    <script>
+                        $(document).ready(function(){
+                          $("#sidebarToggle").click(function(){
+                            $("#hide6").toggle();
+                          });
+                        });
+                        </script>
+                        <script>
+                            $(document).ready(function(){
+                              $("#sidebarToggle").click(function(){
+                                $("#hide7").toggle();
+                              });
+                            });
+                            </script>
+
+
+ 
+
+
+
+
+
+                <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column" style="padding:10px;">
+            <!-- Main Content -->
+            <!-- Begin Page Content -->
+          <div class="container-fluid" style=" font-family: 'Roboto', sans-serif;">
+                <div class="heading-1">
+                  PLAN REWARDS<span style="font-weight: 300;"> / Rewards</span>
+                </div>
+                <div class="para-2">
+                  <div class="heading-2">
+                    Unlock premium features & increase SMS credits!
+                  </div>
+                  <div class="heading-2 text">
+                    We're glad you're enjoying TimeSync, and we want to reward you! Unlock up to 340 free SMS credits by 
+                    spreading a word about TimeSync!
+                  </div>
+                </div>  
+                <div class="container" style="    padding: 60px 0px;
+                  margin-right: 20%;">
+                  <div class="row credits" style="padding: 35px 10px;">
+                    <div class="col-lg-6 gradient-text">
+                      Current account Credits:
+                    </div>
+                    <div class="col-lg-6 gradient-text">
+                      Credits earned:
+                    </div>
+                  </div>
+                   
+                      
+                   
+                  <!--IMAGE CARDS-->
+                  
+                    <div class="row">
+                      <div class="col-lg-3">
+                          <div class="card shadow card-1">
+                              
+                                  <div class="text-center">
+                                      <img class="card-img-top img-fluid round" src="./message-page/images/capterra.png" alt="Card image cap">
+                                  </div>
+                                  <div class="card-heading text-center font-weight-bold">
+                                    Capterra
+                                  </div>
+                                  <div class="card-1-text">
+                                      <p class="card-text text-center ">75 SMS Credits
+                                        <br><br>
+                                        <a href="#">Learn More ></a>
+
+                                      </p>
+                                  </div>
+                              
+                          </div>
+                      </div>
+                      <div class="col-lg-3">
+                          <div class="card shadow card-2">
+                              
+                                  <div class="text-center">
+                                      <img class="card-img-top img-fluid round" src="./message-page/images/G2.png" alt="Card image cap">
+                                  </div>
+                                  <div class="card-2-text">
+                                  <div class="card-heading text-center font-weight-bold">
+                                    G2 Crowd
+                                  </div>
+                                  
+                                      <p class="card-text text-center">75 SMS Credits
+                                        <br><br>
+                                        <a href="#">Learn More ></a>
+                                      </p>
+                                  </div>
+                            
+                          </div>
+                      </div>
+                      <div class="col-lg-3">
+                          <div class="card shadow card-3">
+                              
+                                  <div class="text-center">
+                                      <img class="card-img-top img-fluid round" src="./message-page/images/sumo.png" alt="Card image cap">
+                                  </div>
+                                  <div class="card-3-text">
+                                  <div class="card-heading text-center font-weight-bold">
+                                    App Sumo
+                                  </div>
+                                  
+                                      <p class="card-text text-center ">100 SMS Credits
+                                        <br><br>
+                                        <a href="#">Learn More ></a>
+
+                                      </p>
+                                  </div>
+                             
+                          </div>
+                      </div>
+                      <div class="col-lg-3">
+                          <div class="card shadow card-4">
+                              
+                                  <div class="text-center ">
+                                      <img class="card-img-top img-fluid round" src="./message-page/images/Facebook-logo.png" alt="Card image cap">
+                                  </div>  
+                                  <div class="card-4-text">
+                                  <div class="card-heading text-center font-weight-bold">
+                                    Facebook
+                                  </div>
+                                  
+                                      <p class="card-text text-center">30 SMS Credits
+                                        <br><br>
+                                        <a href="#">Learn More ></a>
+
+                                      </p>
+                                  </div>
+                              
+                          </div>
+                      </div>
+                      
+                  </div>
+                  <div class="container" style="padding-top: 40px;">
+                    <div class="col-lg-11 text-center">
+                        <button type="button" class="btn btn-warning">Done redeem my credits</button>
+                    </div>
+                </div>
+
+                </div>
+               
+
+                
+          
+          
+          
+          </div><!--CONTAINER-FLUID-->
+                 
+                
+                                  
+        </div>
+              
+            <!-- End of Main Content -->   
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Footer -->
+    <footer class="sticky-footer">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Laravel 2021</span>
+            </div>
+        </div>
+    </footer>
+     <!-- End of Footer -->
+    </div>
+    <!-- Common scripts for all pages-->
+
+    <!-- Main theme JS -->
+    <script src="vendor/js/sb-admin-2.min.js"></script>
+
+
+    <!-- Jquery Easing scroll-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    
+
+    <!-- SweetAlert --> <!-- If issue in modal then check -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+    
+
+    <!-- 
+     DataTables 
+
+    <script src="vendor/datatables/datatables.min.js"></script>
+
+    <link href="vendor/datatables/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
+    -->
+
+    <!-- Select2 -->
+<!-- 
+    <script src="vendor/select2/select2.min.js"></script>
+
+    <link rel="stylesheet" href="vendor/select2/select2.min.css"> -->
+
+    
+  
+    <!-- <link rel="stylesheet" href="vendor/select2/select2-bootstrap4.min.css">
+ -->
+    <!------------------------------->
+
+    <!-- Bootstrap core JavaScript-->
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/ulg/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+
+    <!------------------------------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" />
+        
+    <!-- Copy text JS -->
+
+    <script src="vendor/js/copy_text.js"></script>
+
+    
+    <script>
+    
+$("#getActions").click(function () {
+  
+  let staffid = $('#staff').val();;
+  let action = $('#action').val();
+  
+  let forlgata = new Forlgata($('#adminform')[0]);
+  forlgata.append('staffid', staffid);
+  forlgata.append('action', action);
+if(action=='Availability'){
+let url='/staff/staffSchedule/getindex/'+staffid;
+window.location=url;
+}
+if(action=='Booking Types'){
+let url='/listBookingTypeForStaff/'+staffid+'/admin';
+window.location=url;
+}
+if(action=='My Bookings'){
+let url='/listBookingsByStaff/'+staffid;
+window.location=url;
+}
+if(action=='Booking Page'){
+let url='/staff/info/bookingpageForStaff/'+staffid;
+window.location=url;
+}
+if(action=='Setting'){
+let url='/staff/info/staffSettingForStaff/'+staffid;
+window.location=url;
+}
+}
+
+);
+</script>
+
+
+
+
+    
+</body>
+    
+</html>

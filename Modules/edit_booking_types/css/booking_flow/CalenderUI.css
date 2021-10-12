@@ -1,0 +1,51 @@
+.col-lg-2 a {
+    background-color: transparent;
+    display: inline-block;
+    /*margin: 3px;*/
+    border-radius:5px ;
+    border: 1px solid var(--brand-color);
+    text-align: center;
+    color: var(--brand-color);
+    width: 100%;
+     padding: 8px;
+     font-size: 17px;
+     margin: 4px 0 ;
+     font-weight: 500 !important;
+}
+
+.col-lg-2 a:hover {
+    background-color: #fff;
+    border: 2px solid var(--brand-color);
+    text-decoration: none;
+    color: var(--brand-color);
+    padding: 8px;
+    margin: 2px 0 ;
+    font-size: 17px;
+    /*font-weight: 00;*/
+    font-weight: 600 !important;
+}
+
+.myimg {
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    margin: auto;
+}
+
+.row {}
+
+.selectpicker {
+    border: 0.5px solid grey;
+    outline: none;
+    border-radius: 10px;
+    max-width: 300px;
+    padding: 50px;
+    padding-left: 100px;
+}
+
+#phone-text {
+    position: relative;
+    top: -5px;
+}

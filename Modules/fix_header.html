@@ -1,0 +1,1124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <style type="text/css">
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        div.displayOverrides::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        div.displayOverrides::-webkit-thumb {
+            /*width: 4px;*/
+            background: #a7acb0;
+        }
+
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            /*background: #c8cbcf; */
+            background: #d3d7db;
+            opacity: 0.5;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a7acb0;
+        }
+    </style>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Laravel">
+    <meta name="author" content="Digipartners">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="I3XRPkCz2T6dwI9qb6IeKiJgCT93gNFQzCSKH31B">
+
+    <title>Laravel - List Booking Types</title>
+
+    <link rel="icon" type="image/png" href="images/favicon.png" sizes="16x16" />
+
+    <!-- Bootstrap core JavaScript-->
+
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+
+
+
+    <!-- Custom icons for this template-->
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- SB admin Theme -->
+    <link href="vendor/css/dashboard/main_theme.css" rel="stylesheet">
+
+    <!-- Custom theme -->
+    <link href="vendor/css/dashboard/custom_theme.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!------------------------>
+
+
+
+    <!-- icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+</head>
+
+<body id="page-top">
+    <div>
+        <div id="content">
+            <style>
+                #header_link {
+                    background-color: white;
+                    text-decoration: none;
+                    color: var(--brand-color);
+                }
+                @media screen and (max-width: 1000px) {
+                    .header-section {
+                        /* max-width: 80%; */
+                        margin-left: 2rem;
+                        
+                    }
+                  }
+                 
+            </style>
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top"
+                style="height:60px; box-shadow:0 0 5px 1px;">
+                <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+                <script type="text/javascript">
+                    Paddle.Environment.set('sandbox');
+                    Paddle.Setup({
+                        vendor: 3084,
+                    });
+
+                    function checkoutClosed(data) {
+                        console.log(data);
+                        alert('Your purchase has been cancelled, we hope to see you again soon!');
+
+                    }
+                    $.ajaxSetup({
+                        beforeSend: function (xhr, type) {
+                            if (!type.crossDomain) {
+                                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+                            }
+                        },
+                    });
+                    function checkoutComplete(data) {
+                        console.log(data);
+                        alert('Thanks for your purchase.');
+                        var checkoutId = data.checkout.id;
+
+                        Paddle.Order.details(checkoutId, function (data) {
+                            var orderid = data.order.order_id;
+                            var checkoutid = data.checkout.checkout_id;
+                            var quantity = data.order.quantity;
+                            console.log(data);
+                            var user = { "id": 2, "name": "Udit Arora", "email": "udit@probooking.io", "status": "active", "zoom_active": "eyJpdiI6ImEzL0d3YVowci80a0M3VHdFR0dUYkE9PSIsInZhbHVlIjoicnFsN1ljSHNYbThJVnNFVTZ1NExZTjhaQkUySCtQMlBNYUtJMU1tVUdqaWwxczN1QVNuQ0p6VTFpWXpWRGxaVy95QVp1dWpEc0h2eWw2YXJNNWt1bjA3dW5qZGVNTWlPbHVGNXZGQjNrVXBiK0hJU09rOW5JYTc0anhvZlVIREdiZk9TRXppU0JKay9qeE10YTBxU29nNmJlS2RhQS94T2pjcHIya1BsWTJ5NW5SaXpvang2N21iUkZ4ZHVzSWZCNVVWbStvRW8raGpxZEMyZjVtVGM2bTd3dEwvZjk1aTV5b2dYYWFCWFI2dHNROUJFUkdNV2JHL1NQZzB5bVp1QzZRQTdFNkFiMWoxZE1uWHlsMkxOdnQwZTMzck53enhxdVRTRHJWRGdSRDlPdVhTYUF6S0pHa0pDUHNncmdySUZDVU9BSzVVUmdMZDBHdzA0WVpyT0Z0anZ0MWpxcVlaMWZSR0VnQW5GeXBtc1Ztb0xEamR1a25pYVNFUGRMUkFjMGxvbEtXWVlHQTRyUGtYdUhDK0FKc1E1MjhpWkJsWmVxYkxzZThNc1Zzai9RaFJDRWxXVHl5OGFhWTkrVjJmbnozUzBEb1BNNEZlQ0pJeVBaM3p5RkdYUEtQZEN5WjhmRGduSUxjVEo0TUxmdTZNUmtEcWtNWkM1TlJRczI4MGhkd3Y0ZUE0NXV6aTlOS0ZsVDZpV2k3WFlEaGRxMHVFb1dyVVZrME5YT2w0Z2hZYzROdXhWM3o5SmFDNnB5bFUrVnAwanIxMmtmbWJOajVJWFF4VXE3cno2cStIZE1DUFR3SDZYMkUrMnRiS2dwVXRDRkQ4M0FqeGNWa21ZdGxiMERqME10RWRxQ2VXZlI0UUc3OHg3QTJWTlJVQlRMUUNjT2RsT2pwT1dtWitxSnRraWdSdnF4QlNqUVIzdXkrTWE1UUk2dEVFYW9HNUpoVytKMTBvcnNJTGdxS2p1ZFJmWXd6R0hrQk8wV1hJZnJpQ2ttWmJ6ekltcFptZFpKbHFvT0FKSlQxTE9hdTlaUzd6Zlh3ekxHU3JWdGhwSFN5R0Q1eXl6UW9VcmRrL29nM05DV3hBOGMwSllHQ3dSaHFsQ1MxVGhUWE85UTMxak4rM1h1T1RQZHRwbGN6R3JIMGZwQVUwQVVNMkN1L3M9IiwibWFjIjoiOTk2MTYyYzYzMjgwYjQ1ZTYwNTJlNzU1MmY3YzU1OWRjOTNhZjM5NDY4NDI0NzI5ODFlMDU1Yjc0NmI2YjU2MiJ9", "zoom_refresh": "eyJpdiI6IkhnTkF3eDM1V1lRQzExZ281b1AybVE9PSIsInZhbHVlIjoiNktsbDZOOFNFMWhlOXN6WkhmZUd0ZElxZmZWWWxHTGo4RFA2UW1vaGxPUUFXOEhNUzJmMURZTTJVbEZ6RkdjdTZZVWZUcFRkRlFQQ3RoaVE5VFJFQXlKenBUTjgzblkxMVVwakh0OTFaRmZOVVFoeEd5NXFac21vblMxOExLM21GL0dKcGxCV08za2tOck1UK1BIT2p6T2hJcHVoTVU2cmlzUUVnL2dyOStCajVETnRVSmFSUzlaZzA3RFMrYVVNZXBRZzQ1OUdoR21pNnhMazU2WU80TXdWTkc4dEFwZjJ5ZmV2UnZXNTBBZ1BKOVl3RFBnK0xacm9uREk4ODloYjc3bkdHOXhuZzNJc1QwOXhGWkNXTStPNDZ4d1BlbUdIaWg3ckk0MHlVTWtwUXNyTStPYzJmeldmNDF3ZkJzcnIyY0dhZFY0UnUxNkxiQXhOMVhwK1BFdk1qcnZzbFpxUGdpWTNONmtqWDA0Y0dEcWRSUklrRFl5Uy9pYWpHeDBqNWVobjk2d3F3V0Q3TDhUYklPemFWaW5xS2c3NkFCNG0xSmVLODA3cG0yeElybjlPQW9yc0hYYU1JQTlWbkh5aDVOa0lXdTN0TUIveXB4WFRvVmdKTmR1eUw3Y1FNeSsxLzIrbTRwanRtQmJLYlliVlNpb1pkakJ0a3poU0cxYkM3TXZZSVFxdVdmMmhCMGkyeGNnd1IyTUozUHFOcEhnYzdKU1JUNnpHTlEramxoTWFlSkVCUHIzZThFcHpCZEkzQ2N0RldLUUhOWW1sRmZGWTJkZFRSMGg5ajFvQlpac29BMG9QWHo2eVNnSnV4UXZXZkRjaVRQNzh5alplZEE5TmtwUEtjVmpjRE9nd01JNE1wK2dreWpGRllidFhtclVhakdma2pBc0xWYXdLMDVFVmRDdkJoVGpma1R5aFZuR09mdW9oalRaUmpSd2tFamxrK2pnRDZzb3BGa3F2bzhXODlXRWtUM3IxWEk0K2p4eHNZT0pqTFEyTEw1SEU5eXZCTGtQNldxa1hPM1czT3libXFPWHhZMmVLM2hXQmJlcmNCUVNyQ3NJSkxnVElVQTNxdml6NDVxZGNxU1kyNDlJWFFETkdnRGJqMzRJOE1CankrUmVsUkJ3czB0R200RWk3bklPczVwT3pFNk09IiwibWFjIjoiYmJjMjVmNDllYTlhOTk3NWU4ODg1YTYwOWEyMmM0M2IxZjE2YTE3NDQxYWFjMjViY2VjYzYwOWVlN2FhMjAxMCJ9", "paypal_token": "sb-lieio6166205@business.example.com", "stripe_token": "{\"access_token\":\"sk_test_51GsPFeJGhDVDdkIpf5nuCZO44EUxXWxto3xowVl0eSJIpf1NZjQW713Y0VQPstGyiDeGa9cEo7c15CWUD66fLNos00f91RvrM7\",\"livemode\":false,\"refresh_token\":\"rt_KNQPq4niZFGbwgipBmkvZEYVluDAqdDETF9wiA0sxzlx5WE4\",\"token_type\":\"bearer\",\"stripe_publishable_key\":\"pk_test_51GsPFeJGhDVDdkIpCYDfcbGXRuBXRiCrmd8Ezpbm3fJmMLFIomRbQu8U7sTR2Ry8UiaVvhoFbcomQ1BEBdHubRgA00z5JyBwwe\",\"stripe_user_id\":\"acct_1GsPFeJGhDVDdkIp\",\"scope\":\"read_write\"}", "expires_in": "2021-10-10 11:36:58", "zoomuser_id": "jC-0KYONSRq-Bek3JBMuzA", "zoomuser_email": "team@probooking.io", "zoomuser_accountid": "JPMYQYgLR9u-7hTlnKSHuA", "code": "Wkl4L6Yu9z", "timezone": "Asia\/Colombo", "language": "English", "brand_color": "#c229e0", "date_format": "MM\/DD\/YYYY", "time_format": "12h (am\/pm)", "username": "uditprobooking", "onboarding_complete": 1, "business_id": 0, "smtp_email": null, "smtp_username": null, "smtp_password": null, "smtp_server": null, "subdomain": null, "smtp_authentication": 0, "protocol": "TLS", "plan": "Trial", "plan_expires_in": null, "google_analytics": null, "facebook_analytics": null, "microsoft_analytics": null, "google_tag": null, "booking_webhooklink": null, "reschedule_webhooklink": null, "cancel_webhooklink": null, "role": "admin", "team_uuid": "HCQM0QjCcn", "port": 0, "created_at": "2021-10-06T01:43:52.000000Z", "updated_at": "2021-10-10T10:46:58.000000Z", "deleted_at": null, "email_verified_at": null, "profile": "public\/staff-profile\/profile_Udit Arora447111952.png", "logo": "public\/staff-logo\/logo_Udit Arora-team-blabla598089870.png", "description": "this is udit probooking", "g_selected_email": "testmailpolo@gmail.com", "g_calendar_id": "7", "profile_url": "\/storage\/staff-profile\/profile_Udit Arora447111952.png", "logo_url": "\/storage\/staff-logo\/logo_Udit Arora-team-blabla598089870.png" };
+                            $.ajax({
+                                type: 'POST',
+                                url: '/staff/info/insertOrderDetails',
+                                data: { user_id: user.code, orderid: orderid, checkoutid: checkoutid, quantity: quantity },
+                                success: function (data) {
+                                    window.location.href = '/staff';
+                                    window.location.reload();
+                                },
+                                error: function (jqXhr, json, errorThrown) {
+                                    alert(json);
+                                    var errors = jqXhr.responseJSON;
+                                    var errorsHtml = '';
+                                    $.each(errors['errors'], function (index, value) {
+                                        errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+                                    });
+
+                                    alert(errorsHtml);
+                                    return false;
+                                }
+
+                            });
+
+                        });
+                    }
+                    function teamcheckoutComplete(data) {
+                        console.log(data);
+                        alert('Thanks for your purchase.');
+                        var checkoutId = data.checkout.id;
+
+                        Paddle.Order.details(checkoutId, function (data) {
+                            var orderid = data.order.order_id;
+                            var checkoutid = data.checkout.checkout_id;
+                            var quantity = data.order.quantity;
+                            console.log(data);
+                            var user = { "id": 2, "name": "Udit Arora", "email": "udit@probooking.io", "status": "active", "zoom_active": "eyJpdiI6ImEzL0d3YVowci80a0M3VHdFR0dUYkE9PSIsInZhbHVlIjoicnFsN1ljSHNYbThJVnNFVTZ1NExZTjhaQkUySCtQMlBNYUtJMU1tVUdqaWwxczN1QVNuQ0p6VTFpWXpWRGxaVy95QVp1dWpEc0h2eWw2YXJNNWt1bjA3dW5qZGVNTWlPbHVGNXZGQjNrVXBiK0hJU09rOW5JYTc0anhvZlVIREdiZk9TRXppU0JKay9qeE10YTBxU29nNmJlS2RhQS94T2pjcHIya1BsWTJ5NW5SaXpvang2N21iUkZ4ZHVzSWZCNVVWbStvRW8raGpxZEMyZjVtVGM2bTd3dEwvZjk1aTV5b2dYYWFCWFI2dHNROUJFUkdNV2JHL1NQZzB5bVp1QzZRQTdFNkFiMWoxZE1uWHlsMkxOdnQwZTMzck53enhxdVRTRHJWRGdSRDlPdVhTYUF6S0pHa0pDUHNncmdySUZDVU9BSzVVUmdMZDBHdzA0WVpyT0Z0anZ0MWpxcVlaMWZSR0VnQW5GeXBtc1Ztb0xEamR1a25pYVNFUGRMUkFjMGxvbEtXWVlHQTRyUGtYdUhDK0FKc1E1MjhpWkJsWmVxYkxzZThNc1Zzai9RaFJDRWxXVHl5OGFhWTkrVjJmbnozUzBEb1BNNEZlQ0pJeVBaM3p5RkdYUEtQZEN5WjhmRGduSUxjVEo0TUxmdTZNUmtEcWtNWkM1TlJRczI4MGhkd3Y0ZUE0NXV6aTlOS0ZsVDZpV2k3WFlEaGRxMHVFb1dyVVZrME5YT2w0Z2hZYzROdXhWM3o5SmFDNnB5bFUrVnAwanIxMmtmbWJOajVJWFF4VXE3cno2cStIZE1DUFR3SDZYMkUrMnRiS2dwVXRDRkQ4M0FqeGNWa21ZdGxiMERqME10RWRxQ2VXZlI0UUc3OHg3QTJWTlJVQlRMUUNjT2RsT2pwT1dtWitxSnRraWdSdnF4QlNqUVIzdXkrTWE1UUk2dEVFYW9HNUpoVytKMTBvcnNJTGdxS2p1ZFJmWXd6R0hrQk8wV1hJZnJpQ2ttWmJ6ekltcFptZFpKbHFvT0FKSlQxTE9hdTlaUzd6Zlh3ekxHU3JWdGhwSFN5R0Q1eXl6UW9VcmRrL29nM05DV3hBOGMwSllHQ3dSaHFsQ1MxVGhUWE85UTMxak4rM1h1T1RQZHRwbGN6R3JIMGZwQVUwQVVNMkN1L3M9IiwibWFjIjoiOTk2MTYyYzYzMjgwYjQ1ZTYwNTJlNzU1MmY3YzU1OWRjOTNhZjM5NDY4NDI0NzI5ODFlMDU1Yjc0NmI2YjU2MiJ9", "zoom_refresh": "eyJpdiI6IkhnTkF3eDM1V1lRQzExZ281b1AybVE9PSIsInZhbHVlIjoiNktsbDZOOFNFMWhlOXN6WkhmZUd0ZElxZmZWWWxHTGo4RFA2UW1vaGxPUUFXOEhNUzJmMURZTTJVbEZ6RkdjdTZZVWZUcFRkRlFQQ3RoaVE5VFJFQXlKenBUTjgzblkxMVVwakh0OTFaRmZOVVFoeEd5NXFac21vblMxOExLM21GL0dKcGxCV08za2tOck1UK1BIT2p6T2hJcHVoTVU2cmlzUUVnL2dyOStCajVETnRVSmFSUzlaZzA3RFMrYVVNZXBRZzQ1OUdoR21pNnhMazU2WU80TXdWTkc4dEFwZjJ5ZmV2UnZXNTBBZ1BKOVl3RFBnK0xacm9uREk4ODloYjc3bkdHOXhuZzNJc1QwOXhGWkNXTStPNDZ4d1BlbUdIaWg3ckk0MHlVTWtwUXNyTStPYzJmeldmNDF3ZkJzcnIyY0dhZFY0UnUxNkxiQXhOMVhwK1BFdk1qcnZzbFpxUGdpWTNONmtqWDA0Y0dEcWRSUklrRFl5Uy9pYWpHeDBqNWVobjk2d3F3V0Q3TDhUYklPemFWaW5xS2c3NkFCNG0xSmVLODA3cG0yeElybjlPQW9yc0hYYU1JQTlWbkh5aDVOa0lXdTN0TUIveXB4WFRvVmdKTmR1eUw3Y1FNeSsxLzIrbTRwanRtQmJLYlliVlNpb1pkakJ0a3poU0cxYkM3TXZZSVFxdVdmMmhCMGkyeGNnd1IyTUozUHFOcEhnYzdKU1JUNnpHTlEramxoTWFlSkVCUHIzZThFcHpCZEkzQ2N0RldLUUhOWW1sRmZGWTJkZFRSMGg5ajFvQlpac29BMG9QWHo2eVNnSnV4UXZXZkRjaVRQNzh5alplZEE5TmtwUEtjVmpjRE9nd01JNE1wK2dreWpGRllidFhtclVhakdma2pBc0xWYXdLMDVFVmRDdkJoVGpma1R5aFZuR09mdW9oalRaUmpSd2tFamxrK2pnRDZzb3BGa3F2bzhXODlXRWtUM3IxWEk0K2p4eHNZT0pqTFEyTEw1SEU5eXZCTGtQNldxa1hPM1czT3libXFPWHhZMmVLM2hXQmJlcmNCUVNyQ3NJSkxnVElVQTNxdml6NDVxZGNxU1kyNDlJWFFETkdnRGJqMzRJOE1CankrUmVsUkJ3czB0R200RWk3bklPczVwT3pFNk09IiwibWFjIjoiYmJjMjVmNDllYTlhOTk3NWU4ODg1YTYwOWEyMmM0M2IxZjE2YTE3NDQxYWFjMjViY2VjYzYwOWVlN2FhMjAxMCJ9", "paypal_token": "sb-lieio6166205@business.example.com", "stripe_token": "{\"access_token\":\"sk_test_51GsPFeJGhDVDdkIpf5nuCZO44EUxXWxto3xowVl0eSJIpf1NZjQW713Y0VQPstGyiDeGa9cEo7c15CWUD66fLNos00f91RvrM7\",\"livemode\":false,\"refresh_token\":\"rt_KNQPq4niZFGbwgipBmkvZEYVluDAqdDETF9wiA0sxzlx5WE4\",\"token_type\":\"bearer\",\"stripe_publishable_key\":\"pk_test_51GsPFeJGhDVDdkIpCYDfcbGXRuBXRiCrmd8Ezpbm3fJmMLFIomRbQu8U7sTR2Ry8UiaVvhoFbcomQ1BEBdHubRgA00z5JyBwwe\",\"stripe_user_id\":\"acct_1GsPFeJGhDVDdkIp\",\"scope\":\"read_write\"}", "expires_in": "2021-10-10 11:36:58", "zoomuser_id": "jC-0KYONSRq-Bek3JBMuzA", "zoomuser_email": "team@probooking.io", "zoomuser_accountid": "JPMYQYgLR9u-7hTlnKSHuA", "code": "Wkl4L6Yu9z", "timezone": "Asia\/Colombo", "language": "English", "brand_color": "#c229e0", "date_format": "MM\/DD\/YYYY", "time_format": "12h (am\/pm)", "username": "uditprobooking", "onboarding_complete": 1, "business_id": 0, "smtp_email": null, "smtp_username": null, "smtp_password": null, "smtp_server": null, "subdomain": null, "smtp_authentication": 0, "protocol": "TLS", "plan": "Trial", "plan_expires_in": null, "google_analytics": null, "facebook_analytics": null, "microsoft_analytics": null, "google_tag": null, "booking_webhooklink": null, "reschedule_webhooklink": null, "cancel_webhooklink": null, "role": "admin", "team_uuid": "HCQM0QjCcn", "port": 0, "created_at": "2021-10-06T01:43:52.000000Z", "updated_at": "2021-10-10T10:46:58.000000Z", "deleted_at": null, "email_verified_at": null, "profile": "public\/staff-profile\/profile_Udit Arora447111952.png", "logo": "public\/staff-logo\/logo_Udit Arora-team-blabla598089870.png", "description": "this is udit probooking", "g_selected_email": "testmailpolo@gmail.com", "g_calendar_id": "7", "profile_url": "\/storage\/staff-profile\/profile_Udit Arora447111952.png", "logo_url": "\/storage\/staff-logo\/logo_Udit Arora-team-blabla598089870.png" };
+                            $.ajax({
+                                type: 'POST',
+                                url: '/staff/info/insertOrderDetailsForTeam',
+                                data: { user_id: user.code, orderid: orderid, checkoutid: checkoutid, quantity: quantity },
+                                success: function (data) {
+                                    window.location.href = '/staff';
+                                    window.location.reload();
+                                },
+                                error: function (jqXhr, json, errorThrown) {
+                                    alert(json);
+                                    var errors = jqXhr.responseJSON;
+                                    var errorsHtml = '';
+                                    $.each(errors['errors'], function (index, value) {
+                                        errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+                                    });
+
+                                    alert(errorsHtml);
+                                    return false;
+                                }
+
+                            });
+
+                        });
+                    }
+
+                    jQuery(function ($) {
+                        if (document.getElementById('solobuy') != null)
+                            document.getElementById('solobuy').addEventListener('click', openSoloCheckout, false);
+                        if (document.getElementById('teambuy') != null)
+                            document.getElementById('teambuy').addEventListener('click', openTeamCheckout, false);
+                        function openSoloCheckout() {
+                            var user = { "id": 2, "name": "Udit Arora", "email": "udit@probooking.io", "status": "active", "zoom_active": "eyJpdiI6ImEzL0d3YVowci80a0M3VHdFR0dUYkE9PSIsInZhbHVlIjoicnFsN1ljSHNYbThJVnNFVTZ1NExZTjhaQkUySCtQMlBNYUtJMU1tVUdqaWwxczN1QVNuQ0p6VTFpWXpWRGxaVy95QVp1dWpEc0h2eWw2YXJNNWt1bjA3dW5qZGVNTWlPbHVGNXZGQjNrVXBiK0hJU09rOW5JYTc0anhvZlVIREdiZk9TRXppU0JKay9qeE10YTBxU29nNmJlS2RhQS94T2pjcHIya1BsWTJ5NW5SaXpvang2N21iUkZ4ZHVzSWZCNVVWbStvRW8raGpxZEMyZjVtVGM2bTd3dEwvZjk1aTV5b2dYYWFCWFI2dHNROUJFUkdNV2JHL1NQZzB5bVp1QzZRQTdFNkFiMWoxZE1uWHlsMkxOdnQwZTMzck53enhxdVRTRHJWRGdSRDlPdVhTYUF6S0pHa0pDUHNncmdySUZDVU9BSzVVUmdMZDBHdzA0WVpyT0Z0anZ0MWpxcVlaMWZSR0VnQW5GeXBtc1Ztb0xEamR1a25pYVNFUGRMUkFjMGxvbEtXWVlHQTRyUGtYdUhDK0FKc1E1MjhpWkJsWmVxYkxzZThNc1Zzai9RaFJDRWxXVHl5OGFhWTkrVjJmbnozUzBEb1BNNEZlQ0pJeVBaM3p5RkdYUEtQZEN5WjhmRGduSUxjVEo0TUxmdTZNUmtEcWtNWkM1TlJRczI4MGhkd3Y0ZUE0NXV6aTlOS0ZsVDZpV2k3WFlEaGRxMHVFb1dyVVZrME5YT2w0Z2hZYzROdXhWM3o5SmFDNnB5bFUrVnAwanIxMmtmbWJOajVJWFF4VXE3cno2cStIZE1DUFR3SDZYMkUrMnRiS2dwVXRDRkQ4M0FqeGNWa21ZdGxiMERqME10RWRxQ2VXZlI0UUc3OHg3QTJWTlJVQlRMUUNjT2RsT2pwT1dtWitxSnRraWdSdnF4QlNqUVIzdXkrTWE1UUk2dEVFYW9HNUpoVytKMTBvcnNJTGdxS2p1ZFJmWXd6R0hrQk8wV1hJZnJpQ2ttWmJ6ekltcFptZFpKbHFvT0FKSlQxTE9hdTlaUzd6Zlh3ekxHU3JWdGhwSFN5R0Q1eXl6UW9VcmRrL29nM05DV3hBOGMwSllHQ3dSaHFsQ1MxVGhUWE85UTMxak4rM1h1T1RQZHRwbGN6R3JIMGZwQVUwQVVNMkN1L3M9IiwibWFjIjoiOTk2MTYyYzYzMjgwYjQ1ZTYwNTJlNzU1MmY3YzU1OWRjOTNhZjM5NDY4NDI0NzI5ODFlMDU1Yjc0NmI2YjU2MiJ9", "zoom_refresh": "eyJpdiI6IkhnTkF3eDM1V1lRQzExZ281b1AybVE9PSIsInZhbHVlIjoiNktsbDZOOFNFMWhlOXN6WkhmZUd0ZElxZmZWWWxHTGo4RFA2UW1vaGxPUUFXOEhNUzJmMURZTTJVbEZ6RkdjdTZZVWZUcFRkRlFQQ3RoaVE5VFJFQXlKenBUTjgzblkxMVVwakh0OTFaRmZOVVFoeEd5NXFac21vblMxOExLM21GL0dKcGxCV08za2tOck1UK1BIT2p6T2hJcHVoTVU2cmlzUUVnL2dyOStCajVETnRVSmFSUzlaZzA3RFMrYVVNZXBRZzQ1OUdoR21pNnhMazU2WU80TXdWTkc4dEFwZjJ5ZmV2UnZXNTBBZ1BKOVl3RFBnK0xacm9uREk4ODloYjc3bkdHOXhuZzNJc1QwOXhGWkNXTStPNDZ4d1BlbUdIaWg3ckk0MHlVTWtwUXNyTStPYzJmeldmNDF3ZkJzcnIyY0dhZFY0UnUxNkxiQXhOMVhwK1BFdk1qcnZzbFpxUGdpWTNONmtqWDA0Y0dEcWRSUklrRFl5Uy9pYWpHeDBqNWVobjk2d3F3V0Q3TDhUYklPemFWaW5xS2c3NkFCNG0xSmVLODA3cG0yeElybjlPQW9yc0hYYU1JQTlWbkh5aDVOa0lXdTN0TUIveXB4WFRvVmdKTmR1eUw3Y1FNeSsxLzIrbTRwanRtQmJLYlliVlNpb1pkakJ0a3poU0cxYkM3TXZZSVFxdVdmMmhCMGkyeGNnd1IyTUozUHFOcEhnYzdKU1JUNnpHTlEramxoTWFlSkVCUHIzZThFcHpCZEkzQ2N0RldLUUhOWW1sRmZGWTJkZFRSMGg5ajFvQlpac29BMG9QWHo2eVNnSnV4UXZXZkRjaVRQNzh5alplZEE5TmtwUEtjVmpjRE9nd01JNE1wK2dreWpGRllidFhtclVhakdma2pBc0xWYXdLMDVFVmRDdkJoVGpma1R5aFZuR09mdW9oalRaUmpSd2tFamxrK2pnRDZzb3BGa3F2bzhXODlXRWtUM3IxWEk0K2p4eHNZT0pqTFEyTEw1SEU5eXZCTGtQNldxa1hPM1czT3libXFPWHhZMmVLM2hXQmJlcmNCUVNyQ3NJSkxnVElVQTNxdml6NDVxZGNxU1kyNDlJWFFETkdnRGJqMzRJOE1CankrUmVsUkJ3czB0R200RWk3bklPczVwT3pFNk09IiwibWFjIjoiYmJjMjVmNDllYTlhOTk3NWU4ODg1YTYwOWEyMmM0M2IxZjE2YTE3NDQxYWFjMjViY2VjYzYwOWVlN2FhMjAxMCJ9", "paypal_token": "sb-lieio6166205@business.example.com", "stripe_token": "{\"access_token\":\"sk_test_51GsPFeJGhDVDdkIpf5nuCZO44EUxXWxto3xowVl0eSJIpf1NZjQW713Y0VQPstGyiDeGa9cEo7c15CWUD66fLNos00f91RvrM7\",\"livemode\":false,\"refresh_token\":\"rt_KNQPq4niZFGbwgipBmkvZEYVluDAqdDETF9wiA0sxzlx5WE4\",\"token_type\":\"bearer\",\"stripe_publishable_key\":\"pk_test_51GsPFeJGhDVDdkIpCYDfcbGXRuBXRiCrmd8Ezpbm3fJmMLFIomRbQu8U7sTR2Ry8UiaVvhoFbcomQ1BEBdHubRgA00z5JyBwwe\",\"stripe_user_id\":\"acct_1GsPFeJGhDVDdkIp\",\"scope\":\"read_write\"}", "expires_in": "2021-10-10 11:36:58", "zoomuser_id": "jC-0KYONSRq-Bek3JBMuzA", "zoomuser_email": "team@probooking.io", "zoomuser_accountid": "JPMYQYgLR9u-7hTlnKSHuA", "code": "Wkl4L6Yu9z", "timezone": "Asia\/Colombo", "language": "English", "brand_color": "#c229e0", "date_format": "MM\/DD\/YYYY", "time_format": "12h (am\/pm)", "username": "uditprobooking", "onboarding_complete": 1, "business_id": 0, "smtp_email": null, "smtp_username": null, "smtp_password": null, "smtp_server": null, "subdomain": null, "smtp_authentication": 0, "protocol": "TLS", "plan": "Trial", "plan_expires_in": null, "google_analytics": null, "facebook_analytics": null, "microsoft_analytics": null, "google_tag": null, "booking_webhooklink": null, "reschedule_webhooklink": null, "cancel_webhooklink": null, "role": "admin", "team_uuid": "HCQM0QjCcn", "port": 0, "created_at": "2021-10-06T01:43:52.000000Z", "updated_at": "2021-10-10T10:46:58.000000Z", "deleted_at": null, "email_verified_at": null, "profile": "public\/staff-profile\/profile_Udit Arora447111952.png", "logo": "public\/staff-logo\/logo_Udit Arora-team-blabla598089870.png", "description": "this is udit probooking", "g_selected_email": "testmailpolo@gmail.com", "g_calendar_id": "7", "profile_url": "\/storage\/staff-profile\/profile_Udit Arora447111952.png", "logo_url": "\/storage\/staff-logo\/logo_Udit Arora-team-blabla598089870.png" };
+
+                            //alert(user.code);
+                            var email = '';
+                            Paddle.Checkout.open({
+                                product: 15711,
+                                method: 'inline',
+                                email: email,
+                                allowQuantity: false,
+                                quantity: 1,
+                                successCallback: "checkoutComplete",
+                                closeCallback: "checkoutClosed",
+                                passthrough: "{\"user_id\":" + user.code + "}",
+                                frameTarget: 'renderpaddle',
+                                frameInitialHeight: 416,
+                                frameStyle: 'width:100%; min-width:312px; background-color: transparent; border: none;'
+
+                            });
+
+
+                        }
+                        function openTeamCheckout() {
+                            var user = { "id": 2, "name": "Udit Arora", "email": "udit@probooking.io", "status": "active", "zoom_active": "eyJpdiI6ImEzL0d3YVowci80a0M3VHdFR0dUYkE9PSIsInZhbHVlIjoicnFsN1ljSHNYbThJVnNFVTZ1NExZTjhaQkUySCtQMlBNYUtJMU1tVUdqaWwxczN1QVNuQ0p6VTFpWXpWRGxaVy95QVp1dWpEc0h2eWw2YXJNNWt1bjA3dW5qZGVNTWlPbHVGNXZGQjNrVXBiK0hJU09rOW5JYTc0anhvZlVIREdiZk9TRXppU0JKay9qeE10YTBxU29nNmJlS2RhQS94T2pjcHIya1BsWTJ5NW5SaXpvang2N21iUkZ4ZHVzSWZCNVVWbStvRW8raGpxZEMyZjVtVGM2bTd3dEwvZjk1aTV5b2dYYWFCWFI2dHNROUJFUkdNV2JHL1NQZzB5bVp1QzZRQTdFNkFiMWoxZE1uWHlsMkxOdnQwZTMzck53enhxdVRTRHJWRGdSRDlPdVhTYUF6S0pHa0pDUHNncmdySUZDVU9BSzVVUmdMZDBHdzA0WVpyT0Z0anZ0MWpxcVlaMWZSR0VnQW5GeXBtc1Ztb0xEamR1a25pYVNFUGRMUkFjMGxvbEtXWVlHQTRyUGtYdUhDK0FKc1E1MjhpWkJsWmVxYkxzZThNc1Zzai9RaFJDRWxXVHl5OGFhWTkrVjJmbnozUzBEb1BNNEZlQ0pJeVBaM3p5RkdYUEtQZEN5WjhmRGduSUxjVEo0TUxmdTZNUmtEcWtNWkM1TlJRczI4MGhkd3Y0ZUE0NXV6aTlOS0ZsVDZpV2k3WFlEaGRxMHVFb1dyVVZrME5YT2w0Z2hZYzROdXhWM3o5SmFDNnB5bFUrVnAwanIxMmtmbWJOajVJWFF4VXE3cno2cStIZE1DUFR3SDZYMkUrMnRiS2dwVXRDRkQ4M0FqeGNWa21ZdGxiMERqME10RWRxQ2VXZlI0UUc3OHg3QTJWTlJVQlRMUUNjT2RsT2pwT1dtWitxSnRraWdSdnF4QlNqUVIzdXkrTWE1UUk2dEVFYW9HNUpoVytKMTBvcnNJTGdxS2p1ZFJmWXd6R0hrQk8wV1hJZnJpQ2ttWmJ6ekltcFptZFpKbHFvT0FKSlQxTE9hdTlaUzd6Zlh3ekxHU3JWdGhwSFN5R0Q1eXl6UW9VcmRrL29nM05DV3hBOGMwSllHQ3dSaHFsQ1MxVGhUWE85UTMxak4rM1h1T1RQZHRwbGN6R3JIMGZwQVUwQVVNMkN1L3M9IiwibWFjIjoiOTk2MTYyYzYzMjgwYjQ1ZTYwNTJlNzU1MmY3YzU1OWRjOTNhZjM5NDY4NDI0NzI5ODFlMDU1Yjc0NmI2YjU2MiJ9", "zoom_refresh": "eyJpdiI6IkhnTkF3eDM1V1lRQzExZ281b1AybVE9PSIsInZhbHVlIjoiNktsbDZOOFNFMWhlOXN6WkhmZUd0ZElxZmZWWWxHTGo4RFA2UW1vaGxPUUFXOEhNUzJmMURZTTJVbEZ6RkdjdTZZVWZUcFRkRlFQQ3RoaVE5VFJFQXlKenBUTjgzblkxMVVwakh0OTFaRmZOVVFoeEd5NXFac21vblMxOExLM21GL0dKcGxCV08za2tOck1UK1BIT2p6T2hJcHVoTVU2cmlzUUVnL2dyOStCajVETnRVSmFSUzlaZzA3RFMrYVVNZXBRZzQ1OUdoR21pNnhMazU2WU80TXdWTkc4dEFwZjJ5ZmV2UnZXNTBBZ1BKOVl3RFBnK0xacm9uREk4ODloYjc3bkdHOXhuZzNJc1QwOXhGWkNXTStPNDZ4d1BlbUdIaWg3ckk0MHlVTWtwUXNyTStPYzJmeldmNDF3ZkJzcnIyY0dhZFY0UnUxNkxiQXhOMVhwK1BFdk1qcnZzbFpxUGdpWTNONmtqWDA0Y0dEcWRSUklrRFl5Uy9pYWpHeDBqNWVobjk2d3F3V0Q3TDhUYklPemFWaW5xS2c3NkFCNG0xSmVLODA3cG0yeElybjlPQW9yc0hYYU1JQTlWbkh5aDVOa0lXdTN0TUIveXB4WFRvVmdKTmR1eUw3Y1FNeSsxLzIrbTRwanRtQmJLYlliVlNpb1pkakJ0a3poU0cxYkM3TXZZSVFxdVdmMmhCMGkyeGNnd1IyTUozUHFOcEhnYzdKU1JUNnpHTlEramxoTWFlSkVCUHIzZThFcHpCZEkzQ2N0RldLUUhOWW1sRmZGWTJkZFRSMGg5ajFvQlpac29BMG9QWHo2eVNnSnV4UXZXZkRjaVRQNzh5alplZEE5TmtwUEtjVmpjRE9nd01JNE1wK2dreWpGRllidFhtclVhakdma2pBc0xWYXdLMDVFVmRDdkJoVGpma1R5aFZuR09mdW9oalRaUmpSd2tFamxrK2pnRDZzb3BGa3F2bzhXODlXRWtUM3IxWEk0K2p4eHNZT0pqTFEyTEw1SEU5eXZCTGtQNldxa1hPM1czT3libXFPWHhZMmVLM2hXQmJlcmNCUVNyQ3NJSkxnVElVQTNxdml6NDVxZGNxU1kyNDlJWFFETkdnRGJqMzRJOE1CankrUmVsUkJ3czB0R200RWk3bklPczVwT3pFNk09IiwibWFjIjoiYmJjMjVmNDllYTlhOTk3NWU4ODg1YTYwOWEyMmM0M2IxZjE2YTE3NDQxYWFjMjViY2VjYzYwOWVlN2FhMjAxMCJ9", "paypal_token": "sb-lieio6166205@business.example.com", "stripe_token": "{\"access_token\":\"sk_test_51GsPFeJGhDVDdkIpf5nuCZO44EUxXWxto3xowVl0eSJIpf1NZjQW713Y0VQPstGyiDeGa9cEo7c15CWUD66fLNos00f91RvrM7\",\"livemode\":false,\"refresh_token\":\"rt_KNQPq4niZFGbwgipBmkvZEYVluDAqdDETF9wiA0sxzlx5WE4\",\"token_type\":\"bearer\",\"stripe_publishable_key\":\"pk_test_51GsPFeJGhDVDdkIpCYDfcbGXRuBXRiCrmd8Ezpbm3fJmMLFIomRbQu8U7sTR2Ry8UiaVvhoFbcomQ1BEBdHubRgA00z5JyBwwe\",\"stripe_user_id\":\"acct_1GsPFeJGhDVDdkIp\",\"scope\":\"read_write\"}", "expires_in": "2021-10-10 11:36:58", "zoomuser_id": "jC-0KYONSRq-Bek3JBMuzA", "zoomuser_email": "team@probooking.io", "zoomuser_accountid": "JPMYQYgLR9u-7hTlnKSHuA", "code": "Wkl4L6Yu9z", "timezone": "Asia\/Colombo", "language": "English", "brand_color": "#c229e0", "date_format": "MM\/DD\/YYYY", "time_format": "12h (am\/pm)", "username": "uditprobooking", "onboarding_complete": 1, "business_id": 0, "smtp_email": null, "smtp_username": null, "smtp_password": null, "smtp_server": null, "subdomain": null, "smtp_authentication": 0, "protocol": "TLS", "plan": "Trial", "plan_expires_in": null, "google_analytics": null, "facebook_analytics": null, "microsoft_analytics": null, "google_tag": null, "booking_webhooklink": null, "reschedule_webhooklink": null, "cancel_webhooklink": null, "role": "admin", "team_uuid": "HCQM0QjCcn", "port": 0, "created_at": "2021-10-06T01:43:52.000000Z", "updated_at": "2021-10-10T10:46:58.000000Z", "deleted_at": null, "email_verified_at": null, "profile": "public\/staff-profile\/profile_Udit Arora447111952.png", "logo": "public\/staff-logo\/logo_Udit Arora-team-blabla598089870.png", "description": "this is udit probooking", "g_selected_email": "testmailpolo@gmail.com", "g_calendar_id": "7", "profile_url": "\/storage\/staff-profile\/profile_Udit Arora447111952.png", "logo_url": "\/storage\/staff-logo\/logo_Udit Arora-team-blabla598089870.png" };
+                            var quantity = $('#quantity :selected').text();
+                            //alert(user.code);
+                            var email = '';
+                            Paddle.Checkout.open({
+                                product: 15711,
+                                method: 'inline',
+                                email: email,
+                                quantity: quantity,
+                                successCallback: "teamcheckoutComplete",
+                                closeCallback: "teamcheckoutClosed",
+                                passthrough: "{\"user_id\":" + user.code + "}",
+                                frameTarget: 'renderpaddle',
+                                frameInitialHeight: 416,
+                                frameStyle: 'width:100%; min-width:312px; background-color: transparent; border: none;'
+
+                            });
+
+
+                        }
+
+                    });
+                </script>
+                <br><br>
+
+
+
+                <!-- Logo -->
+                <a href="staff"><img src="images/logo.png" style="max-height: 50px; padding-right: 25%;"></a>
+
+
+
+
+
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+
+                    <a>
+                        <div class="p-2 mt-3 mr-3">
+                            <button onclick="copy(this)" id="header_link"
+                                value="https://www.getprobooking.com/uditprobooking" style="border:none;">
+                                <i class="far fa-copy" style="color:#4c4949;"></i><span class="pl-2">
+                                    getprobooking.com/uditprobooking
+                                </span></button>
+                        </div>
+                    </a>
+                    <div class="topbar-divider d-none d-sm-block"></div>
+                    <input type="hidden" name="staffemail" id="staffemail" value="udit@probooking.io">
+                    <input type="hidden" name="code" id="code" value="Wkl4L6Yu9z">
+
+                    <!-- Nav Item - User Information -->
+
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline small">
+
+
+                                <img src="images/user.png" class="img-fluid" alt="Profile"
+                                    style="max-height:30px; max-width:30px;border-radius:50%;" />
+
+
+
+
+
+                            </span>
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="userDropdown">
+
+
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <form action="logout" method="post">
+                                <input type="hidden" name="_token" value="I3XRPkCz2T6dwI9qb6IeKiJgCT93gNFQzCSKH31B">
+                                <button type="submit" class="dropdown-item">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout </button>
+                            </form>
+
+                        </div>
+                    </li>
+                </ul>
+
+            </nav>
+            <!-- <div class="renderpaddle"></div> -->
+
+            <!-- End of Topbar -->
+
+        </div>
+
+        <!--FOOTER SECTION-->
+        <input type="hidden" name="_token" value="I3XRPkCz2T6dwI9qb6IeKiJgCT93gNFQzCSKH31B">
+        <div class="container header-section" style="
+        max-width: 100%;">
+            <div>
+
+                <!-- ADMIN PANEL - WILL GO IN CONTENT SECTION OF ADMIN -->
+                <form method="GET">
+                    <div class="row" style="justify-content: center;">
+                        <div class="form-group">
+                            <label for="staff">Staff</label>
+                            <select class="form-control  select-input " id="staff" name="staff" required
+                                style="width: 120%;">
+
+                                <option value="1">Udit Arora</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style=" padding-left: 4rem;">
+                            <label for="action">Actions</label>
+                            <select class="form-control  select-input" id="action" name="action" required
+                                style="width: 120%;">
+                                <option value="Booking Types">Booking Types</option>
+                                <option value="My Bookings">My Bookings</option>
+                                <option value="Availability">Availability</option>
+                                <option value="Booking Page">Booking Page</option>
+                                <option value="Setting">Setting</option>
+                            </select>
+                        </div>
+                        <div style="padding-top: 2rem;padding-left:4rem">
+                            <button type="button" id="getActions" class="bg-btn" style="padding: 3px 30px;">Done</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <hr>
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+            <!-- Sidebar -->
+
+
+            <ul class="navbar-nav colorside sidebar sidebar-dark accordion nav" id="accordionSidebar">
+                <!-- Sidebar - Brand -->
+                <!-- <img src="img/logo.png" style="width: 50%;" class="mx-auto my-3" alt="" /> -->
+
+                <!-- Sidebar Toggle (Topbar) -->
+
+
+                <!-- Nav Item - Dashboard -->
+
+                <li class="nav-item" style="border-radius: 5px;">
+
+                    <a class="nav-link" href="staff" data-placement="right" data-placement="right" title="Dashboard">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+
+
+                <!-- Nav Item - Staff Schedule -->
+                <li class="nav-item" style="border-radius: 5px;">
+                    <a class="nav-link" href="listBookingType" data-placement="right" title="Booking Types">
+                        <i class="fas fa-calendar"></i>
+                        <span> Appointment types </span>
+                    </a>
+                </li>
+                <li class="nav-item" style="border-radius: 5px;">
+                    <a class="nav-link" href="listBookings" data-placement="right" title="Bookings List">
+                        <i class="far fa-calendar-check"></i>
+                        <span>My Appointments</span>
+                    </a>
+                </li>
+
+                <p style="margin:15px;"> Customize </p>
+
+                <!-- Nav Item - Staff Schedule -->
+                <li class="nav-item" style="border-radius: 5px;">
+                    <a class="nav-link" href="staff/staffSchedule" data-placement="right" title="Availability">
+                        <i class="fas fa-clock"></i>
+                        <span>Availability</span>
+                    </a>
+                </li>
+                <!-- Nav Item - Integration -->
+                <li class="nav-item" style="border-radius: 5px;">
+                    <a class="nav-link" href="staff/integrations" data-placement="right" title="Integrations">
+                        <i class="fas fa-link"></i>
+                        <span>Integrations</span>
+                    </a>
+                </li>
+
+
+                <li class="nav-item" style="border-radius: 5px;">
+                    <a class="nav-link" href="staff/info/bookingpage" data-placement="right" title="Booking Page">
+                        <i class="fas fa-user-alt"></i>
+                        <span>Booking Page</span>
+                    </a>
+                </li>
+
+                <li class="nav-item" style="border-radius: 5px;">
+                    <a class="nav-link" href="staff/info/coupons" data-placement="right" title="Coupons">
+                        <i class="fas fa-tags"></i>
+                        <span>Coupons</span>
+                    </a>
+
+
+                </li>
+
+                <li class="nav-item" style="border-radius: 5px;">
+                    <a class="nav-link" href="staff/info/staffSetting" data-placement="right" title="Team Settings">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+
+                <p style="margin:15px;"> Admin Management </p>
+                <li class="nav-item" style="border-radius: 5px;">
+                    <a class="nav-link" href="staff/info/admin" data-placement="right" title="Admin Panel">
+                        <i class="fas fa-user-friends"></i>
+                        <span>Manage Users</span>
+                    </a>
+                </li>
+
+                <li class="nav-item" style="border-radius: 5px;">
+                    <a class="nav-link" href="staff/info/teamsettings" data-placement="right" title="Team Settings">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Team Settings</span>
+                    </a>
+                </li>
+
+
+                <!-- Sidebar Toggler (Sidebar) -->
+                <!--     <div class="text-center d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle" style="background-color:#95979cf0; width: 35px; height: 35px;"></button>
+    </div> -->
+            </ul>
+
+            <!-- 
+    <li class="nav-item" style="border-radius: 5px;">
+        <a class="nav-link" href="staff/info">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span >Staff Information</span>
+        </a>
+    </li>-->
+
+            <!-- Nav Item - Dashboard
+    <li class="nav-item" style="border-radius: 5px;">
+        <a class="nav-link" href="staff/calendar">
+            <i class="fas fa-fw fa-calendar"></i>
+            <span >Calendar</span>
+        </a>
+
+        
+    </li> -->
+
+
+
+
+
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper"class="d-flex flex-column">
+                <!-- Main Content -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <body>
+                        <div class="alert alert-success success" style="display:none" role="alert">
+                        </div>
+                        <link rel="stylesheet" href="vendor/css/dashboard/staff_booking_types_list.css">
+                        <div class="container-fluid  ps-5 my-4 ">
+
+                            <div class="row">
+
+                                <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-6  pt-3">
+                                    <div>
+                                        <p class="ps-5" id="mt">MEETING TYPES</p>
+                                        <p class="ps-5 text-muted" id="mt">Meeting types help you customize avalibility
+                                            hours, time zone, duration and more of your meetings.
+                                    </div>
+                                </div>
+                                <div class=" col-12 col-md-6 col-lg-6 col-xl-6 col-sm-6 pb-3">
+                                    <div class="text-right pb-5 pb-xl-4 pb-xs-4 ">
+                                        <a href="addBookingType/1" id="createmeet" class="button_class bg-btn">Create
+                                            Meeting Type</a>
+                                    </div>
+                                </div>
+                                <div class="ml-5 row pl-5 pt-3 w-100">
+
+
+                                    <div class="col-6 col-xl-5 pl-xl-4 p-2">
+
+                                        <div id="cardmain" class="card mt-2" style="height:97%;">
+
+
+                                            <div class="card-body">
+
+                                                <div class="row">
+                                                    <p class="card-text col-7 " id="card1"><strong><a href="#"
+                                                                class="text-dark" data-toggle="tooltip"
+                                                                data-placement="bottom" title="Edit"
+                                                                style="text-decoration: none;">15 minutes consultation
+                                                                blablba</a></strong></p>
+                                                    <input type="hidden" name="serviceid" id="serviceid" value="1" />
+                                                    <input type="hidden" name="staffidfromadmin" id="staffidfromadmin"
+                                                        value="1" />
+                                                    <div class="dropdown  col-5 my-3">
+                                                        <button class="btn dropdown-toggle " id="DD" type="button"
+                                                            data-toggle="dropdown">
+                                                            <img src="images/settings.svg" id="svg1" width="16"
+                                                                height="16" class="img-fluid"></a>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href=" editDraftBookingType/eyJpdiI6IjRiNUdEckdzQVpxWGhyaEU0OGQ4emc9PSIsInZhbHVlIjoiNlFIZWhzTmlPYUphUzVBcHpvMUoxdz09IiwibWFjIjoiYzk3YzMyYzVhNjUyYTczYzVkODU3YjAwMTE2YzA5ZWQzMjc1MTliMDQwMTdiZWQyMzIxNDU0YjliNGUyOTcxYSJ9/1"
+                                                                    class="col "><img id="edit" src="images/edit.svg"
+                                                                        width="16" height="16" class="img-fluid">
+                                                                    Edit</a></li>
+                                                            <li><a href="cloneBookingType/eyJpdiI6IjRiNUdEckdzQVpxWGhyaEU0OGQ4emc9PSIsInZhbHVlIjoiNlFIZWhzTmlPYUphUzVBcHpvMUoxdz09IiwibWFjIjoiYzk3YzMyYzVhNjUyYTczYzVkODU3YjAwMTE2YzA5ZWQzMjc1MTliMDQwMTdiZWQyMzIxNDU0YjliNGUyOTcxYSJ9"
+                                                                    class="col"><img id="clone" src="images/clone.svg"
+                                                                        width="16" height="16" class="img-fluid ">
+                                                                    Clone</a></li>
+                                                            <li><a href="deleteBookingType/eyJpdiI6IjRiNUdEckdzQVpxWGhyaEU0OGQ4emc9PSIsInZhbHVlIjoiNlFIZWhzTmlPYUphUzVBcHpvMUoxdz09IiwibWFjIjoiYzk3YzMyYzVhNjUyYTczYzVkODU3YjAwMTE2YzA5ZWQzMjc1MTliMDQwMTdiZWQyMzIxNDU0YjliNGUyOTcxYSJ9/1"
+                                                                    class="col"><img id="delete" src="images/delete.svg"
+                                                                        width="16" height="16" class="img-fluid ">
+                                                                    Delete</a></li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#" class="col" data-target-id="1"
+                                                                    data-target-staffid="1" data-toggle="modal"
+                                                                    data-target="#embedmodal"><img id="edit"
+                                                                        src="images/ATW.svg" width="16" height="16"
+                                                                        class="img-fluid"> Add to Website</a></li>
+                                                        </ul>
+                                                    </div>
+
+
+                                                    <span class="card-text text-muted " id="hd1"><strong><br>0 hours
+                                                            15minutes</strong>
+                                                        <strong><br>Free - 0$</strong>
+                                                    </span><br>
+
+
+                                                </div>
+
+                                                <div class="row-cols-7 pb-4">
+                                                    <div class="text-right">
+                                                        <a href="service/meeting/schedule/1/1" id="VBP">View Booking
+                                                            Page</a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row ">
+                                                    <div class="col-8 ">
+                                                        <button onclick="copy(this)"
+                                                            value="https://getprobooking.com/service/meeting/schedule/1/1"
+                                                            style="border: none;">
+                                                            <img src="images/copy.svg" class="img-fluid mx-1">Copylink
+                                                        </button>
+                                                        <!--  <a href="#" id="CL"><img src="images/copy.svg" class="img-fluid mx-1" >Copylink</a> -->
+                                                    </div>
+                                                    <div class="col-4 text-center" id="swtch1">
+                                                        <label class="toggle">
+                                                            <span class="onoff" id="stats">ON</span>
+                                                            <input type="checkbox" id="pause" name="pause"
+                                                                onchange="textonoff()" onclick="pauseBooking('1',this)"
+                                                                checked />
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 col-xl-5 pl-xl-4 p-2">
+
+                                        <div id="cardmain" class="card mt-2" style="height:97%;">
+
+
+                                            <div class="card-body">
+
+                                                <div class="row">
+                                                    <p class="card-text col-7 " id="card1"><strong><a href="#"
+                                                                class="text-dark" data-toggle="tooltip"
+                                                                data-placement="bottom" title="Edit"
+                                                                style="text-decoration: none;">30 minutes
+                                                                consultation</a></strong></p>
+                                                    <input type="hidden" name="serviceid" id="serviceid" value="2" />
+                                                    <input type="hidden" name="staffidfromadmin" id="staffidfromadmin"
+                                                        value="1" />
+                                                    <div class="dropdown  col-5 my-3">
+                                                        <button class="btn dropdown-toggle " id="DD" type="button"
+                                                            data-toggle="dropdown">
+                                                            <img src="images/settings.svg" id="svg1" width="16"
+                                                                height="16" class="img-fluid"></a>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href=" editDraftBookingType/eyJpdiI6IjR0c1d3d0VKcFhsSjRqWFBvcllRVXc9PSIsInZhbHVlIjoiOGpTZjZKNXZad3lmdnJkR2dEay9MZz09IiwibWFjIjoiNDk5YjVjY2MxMGRmMDE1NDIxNTdkZDFlZmYwY2M3ODA5NjgyMWVjNTQ0ZmZkZmUxMDEyZDQwNzdlOTcxN2ViMSJ9/1"
+                                                                    class="col "><img id="edit" src="images/edit.svg"
+                                                                        width="16" height="16" class="img-fluid">
+                                                                    Edit</a></li>
+                                                            <li><a href="cloneBookingType/eyJpdiI6IjR0c1d3d0VKcFhsSjRqWFBvcllRVXc9PSIsInZhbHVlIjoiOGpTZjZKNXZad3lmdnJkR2dEay9MZz09IiwibWFjIjoiNDk5YjVjY2MxMGRmMDE1NDIxNTdkZDFlZmYwY2M3ODA5NjgyMWVjNTQ0ZmZkZmUxMDEyZDQwNzdlOTcxN2ViMSJ9"
+                                                                    class="col"><img id="clone" src="images/clone.svg"
+                                                                        width="16" height="16" class="img-fluid ">
+                                                                    Clone</a></li>
+                                                            <li><a href="deleteBookingType/eyJpdiI6IjR0c1d3d0VKcFhsSjRqWFBvcllRVXc9PSIsInZhbHVlIjoiOGpTZjZKNXZad3lmdnJkR2dEay9MZz09IiwibWFjIjoiNDk5YjVjY2MxMGRmMDE1NDIxNTdkZDFlZmYwY2M3ODA5NjgyMWVjNTQ0ZmZkZmUxMDEyZDQwNzdlOTcxN2ViMSJ9/1"
+                                                                    class="col"><img id="delete" src="images/delete.svg"
+                                                                        width="16" height="16" class="img-fluid ">
+                                                                    Delete</a></li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#" class="col" data-target-id="2"
+                                                                    data-target-staffid="1" data-toggle="modal"
+                                                                    data-target="#embedmodal"><img id="edit"
+                                                                        src="images/ATW.svg" width="16" height="16"
+                                                                        class="img-fluid"> Add to Website</a></li>
+                                                        </ul>
+                                                    </div>
+
+
+                                                    <span class="card-text text-muted " id="hd1"><strong><br>0 hours
+                                                            30minutes</strong>
+                                                        <strong><br>Free - 0$</strong>
+                                                    </span><br>
+
+
+                                                </div>
+
+                                                <div class="row-cols-7 pb-4">
+                                                    <div class="text-right">
+                                                        <a href="service/meeting/schedule/2/1" id="VBP">View Booking
+                                                            Page</a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row ">
+                                                    <div class="col-8 ">
+                                                        <button onclick="copy(this)"
+                                                            value="https://getprobooking.com/service/meeting/schedule/2/1"
+                                                            style="border: none;">
+                                                            <img src="images/copy.svg" class="img-fluid mx-1">Copylink
+                                                        </button>
+                                                        <!--  <a href="#" id="CL"><img src="images/copy.svg" class="img-fluid mx-1" >Copylink</a> -->
+                                                    </div>
+                                                    <div class="col-4 text-center" id="swtch1">
+                                                        <label class="toggle">
+                                                            <span class="onoff" id="stats">ON</span>
+                                                            <input type="checkbox" id="pause" name="pause"
+                                                                onchange="textonoff()" onclick="pauseBooking('2',this)"
+                                                                checked />
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 col-xl-5 pl-xl-4 p-2">
+
+                                        <div id="cardmain" class="card mt-2" style="height:97%;">
+
+
+                                            <div class="card-body">
+
+                                                <div class="row">
+                                                    <p class="card-text col-7 " id="card1"><strong><a href="#"
+                                                                class="text-dark" data-toggle="tooltip"
+                                                                data-placement="bottom" title="Edit"
+                                                                style="text-decoration: none;">1 Hour
+                                                                consultation</a></strong></p>
+                                                    <input type="hidden" name="serviceid" id="serviceid" value="3" />
+                                                    <input type="hidden" name="staffidfromadmin" id="staffidfromadmin"
+                                                        value="1" />
+                                                    <div class="dropdown  col-5 my-3">
+                                                        <button class="btn dropdown-toggle " id="DD" type="button"
+                                                            data-toggle="dropdown">
+                                                            <img src="images/settings.svg" id="svg1" width="16"
+                                                                height="16" class="img-fluid"></a>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href=" editDraftBookingType/eyJpdiI6IjY3QldpendFck1ScDlYcSt5cU1pSVE9PSIsInZhbHVlIjoiT0lvRkEzVVFTSzhHaWkzOHNTUzREZz09IiwibWFjIjoiODRkOTZmMzgwNjU5NmUzMjMwZDFhMjIwOGNhN2Y3ODBmYTZkNjI2YjBhYTU3OTM4YWI5ZDA1MDM4OWUyZDRjYyJ9/1"
+                                                                    class="col "><img id="edit" src="images/edit.svg"
+                                                                        width="16" height="16" class="img-fluid">
+                                                                    Edit</a></li>
+                                                            <li><a href="cloneBookingType/eyJpdiI6IjY3QldpendFck1ScDlYcSt5cU1pSVE9PSIsInZhbHVlIjoiT0lvRkEzVVFTSzhHaWkzOHNTUzREZz09IiwibWFjIjoiODRkOTZmMzgwNjU5NmUzMjMwZDFhMjIwOGNhN2Y3ODBmYTZkNjI2YjBhYTU3OTM4YWI5ZDA1MDM4OWUyZDRjYyJ9"
+                                                                    class="col"><img id="clone" src="images/clone.svg"
+                                                                        width="16" height="16" class="img-fluid ">
+                                                                    Clone</a></li>
+                                                            <li><a href="deleteBookingType/eyJpdiI6IjY3QldpendFck1ScDlYcSt5cU1pSVE9PSIsInZhbHVlIjoiT0lvRkEzVVFTSzhHaWkzOHNTUzREZz09IiwibWFjIjoiODRkOTZmMzgwNjU5NmUzMjMwZDFhMjIwOGNhN2Y3ODBmYTZkNjI2YjBhYTU3OTM4YWI5ZDA1MDM4OWUyZDRjYyJ9/1"
+                                                                    class="col"><img id="delete" src="images/delete.svg"
+                                                                        width="16" height="16" class="img-fluid ">
+                                                                    Delete</a></li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#" class="col" data-target-id="3"
+                                                                    data-target-staffid="1" data-toggle="modal"
+                                                                    data-target="#embedmodal"><img id="edit"
+                                                                        src="images/ATW.svg" width="16" height="16"
+                                                                        class="img-fluid"> Add to Website</a></li>
+                                                        </ul>
+                                                    </div>
+
+
+                                                    <span class="card-text text-muted " id="hd1"><strong><br>1 hours
+                                                            0minutes</strong>
+                                                        <strong><br>Free - 0$</strong>
+                                                    </span><br>
+
+
+                                                </div>
+
+                                                <div class="row-cols-7 pb-4">
+                                                    <div class="text-right">
+                                                        <a href="service/meeting/schedule/3/1" id="VBP">View Booking
+                                                            Page</a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row ">
+                                                    <div class="col-8 ">
+                                                        <button onclick="copy(this)"
+                                                            value="https://getprobooking.com/service/meeting/schedule/3/1"
+                                                            style="border: none;">
+                                                            <img src="images/copy.svg" class="img-fluid mx-1">Copylink
+                                                        </button>
+                                                        <!--  <a href="#" id="CL"><img src="images/copy.svg" class="img-fluid mx-1" >Copylink</a> -->
+                                                    </div>
+                                                    <div class="col-4 text-center" id="swtch1">
+                                                        <label class="toggle">
+                                                            <span class="onoff" id="stats">ON</span>
+                                                            <input type="checkbox" id="pause" name="pause"
+                                                                onchange="textonoff()" onclick="pauseBooking('3',this)"
+                                                                checked />
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 col-xl-5 pl-xl-4 p-2">
+
+                                        <div id="cardmain" class="card mt-2" style="height:97%;">
+
+
+                                            <div class="card-body">
+
+                                                <div class="row">
+                                                    <p class="card-text col-7 " id="card1"><strong><a href="#"
+                                                                class="text-dark" data-toggle="tooltip"
+                                                                data-placement="bottom" title="Edit"
+                                                                style="text-decoration: none;">sdfsfd</a></strong></p>
+                                                    <input type="hidden" name="serviceid" id="serviceid" value="11" />
+                                                    <input type="hidden" name="staffidfromadmin" id="staffidfromadmin"
+                                                        value="1" />
+                                                    <div class="dropdown  col-5 my-3">
+                                                        <button class="btn dropdown-toggle " id="DD" type="button"
+                                                            data-toggle="dropdown">
+                                                            <img src="images/settings.svg" id="svg1" width="16"
+                                                                height="16" class="img-fluid"></a>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href=" editDraftBookingType/eyJpdiI6IjAvckplVnhvVnNtdFNnRUMvNGUwUWc9PSIsInZhbHVlIjoiMFlzRHlGQkZpTjhrUEc1Q1dEaVJ3QT09IiwibWFjIjoiNzRkYzFlM2VmODUzYTQzZWI3YmJkYTc3MmQ5NTMxYWRiMTY4OGExMzJmY2U2YTY4MDc1M2JmN2JmMDg0ZDEwZSJ9/1"
+                                                                    class="col "><img id="edit" src="images/edit.svg"
+                                                                        width="16" height="16" class="img-fluid">
+                                                                    Edit</a></li>
+                                                            <li><a href="cloneBookingType/eyJpdiI6IjAvckplVnhvVnNtdFNnRUMvNGUwUWc9PSIsInZhbHVlIjoiMFlzRHlGQkZpTjhrUEc1Q1dEaVJ3QT09IiwibWFjIjoiNzRkYzFlM2VmODUzYTQzZWI3YmJkYTc3MmQ5NTMxYWRiMTY4OGExMzJmY2U2YTY4MDc1M2JmN2JmMDg0ZDEwZSJ9"
+                                                                    class="col"><img id="clone" src="images/clone.svg"
+                                                                        width="16" height="16" class="img-fluid ">
+                                                                    Clone</a></li>
+                                                            <li><a href="deleteBookingType/eyJpdiI6IjAvckplVnhvVnNtdFNnRUMvNGUwUWc9PSIsInZhbHVlIjoiMFlzRHlGQkZpTjhrUEc1Q1dEaVJ3QT09IiwibWFjIjoiNzRkYzFlM2VmODUzYTQzZWI3YmJkYTc3MmQ5NTMxYWRiMTY4OGExMzJmY2U2YTY4MDc1M2JmN2JmMDg0ZDEwZSJ9/1"
+                                                                    class="col"><img id="delete" src="images/delete.svg"
+                                                                        width="16" height="16" class="img-fluid ">
+                                                                    Delete</a></li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#" class="col" data-target-id="11"
+                                                                    data-target-staffid="1" data-toggle="modal"
+                                                                    data-target="#embedmodal"><img id="edit"
+                                                                        src="images/ATW.svg" width="16" height="16"
+                                                                        class="img-fluid"> Add to Website</a></li>
+                                                        </ul>
+                                                    </div>
+
+
+
+                                                    <span class="card-text text-muted " id="hd1"><strong><br>0 hours
+                                                            30minutes</strong>
+                                                        <strong><br>Free - 0$</strong></span>
+                                                </div>
+
+                                                <div class="row-cols-7 pb-4">
+                                                    <div class="text-right">
+                                                        <a href="service/meeting/schedule/11/1" id="VBP">View Booking
+                                                            Page</a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row ">
+                                                    <div class="col-8 ">
+                                                        <button onclick="copy(this)"
+                                                            value="https://getprobooking.com/service/meeting/schedule/11/1"
+                                                            style="border: none;">
+                                                            <img src="images/copy.svg" class="img-fluid mx-1">Copylink
+                                                        </button>
+                                                        <!--  <a href="#" id="CL"><img src="images/copy.svg" class="img-fluid mx-1" >Copylink</a> -->
+                                                    </div>
+                                                    <div class="col-4 text-center" id="swtch1">
+                                                        <label class="toggle">
+                                                            <span class="onoff" id="stats">ON</span>
+                                                            <input type="checkbox" id="pause" name="pause"
+                                                                onchange="textonoff()" onclick="pauseBooking('11',this)"
+                                                                checked />
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 col-xl-5 pl-xl-4 p-2">
+
+                                        <div id="cardmain" class="card mt-2" style="height:97%;">
+
+
+                                            <div class="card-body">
+
+                                                <div class="row">
+                                                    <p class="card-text col-7 " id="card1"><strong><a href="#"
+                                                                class="text-dark" data-toggle="tooltip"
+                                                                data-placement="bottom" title="Edit"
+                                                                style="text-decoration: none;">sdfsfdr f</a></strong>
+                                                    </p>
+                                                    <input type="hidden" name="serviceid" id="serviceid" value="12" />
+                                                    <input type="hidden" name="staffidfromadmin" id="staffidfromadmin"
+                                                        value="1" />
+                                                    <div class="dropdown  col-5 my-3">
+                                                        <button class="btn dropdown-toggle " id="DD" type="button"
+                                                            data-toggle="dropdown">
+                                                            <img src="images/settings.svg" id="svg1" width="16"
+                                                                height="16" class="img-fluid"></a>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href=" editDraftBookingType/eyJpdiI6InhFN0o1bWl2V1V5RHZJUjNDdUhlZFE9PSIsInZhbHVlIjoiRjFrYkdHYlNpV3V3UDR4WFpTSUt0Zz09IiwibWFjIjoiMTYyMjZlZmQ0M2QyZjkyZWQ0ZTAyYWE4YmEwYmE1MzZjY2MyZDQ0ZDAzZmNmODZlOGRjN2Q2NzFmOWJiZWNhZSJ9/1"
+                                                                    class="col "><img id="edit" src="images/edit.svg"
+                                                                        width="16" height="16" class="img-fluid">
+                                                                    Edit</a></li>
+                                                            <li><a href="cloneBookingType/eyJpdiI6InhFN0o1bWl2V1V5RHZJUjNDdUhlZFE9PSIsInZhbHVlIjoiRjFrYkdHYlNpV3V3UDR4WFpTSUt0Zz09IiwibWFjIjoiMTYyMjZlZmQ0M2QyZjkyZWQ0ZTAyYWE4YmEwYmE1MzZjY2MyZDQ0ZDAzZmNmODZlOGRjN2Q2NzFmOWJiZWNhZSJ9"
+                                                                    class="col"><img id="clone" src="images/clone.svg"
+                                                                        width="16" height="16" class="img-fluid ">
+                                                                    Clone</a></li>
+                                                            <li><a href="deleteBookingType/eyJpdiI6InhFN0o1bWl2V1V5RHZJUjNDdUhlZFE9PSIsInZhbHVlIjoiRjFrYkdHYlNpV3V3UDR4WFpTSUt0Zz09IiwibWFjIjoiMTYyMjZlZmQ0M2QyZjkyZWQ0ZTAyYWE4YmEwYmE1MzZjY2MyZDQ0ZDAzZmNmODZlOGRjN2Q2NzFmOWJiZWNhZSJ9/1"
+                                                                    class="col"><img id="delete" src="images/delete.svg"
+                                                                        width="16" height="16" class="img-fluid ">
+                                                                    Delete</a></li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#" class="col" data-target-id="12"
+                                                                    data-target-staffid="1" data-toggle="modal"
+                                                                    data-target="#embedmodal"><img id="edit"
+                                                                        src="images/ATW.svg" width="16" height="16"
+                                                                        class="img-fluid"> Add to Website</a></li>
+                                                        </ul>
+                                                    </div>
+
+
+
+                                                    <span class="card-text text-muted " id="hd1"><strong><br>4 hours
+                                                            25minutes</strong>
+                                                        <strong><br>Free - 0$</strong></span>
+                                                </div>
+
+                                                <div class="row-cols-7 pb-4">
+                                                    <div class="text-right">
+                                                        <a href="service/meeting/schedule/12/1" id="VBP">View Booking
+                                                            Page</a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row ">
+                                                    <div class="col-8 ">
+                                                        <button onclick="copy(this)"
+                                                            value="https://getprobooking.com/service/meeting/schedule/12/1"
+                                                            style="border: none;">
+                                                            <img src="images/copy.svg" class="img-fluid mx-1">Copylink
+                                                        </button>
+                                                        <!--  <a href="#" id="CL"><img src="images/copy.svg" class="img-fluid mx-1" >Copylink</a> -->
+                                                    </div>
+                                                    <div class="col-4 text-center" id="swtch1">
+                                                        <label class="toggle">
+                                                            <span class="onoff" id="stats">ON</span>
+                                                            <input type="checkbox" id="pause" name="pause"
+                                                                onchange="textonoff()" onclick="pauseBooking('12',this)"
+                                                                checked />
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="model_select">
+                                        <div class="modal fade" id="embedmodal" tabindex="-1" role="dialog"
+                                            aria-labelledby="embedmodal" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header"
+                                                        style="margin: 0 auto ; text-align: center; ">
+                                                        <h5 class="modal-title" style="text-align: center;"
+                                                            id="embedmodalTitle">Embed this booking page on your website
+                                                        </h5>
+
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Copy the code below and paste inside your website's HTML
+                                                            files.</p>
+                                                        <textarea id="embed_code" rows="3" cols="50"
+                                                            readonly></textarea>
+                                                    </div>
+                                                    <div class="modal-footer"
+                                                        style="margin: 0 auto ; text-align: center; ">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            onclick="copy_textarea('#embed_code')">Copy Code</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                    </body>
+
+                </div>
+                <!-- /.container-fluid -->
+                <!-- End of Main Content -->
+            </div>
+            <!-- End of Content Wrapper -->
+        </div>
+        <!-- End of Page Wrapper -->
+        <!-- Footer -->
+        <footer class="sticky-footer">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Laravel 2021</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+    </div>
+    <!-- Common scripts for all pages-->
+
+    <!-- Main theme JS -->
+    <script src="vendor/js/sb-admin-2.min.js"></script>
+
+
+    <!-- Jquery Easing scroll-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+
+    <!-- SweetAlert -->
+    <!-- If issue in modal then check -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+
+
+    <!-- 
+     DataTables 
+
+    <script src="vendor/datatables/datatables.min.js"></script>
+
+    <link href="vendor/datatables/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
+    -->
+
+    <!-- Select2 -->
+    <!-- 
+    <script src="vendor/select2/select2.min.js"></script>
+
+    <link rel="stylesheet" href="vendor/select2/select2.min.css"> -->
+
+
+
+    <!-- <link rel="stylesheet" href="vendor/select2/select2-bootstrap4.min.css">
+ -->
+    <!------------------------------->
+
+    <!-- Bootstrap core JavaScript-->
+
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!------------------------------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"
+        rel="stylesheet" />
+
+    <!-- Copy text JS -->
+
+    <script src="vendor/js/copy_text.js"></script>
+
+    <script>
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+
+        $("#getActions").click(function () {
+
+            let staffid = $('#staff').val();;
+            let action = $('#action').val();
+
+            let formData = new FormData($('#adminform')[0]);
+            formData.append('staffid', staffid);
+            formData.append('action', action);
+            if (action == 'Availability') {
+                let url = '/staff/staffSchedule/getindex/' + staffid;
+                window.location = url;
+            }
+            if (action == 'Booking Types') {
+                let url = '/listBookingTypeForStaff/' + staffid + '/admin';
+                window.location = url;
+            }
+            if (action == 'My Bookings') {
+                let url = '/listBookingsByStaff/' + staffid;
+                window.location = url;
+            }
+            if (action == 'Booking Page') {
+                let url = '/staff/info/bookingpageForStaff/' + staffid;
+                window.location = url;
+            }
+            if (action == 'Setting') {
+                let url = '/staff/info/staffSettingForStaff/' + staffid;
+                window.location = url;
+            }
+        }
+
+        );
+    </script>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $("#embedmodal").on("show.bs.modal", function (e) {
+                var serviceid = $(e.relatedTarget).data('target-id');
+                var staffid = $(e.relatedTarget).data('target-staffid');
+                var APP_URL = "http:\/\/127.0.0.1:4433"
+                // var value= ""+ APP_URL+"/service/meeting/schedule/"+serviceid+"/"+staffid;
+                var value = '<iframe src="' + APP_URL + '/service/meeting/schedule/' + serviceid + '/' + staffid + '?type=embed" width="100%" height="900px" frameborder="0"></iframe>'
+                $('#embed_code').val(value);
+
+            });
+        });
+    </script>
+    <!-- on off script -->
+    <script>
+
+
+        textonoff()
+
+
+        function textonoff() {
+
+            $(".toggle>input").click(function () {
+                const onoff = $(this).siblings(".onoff");
+                $(this).is(":checked") ? $(onoff).html("ON") : $(onoff).html("OFF");
+                console.log($(this).is(":checked") ? $(onoff).html("ON") : $(onoff).html("OFF"));
+            });
+
+
+        }
+
+    </script>
+    <script src="vendor/js/index-bookingtype.js"></script>
+
+</body>
+
+</html>

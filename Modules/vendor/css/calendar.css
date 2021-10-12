@@ -1,0 +1,232 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+
+
+.bt {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+}
+*/
+/* .btn {
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    margin-top: .2rem;
+    background-color: rgb(18, 153, 231);
+    font-size: 16px;
+    color: #fff;
+
+} *//*
+
+.para {
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+}
+
+.time {
+    margin-top: 20px;
+
+}
+
+.i {
+    width: 70px;
+    margin-right: 20px;
+    height: 25px;
+}
+
+.i1 {
+    width: 70px;
+    margin-left: 20px;
+    height: 25px;
+}
+
+.time p {
+    font-weight: 1000;
+
+}
+
+
+
+.ptn {
+    margin-top: 20px;
+}
+
+.pt1 {
+    width: 102px;
+    height: 30px;
+}
+
+.pt3 {
+    background-color: #1a75ff;
+    border: none;
+    color: white;
+}*/
+/*
+.pt2 {
+    background: red;
+    border: none;
+    color: white;
+}
+
+.e {
+    text-align: center;
+}
+
+.c,
+.k,
+.j {
+    text-align: center;
+}
+*//*
+.pad {
+    background-color: rgb(243, 243, 243);
+    padding: 10px;
+}*/
+/*
+.gfh {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 30px;
+
+}*/
+* {
+    margin: 0;
+    /* padding: 0; */
+    box-sizing: border-box;
+}
+.datepicker-switch{
+    font-weight: 500;
+}
+.dow{
+    font-weight: 500;
+}
+.clear{
+    font-weight: 500;
+}
+.today{
+    font-weight: 500;
+}
+.main {
+    width: 400px;
+    padding-bottom: 4rem;
+    border: 1px solid black;
+    background: #fff;
+    padding-top: 5rem;
+    z-index: 9;
+    margin-top: 3rem;
+    font-size: 14px;
+    transform: scale(1.2);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 3.5rem;
+}
+
+#datepicker{
+    transform: scale(1.3) translateX(15%);
+    line-height: 2;
+    padding: 0px;
+}
+
+.datetimepicked {
+    padding: 1rem;
+}
+tbody{
+    letter-spacing: -1px;
+}
+thead{
+    letter-spacing: -1px;
+}
+.show {
+    width: 265px;
+    margin-left: 11px;
+    text-align: center;
+    margin-top: 65px;
+    /* padding: 45px 0px; */
+
+
+}
+
+
+.mainContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 9rem;
+    padding-left: 35%;
+    padding-bottom: 9rem;
+    min-height: 100vh;
+    width: 100%;
+    background: #000000dd;
+}
+.btnSubmit{
+    background: white;
+    border:1px solid gray;
+    color: gray;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    padding: 6px 7px;
+    width: 80px;
+}
+.btnCancel{
+    background: white;
+    border:1px solid gray;
+    color: gray;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    padding: 6px 7px;
+    width: 80px;
+    /* outline: none; */
+    /* border: none; */
+}
+.btnCancel:hover{
+    /* opacity: 0.5; */
+    transition: 0.3s;
+    color: black;
+    background: rgb(255, 72, 72);
+}
+.btnSubmit:hover{
+    /* opacity: 0.5; */
+    transition: 0.3s;
+    color: black;
+    background:  #3475f6;
+}
+/*
+.startTime{
+    padding: 0.5rem 1rem;
+    font-size: 1.24rem;
+    outline: none;
+    border: 0.1px solid #555;
+    border-radius: 2px;
+}
+
+.endTime{
+    padding: 0.5rem 1rem;
+    font-size: 1.24rem;
+    outline: none;
+    border: 0.1px solid #555;
+    border-radius: 2px;
+}
+
+.btnAdd{
+    border-radius: 20px;
+    background: #0053ff;
+    font-size: 1.5rem!important;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    font-family: 'Open Sans', sans-serif;
+    align-self: flex-end;
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem 2rem!important;
+    cursor: pointer;
+}
+
+
+
+*/

@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+   --bg-color: linear-gradient(
+    to right,
+    #ffffff,
+    #ece9e6
+); 
+    --white: #ffffff; 
+    --danger: #C82333;
+    --border-b: rgba(128, 128, 128, 0.185);
+    --gray: rgba(128, 128, 128, 0.185);
+    --lightBlue: #3D7EAA; 
+    --primary-color: #326bff;
+    --secondary-color: #af68e4;
+}
+.html,
+body {
+    width: 100%;
+    height: 100%;
+}
+.container-fluid {
+    width: 100%;
+    height: 100%;
+}
+.inner-container {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    background: var(--bg-color) !important;
+}
+.section {
+    width: 70%;
+    min-height: 100vh;
+    height: 100%;
+    background-color: var(--white) !important;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+}
+@media (max-width: 992px) {
+    .section {
+        width: 100% !important;
+    }
+    .nav {
+        display: none !important;
+    }
+}
+.nav {
+    width: 30%;
+}
+.section .heading1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+.section .heading5{
+    font-size: 18px;
+    font-weight: 500;
+}
+.section p {
+    color: black /*var(--gray)*/ !important;
+    font-size: 18px;
+    font-weight: 400;
+}
+.section i  {
+    color: var(--primary-color) !important;
+    padding: 0 10px; 
+}
+.sec-nav {
+    width: 100%;
+    padding: 20px 40px;
+    color: var(--primary-color) !important;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.363);
+    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+}
+.sec-div {
+   border: 1px solid var(--border-b) !important;
+   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.left-booking-box {
+    padding: 0 15px;
+    width: 30%;
+}
+.date {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-b) !important;
+}
+.zoom {
+    border-bottom: 1px solid var(--border-b) !important;
+}
+.right-booking-box {
+    width: 70%;
+    height: 100%;
+}
+.user {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-b) !important;
+}
+.t-color {
+    color: var(--lightBlue) !important;
+    cursor: pointer;
+}
+p.add-meeting {
+    color: var(--primary-color) !important;
+}
+p.add-meeting a:hover {
+    color: var(--secondary-color) !important;
+    cursor: pointer;
+}
+.light-btn {
+    border: none !important;
+    padding: 7px 14px;
+    border-radius: 5px;
+}
+button {
+    outline: none !important;
+    border: none !important;
+}
+.bg-btn {
+    background-color: var(--primary-color) !important;
+    border: none !important;
+    padding: 7px 14px;
+    color: var(--white) !important;
+    border-radius: 5px;
+}
