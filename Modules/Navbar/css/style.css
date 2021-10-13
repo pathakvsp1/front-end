@@ -34,7 +34,14 @@ a {
   transition: .3s all ease; }
   a, a:hover {
     text-decoration: none !important; }
-
+svg{
+  display: block;
+  width: 2em;
+  height: 2em;
+  line-height: 1;
+  position: fixed;
+  margin: 0.3em -2.9em;
+}
 
 .site-navbar {
   margin-bottom: 0px;
@@ -105,7 +112,8 @@ a {
           display: inline-block;
           text-decoration: none !important; }
           .site-navbar .site-navigation .site-menu > li > a:hover {
-            color: black; }
+            color: black;
+          font-size: 1.1em; }
       .site-navbar .site-navigation .site-menu .has-children {
         position: relative; }
         .site-navbar .site-navigation .site-menu .has-children > a {
@@ -131,12 +139,12 @@ a {
           position: absolute;
           border-radius: 25px;
           text-align: left;
-          border-top: 2px solid rgb(137, 186, 22);
+          border-top: 2px solid rgb(22 31 186);
           box-shadow: rgb(0 0 0 / 20%) 0px 2px 20px -2px;
           padding: 17px 48px;
           margin-top: 20px;
           margin-left: 0px;
-          background: rgb(255, 255, 255);
+          background: rgb(239 244 255);
           transition: all 0.2s ease 0s; }
           .site-navbar .site-navigation .site-menu .has-children .dropdown.arrow-top {
             position: absolute; }
@@ -175,8 +183,9 @@ a {
               padding: 9px 20px;
               display: block; }
               .site-navbar .site-navigation .site-menu .has-children .dropdown > li > a:hover {
-                background: #ebeef0;
-                color: #212529; }
+                opacity: 0.7;
+                color: #212529; 
+              font-size: 1.2em;}
             .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children > a:before {
               content: "\e315";
               right: 20px; }
