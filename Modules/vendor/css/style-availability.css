@@ -81,9 +81,32 @@ body {
 #day{
     padding-top: 15px;
     padding-bottom: 15px;
+    display: flex;
+    justify-content: center;
     border-top: 1px solid var(--border-t) !important;
 }
 
+.week-day{
+    width: 2em;
+}
+
+@media screen and (max-width: 1200px) {
+    .week-days.col-6{
+        /* max-width: 80%; */
+        width: 35em;
+    }
+  }
+
+@media screen and (max-width: 1200px) {
+    .timezone.col-xl-6{
+        /* max-width: 80%; */
+        text-align:center;
+        width: 35em;
+        padding-bottom: 2em !important;
+        border-top: 1px solid var(--border-t) !important;
+        border-left: 1px solid white !important;
+    }
+  }
 #createmeet {
     
     position: relative;

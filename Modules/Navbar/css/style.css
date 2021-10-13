@@ -312,7 +312,7 @@ a {
       .site-mobile-menu .site-nav-wrap .arrow-collapse:hover {
         background: #f8f9fa; }
       .site-mobile-menu .site-nav-wrap .arrow-collapse:before {
-        font-size: 12px;
+        font-size: 0px;
         z-index: 20;
         font-family: "icomoon";
         content: "\f078";
